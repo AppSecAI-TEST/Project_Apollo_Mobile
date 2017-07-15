@@ -72,6 +72,15 @@
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="false"
+                android:cropToPadding="false"
+                android:src="@drawable/apollo_logo_small" />
+
         </LinearLayout>
+
     </ScrollView>
 </LinearLayout>

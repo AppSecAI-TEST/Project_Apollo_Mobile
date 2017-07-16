@@ -87,7 +87,7 @@ public class Dashboard extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_dashboard) {
-            // Handle the camera action
+            
         } else if (id == R.id.nav_product) {
 
         } else if (id == R.id.nav_supplier) {

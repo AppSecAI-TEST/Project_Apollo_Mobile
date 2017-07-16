@@ -26,9 +26,11 @@
         <activity
             android:name=".Dashboard"
             android:label="@string/title_activity_dashboard"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Products"
+            android:label="@string/title_activity_products"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

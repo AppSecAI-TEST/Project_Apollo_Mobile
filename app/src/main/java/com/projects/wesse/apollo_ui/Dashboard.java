@@ -105,6 +105,9 @@ public class Dashboard extends AppCompatActivity
         } else if (id == R.id.nav_supplier) {
             supplierNavAction();
         }
+        else if (id == R.id.nav_customer) {
+            customerNavAction();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -119,5 +122,10 @@ public class Dashboard extends AppCompatActivity
     public void supplierNavAction() {
         Intent getSupplyActivity = new Intent(this, Suppliers.class);
         startActivity(getSupplyActivity);
+    }
+
+    public void customerNavAction() {
+        Intent getCustomer = new Intent(this, Customers.class);
+        startActivity(getCustomer);
     }
 }

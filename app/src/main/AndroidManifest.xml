@@ -34,6 +34,10 @@
         <activity
             android:name=".Suppliers"
             android:label="@string/title_activity_suppliers"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Customers"
+            android:label="@string/title_activity_customers"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

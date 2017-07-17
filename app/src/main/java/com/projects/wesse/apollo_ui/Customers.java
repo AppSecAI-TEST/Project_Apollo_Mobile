@@ -7,19 +7,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ArrayAdapter;
 
-import java.util.ArrayList;
+public class Customers extends AppCompatActivity {
 
-public class Products extends AppCompatActivity {
-
-    ArrayList<String> products;
-    ArrayAdapter<String> adapter;
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products);
+        setContentView(R.layout.activity_customers);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -31,7 +25,6 @@ public class Products extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
         Intent previousActivity = getIntent();
     }
 }

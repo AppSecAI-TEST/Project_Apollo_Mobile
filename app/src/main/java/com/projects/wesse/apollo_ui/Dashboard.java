@@ -29,12 +29,24 @@ public class Dashboard extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
+        graph.getViewport().setScrollable(true);
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+        staticLabelsFormatter.setHorizontalLabels(new String[] {"Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec", "Jan"});
+        graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
+                new DataPoint(1, 6500),
+                new DataPoint(2, 5900),
+                new DataPoint(3, 8000),
+                new DataPoint(4, 8100),
+                new DataPoint(5, 5600),
+                new DataPoint(6, 5500),
+                new DataPoint(7, 4000),
+                new DataPoint(8, 6500),
+                new DataPoint(9, 5900),
+                new DataPoint(10, 8000),
+                new DataPoint(11, 8100),
+                new DataPoint(12, 5600),
         });
         graph.addSeries(series);
 
@@ -42,8 +54,7 @@ public class Dashboard extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                messageNavAction();
             }
         });
 
@@ -127,5 +138,10 @@ public class Dashboard extends AppCompatActivity
     public void customerNavAction() {
         Intent getCustomer = new Intent(this, Customers.class);
         startActivity(getCustomer);
+    }
+
+    public void messageNavAction() {
+        Intent getMessageActivity = new Intent(this, Message.class);
+        startActivity(getMessageActivity);
     }
 }

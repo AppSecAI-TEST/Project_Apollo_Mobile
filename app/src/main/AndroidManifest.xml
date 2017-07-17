@@ -31,6 +31,10 @@
             android:name=".Products"
             android:label="@string/title_activity_products"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Message"
+            android:label="Messages"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -58,8 +58,6 @@ public class Dashboard extends AppCompatActivity
 
         Intent previousActivity = getIntent();
         String dataFromPrev = previousActivity.getExtras().getString("fromLogin");
-
-        //Graph goes here
     }
 
     @Override
@@ -103,13 +101,23 @@ public class Dashboard extends AppCompatActivity
         if (id == R.id.nav_dashboard) {
             
         } else if (id == R.id.nav_product) {
-
+            productNavAction();
         } else if (id == R.id.nav_supplier) {
-
+            supplierNavAction();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void productNavAction() {
+        Intent getProductActivity = new Intent(this, Products.class);
+        startActivity(getProductActivity);
+    }
+
+    public void supplierNavAction() {
+        Intent getSupplyActivity = new Intent(this, Suppliers.class);
+        startActivity(getSupplyActivity);
     }
 }

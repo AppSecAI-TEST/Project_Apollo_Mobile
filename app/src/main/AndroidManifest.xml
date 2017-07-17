@@ -26,10 +26,14 @@
         <activity
             android:name=".Dashboard"
             android:label="@string/title_activity_dashboard"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Products"
             android:label="@string/title_activity_products"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Suppliers"
+            android:label="@string/title_activity_suppliers"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

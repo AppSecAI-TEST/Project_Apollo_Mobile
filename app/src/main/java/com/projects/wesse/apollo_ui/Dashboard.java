@@ -140,7 +140,7 @@ public class Dashboard extends AppCompatActivity
         startActivity(getCustomer);
     }
 
-    public static void messageNavAction() {
+    public void messageNavAction() {
         Intent getMessageActivity = new Intent(this, Message.class);
         startActivity(getMessageActivity);
     }

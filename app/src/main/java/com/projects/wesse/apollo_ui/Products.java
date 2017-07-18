@@ -35,10 +35,8 @@ public class Products extends AppCompatActivity {
         products.add(1, "Stock Item 2");
         products.add(2, "Stock Item 3");
 
-        System.out.println(products.toString());
-
-        adapter = new ListAdapter(this, products);
         ListView theListView = (ListView) findViewById(R.id.listView1);
+        adapter = new ListAdapter(this, products);
         theListView.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

@@ -38,8 +38,13 @@ public class Products extends AppCompatActivity{
         Intent previousActivity = getIntent();
 
         products = new ArrayList<String>();
-        for(int i = 0; i < 10; i++)
-            products.add("Stock Item " + i);
+        /*for(int i = 0; i < 10; i++)
+            products.add("Stock Item " + i);*/
+        products.add(0, "Stock Item One");
+        products.add(1, "Stock Item 2");
+        products.add(2, "Stock Item 3");
+
+        System.out.println(products.toString());
 
         adapter = new ListAdapter(this, products);
         ListView theListView = (ListView) findViewById(R.id.listView1);

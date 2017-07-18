@@ -44,6 +44,18 @@
             android:name=".Message"
             android:label="Messages"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Purchases"
+            android:label="Purchases"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Orders"
+            android:label="Orders"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Sales"
+            android:label="Sales"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

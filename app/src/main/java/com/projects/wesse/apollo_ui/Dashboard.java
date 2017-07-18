@@ -115,9 +115,15 @@ public class Dashboard extends AppCompatActivity
             productNavAction();
         } else if (id == R.id.nav_supplier) {
             supplierNavAction();
-        }
-        else if (id == R.id.nav_customer) {
+        }else if (id == R.id.nav_customer) {
             customerNavAction();
+        }else if (id == R.id.nav_purchases) {
+            purchaseNavAction();
+        }else if (id == R.id.nav_orders) {
+            ordersNavAction();
+        }else if (id == R.id.nav_sales) {
+            salesNavAction();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -142,6 +148,21 @@ public class Dashboard extends AppCompatActivity
 
     public void messageNavAction() {
         Intent getMessageActivity = new Intent(this, Message.class);
+        startActivity(getMessageActivity);
+    }
+
+    public void purchaseNavAction() {
+        Intent getMessageActivity = new Intent(this, Purchases.class);
+        startActivity(getMessageActivity);
+    }
+
+    public void ordersNavAction() {
+        Intent getMessageActivity = new Intent(this, Orders.class);
+        startActivity(getMessageActivity);
+    }
+
+    public void salesNavAction() {
+        Intent getMessageActivity = new Intent(this, Sales.class);
         startActivity(getMessageActivity);
     }
 }

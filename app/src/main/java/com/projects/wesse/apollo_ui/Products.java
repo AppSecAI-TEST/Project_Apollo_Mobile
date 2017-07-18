@@ -3,22 +3,21 @@ package com.projects.wesse.apollo_ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.projects.wesse.apollo_ui.utilities.ListAdapter;
 
 import java.util.ArrayList;
 
 public class Products extends AppCompatActivity{
 
     ArrayList<String> products;
-    ArrayAdapter<String> adapter;
+    ListAdapter adapter;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +39,13 @@ public class Products extends AppCompatActivity{
         Intent previousActivity = getIntent();
 
         products = new ArrayList<String>();
-        products.add("Item");
+        for(int i = 0; i < 10; i++)
+            products.add("Stock Item " + i);
+
+        adapter = new ListAdapter(this, products);
+        ListView theListView = (ListView) findViewById(R.id.listView1);
+        theListView.setAdapter(adapter);
+
     }
 
 }

@@ -26,7 +26,7 @@ public class Products extends AppCompatActivity{
         setContentView(R.layout.activity_products);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +38,9 @@ public class Products extends AppCompatActivity{
         });
 
         Intent previousActivity = getIntent();
+
+        products = new ArrayList<String>();
+        products.add("Item");
     }
 
 }

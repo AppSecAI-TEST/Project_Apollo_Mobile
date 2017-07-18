@@ -31,6 +31,9 @@ public class Products extends AppCompatActivity {
         products = new ArrayList<String>();
         for(int i = 0; i < 10; i++)
             products.add("Stock Item " + i+1);
+        products.add(0, "Stock Item One");
+        products.add(1, "Stock Item 2");
+        products.add(2, "Stock Item 3");
 
         System.out.println(products.toString());
 
@@ -47,6 +50,7 @@ public class Products extends AppCompatActivity {
         });
 
         Intent previousActivity = getIntent();
+
 
     }
 

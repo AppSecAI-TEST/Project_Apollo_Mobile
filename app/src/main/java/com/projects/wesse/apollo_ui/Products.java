@@ -29,15 +29,17 @@ public class Products extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         products = new ArrayList<String>();
-        for(int i = 0; i < 10; i++)
-            products.add("Stock Item " + i+1);
-        products.add(0, "Stock Item One");
-        products.add(1, "Stock Item 2");
-        products.add(2, "Stock Item 3");
+
 
         ListView theListView = (ListView) findViewById(R.id.listView1);
         adapter = new ListAdapter(this, products);
         theListView.setAdapter(adapter);
+        theListView.setTextFilterEnabled(true);
+
+        for(int i = 0; i < 100; i++)
+            products.add("Product " + (i + 1));
+
+        adapter.notifyDataSetChanged();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -46,10 +48,7 @@ public class Products extends AppCompatActivity {
 
             }
         });
-
         Intent previousActivity = getIntent();
-
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

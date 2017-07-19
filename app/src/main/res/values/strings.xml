@@ -111,4 +111,5 @@
     </string>
     <string name="title_activity_suppliers">Suppliers</string>
     <string name="title_activity_customers">Customers</string>
+    <string name="title_activity_example_list">ExampleList</string>
 </resources>

@@ -3,7 +3,6 @@ package com.projects.wesse.apollo_ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -11,14 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-import com.projects.wesse.apollo_ui.utilities.ListAdapter;
+import com.projects.wesse.apollo_ui.utilities.CustomAdapter;
 
 import java.util.ArrayList;
 
 public class Customers extends AppCompatActivity {
 
     ArrayList<String> customers;
-    ListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +26,12 @@ public class Customers extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         customers = new ArrayList<String>();
-
-
-        ListView theListView = (ListView) findViewById(R.id.listView1);
-        adapter = new ListAdapter(this, customers);
-        theListView.setAdapter(adapter);
-        theListView.setTextFilterEnabled(true);
-
-        for(int i = 0; i < 100; i++)
+        for(int i = 0; i < 10; i++)
             customers.add("Customer " + (i + 1));
 
-        adapter.notifyDataSetChanged();
+        CustomAdapter adapter = new CustomAdapter(customers, this);
+        ListView theListView = (ListView) findViewById(R.id.listView1);
+        theListView.setAdapter(adapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

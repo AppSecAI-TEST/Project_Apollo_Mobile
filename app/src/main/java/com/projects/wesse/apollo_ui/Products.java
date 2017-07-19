@@ -28,6 +28,7 @@ public class Products extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+<<<<<<< HEAD
         //display list of products
 
         ListView theListView = (ListView) findViewById(R.id.product_view);
@@ -41,6 +42,20 @@ public class Products extends AppCompatActivity {
 
         myarrayAdapter.notifyDataSetChanged();
 
+=======
+        products = new ArrayList<String>();
+
+
+        ListView theListView = (ListView) findViewById(R.id.listView1);
+        adapter = new ListAdapter(this, products);
+        theListView.setAdapter(adapter);
+        theListView.setTextFilterEnabled(true);
+
+        for(int i = 0; i < 100; i++)
+            products.add("Product " + (i + 1));
+
+        adapter.notifyDataSetChanged();
+>>>>>>> 532d833a16fd6556c140d4c30971bf6f503f3a2a
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -49,10 +64,7 @@ public class Products extends AppCompatActivity {
 
             }
         });
-
         Intent previousActivity = getIntent();
-
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

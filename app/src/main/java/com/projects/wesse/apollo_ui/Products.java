@@ -18,8 +18,8 @@ import java.util.ArrayList;
 
 public class Products extends AppCompatActivity {
 
-    ArrayList<String> products;
-    ListAdapter adapter;
+    ArrayList<String> products = new ArrayList<String>();;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,16 +28,19 @@ public class Products extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        products = new ArrayList<String>();
+        //display list of products
+
+        ListView theListView = (ListView) findViewById(R.id.product_view);
+        ArrayAdapter<String> myarrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, products);
+        theListView.setAdapter(myarrayAdapter);
+        theListView.setTextFilterEnabled(true);
+
         for(int i = 0; i < 10; i++)
             products.add("Stock Item " + i+1);
-        products.add(0, "Stock Item One");
-        products.add(1, "Stock Item 2");
-        products.add(2, "Stock Item 3");
 
-        ListView theListView = (ListView) findViewById(R.id.listView1);
-        adapter = new ListAdapter(this, products);
-        theListView.setAdapter(adapter);
+
+        myarrayAdapter.notifyDataSetChanged();
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

@@ -20,6 +20,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.projects.wesse.apollo_ui.utilities.RestClient;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -27,6 +34,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import cz.msebera.android.httpclient.entity.mime.Header;
 
 /**
  * Created by Xander on 7/17/2017.
@@ -41,7 +50,7 @@ public class Message extends AppCompatActivity
     //DEFINING A STRING ADAPTER WHICH WILL HANDLE THE DATA OF THE LISTVIEW
     ArrayAdapter<String> adapter;
 
-
+    String api;
 
 
 
@@ -71,12 +80,17 @@ public class Message extends AppCompatActivity
         lv.setAdapter(myarrayAdapter);
         lv.setTextFilterEnabled(true);
 
+        testAPI();
+
         listItems.add("Peter");
         listItems.add("Sarah");
+        listItems.add(api);
+
 
         myarrayAdapter.notifyDataSetChanged();
 
         //API
+
 
 //        try {
 //            URL apolloEndpoint = new URL("https://api.github.com/");
@@ -123,6 +137,28 @@ public class Message extends AppCompatActivity
 //        });
 
 
+    }
+
+    public void testAPI()
+    {
+        RestClient.get("api/customer", null, new JsonHttpResponseHandler() {
+
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // If the response is JSONObject instead of expected JSONArray
+                api = "object";
+            }
+
+            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) throws JSONException {
+                // Pull out the first event on the public timeline
+                Object firstEvent = timeline.get(0);
+                String text = firstEvent.toString();
+
+                // Do something with the response
+                System.out.println(text);
+                api = text;
+            }
+
+        });
     }
 
 

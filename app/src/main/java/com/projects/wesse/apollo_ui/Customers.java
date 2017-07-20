@@ -10,9 +10,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.projects.wesse.apollo_ui.utilities.CurrentLayout;
 import com.projects.wesse.apollo_ui.utilities.CustomAdapter;
+import com.projects.wesse.apollo_ui.utilities.RestClient;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.entity.mime.Header;
 
 public class Customers extends AppCompatActivity {
 
@@ -21,17 +30,21 @@ public class Customers extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CurrentLayout.setLayout("CustomerView");
         setContentView(R.layout.activity_customers);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        customers = new ArrayList<String>();
-        for(int i = 0; i < 10; i++)
-            customers.add("Customer " + (i + 1));
+        getCustomers();
+
+
+//        for(int i = 0; i < 10; i++)
+//            customers.add("Customer " + (i + 1));
 
         CustomAdapter adapter = new CustomAdapter(customers, this);
         ListView theListView = (ListView) findViewById(R.id.listView1);
         theListView.setAdapter(adapter);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -52,5 +65,28 @@ public class Customers extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_settings) return true;
         return super.onOptionsItemSelected(item);
+    }
+
+    public void getCustomers()
+    {
+        RestClient.get("api/customer", null, new JsonHttpResponseHandler() {
+
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // If the response is JSONObject instead of expected JSONArray
+
+            }
+
+            public void onSuccess(int statusCode, Header[] headers, JSONArray newCustomers) throws JSONException {
+                // Pull out the first event on the public timeline
+                Object firstEvent = newCustomers.get(0);
+                int i = newCustomers.length();
+                String text = firstEvent.toString();
+
+                // Do something with the response
+                System.out.println(text);
+
+            }
+
+        });
     }
 }

@@ -8,7 +8,7 @@ import com.loopj.android.http.*;
 
 
 public class RestClient {
-    private static final String BASE_URL = "https://apollo.co.za/api/";
+    private static final String BASE_URL = "https://apollo.lomejo.co.za/api/";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.projects.wesse.apollo_ui.utilities.CurrentLayout;
 import com.projects.wesse.apollo_ui.utilities.CustomAdapter;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class Products extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
+        CurrentLayout.setLayout("ProductView");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

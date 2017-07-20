@@ -56,6 +56,14 @@
             android:name=".Sales"
             android:label="Sales"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CustomerView"
+            android:label="CustomerView"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProductView"
+            android:label="ProductView"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

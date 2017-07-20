@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.projects.wesse.apollo_ui.utilities.CurrentLayout;
 import com.projects.wesse.apollo_ui.utilities.CustomAdapter;
 
 import java.util.ArrayList;
@@ -24,16 +25,17 @@ public class CustomerView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_view);
 
-//        Bundle b = getIntent().getExtras();
-//        String value = "Peter";
-//        if(b != null)
-//            value = b.getString("CUSTOMER_ID");
-//        setCustomer(value);
+        Bundle b = getIntent().getExtras();
+        String value = "Peter";
+        if(b != null)
+            value = b.getString("ID");
+        setCustomer(value);
 
     }
 
     public void setCustomer(String name)
     {
         TextView custName = (TextView) findViewById(R.id.cust_name);
+        custName.setText(name);
     }
 }

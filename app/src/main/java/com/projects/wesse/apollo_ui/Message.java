@@ -80,11 +80,11 @@ public class Message extends AppCompatActivity
         lv.setAdapter(myarrayAdapter);
         lv.setTextFilterEnabled(true);
 
-        testAPI();
+
 
         listItems.add("Peter");
         listItems.add("Sarah");
-        listItems.add(api);
+
 
 
         myarrayAdapter.notifyDataSetChanged();
@@ -139,27 +139,7 @@ public class Message extends AppCompatActivity
 
     }
 
-    public void testAPI()
-    {
-        RestClient.get("api/customer", null, new JsonHttpResponseHandler() {
 
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                // If the response is JSONObject instead of expected JSONArray
-                api = "object";
-            }
-
-            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) throws JSONException {
-                // Pull out the first event on the public timeline
-                Object firstEvent = timeline.get(0);
-                String text = firstEvent.toString();
-
-                // Do something with the response
-                System.out.println(text);
-                api = text;
-            }
-
-        });
-    }
 
 
 }

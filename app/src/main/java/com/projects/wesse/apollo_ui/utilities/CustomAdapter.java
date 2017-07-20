@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.projects.wesse.apollo_ui.CustomerView;
 import com.projects.wesse.apollo_ui.Customers;
+import com.projects.wesse.apollo_ui.ProductView;
 import com.projects.wesse.apollo_ui.R;
 
 import java.util.ArrayList;
@@ -66,8 +67,21 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
         viewBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                v.getContext().startActivity(new Intent(v.getContext(),CustomerView.class));
-               // .putExtra("CUSTOMER_ID", list.get(position))
+                switch(CurrentLayout.getLayout())
+                {
+                    case "CustomerView":
+                        v.getContext().startActivity(new Intent(v.getContext(),CustomerView.class).putExtra("ID", list.get(position)));
+                        break;
+                    case "ProductView":
+                        v.getContext().startActivity(new Intent(v.getContext(),ProductView.class).putExtra("ID", list.get(position)));
+
+                        break;
+                }
+
+                if(CurrentLayout.getLayout().equals("CustomerView"))
+                {
+                }
+
             }
         });
 

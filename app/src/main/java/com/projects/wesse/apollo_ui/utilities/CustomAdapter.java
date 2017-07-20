@@ -1,6 +1,7 @@
 package com.projects.wesse.apollo_ui.utilities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.projects.wesse.apollo_ui.CustomerView;
+import com.projects.wesse.apollo_ui.Customers;
 import com.projects.wesse.apollo_ui.R;
 
 import java.util.ArrayList;
@@ -63,11 +66,11 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
         viewBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //do something
-                list.remove(position); //or some other task
-                notifyDataSetChanged();
+                v.getContext().startActivity(new Intent(v.getContext(),CustomerView.class));
+               // .putExtra("CUSTOMER_ID", list.get(position))
             }
         });
+
         editBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

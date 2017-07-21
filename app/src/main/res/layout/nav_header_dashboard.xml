@@ -20,7 +20,7 @@
         android:layout_height="75dp"
         android:layout_weight="0.21"
 
-        app:srcCompat="@drawable/apollo_head" />
+        app:srcCompat="@drawable/apollo_head_bevel" />
 
     <TextView
         android:layout_width="match_parent"

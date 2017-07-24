@@ -9,8 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.projects.wesse.apollo_ui.utilities.CustomAdapter;
 
@@ -34,6 +36,13 @@ public class Suppliers extends AppCompatActivity {
         CustomAdapter adapter = new CustomAdapter(suppliers, this);
         ListView theListView = (ListView) findViewById(R.id.listView1);
         theListView.setAdapter(adapter);
+
+        theListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l){
+                String supplierPicked = "You selected " + String.valueOf(adapterView.getItemAtPosition(i));
+                Toast.makeText(Suppliers.this, supplierPicked, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

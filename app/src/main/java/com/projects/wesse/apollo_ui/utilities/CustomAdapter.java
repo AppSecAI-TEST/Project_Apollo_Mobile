@@ -3,16 +3,20 @@ package com.projects.wesse.apollo_ui.utilities;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.projects.wesse.apollo_ui.CustomerView;
 import com.projects.wesse.apollo_ui.Customers;
 import com.projects.wesse.apollo_ui.ProductView;
+import com.projects.wesse.apollo_ui.Products;
 import com.projects.wesse.apollo_ui.R;
 
 import java.util.ArrayList;
@@ -48,6 +52,7 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
         //just return 0 if your list items do not have an Id variable.
     }
 
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = convertView;
@@ -61,35 +66,39 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
         listItemText.setText(list.get(position));
 
         //Handle buttons and add onClickListeners
-        Button viewBtn = (Button)view.findViewById(R.id.btn_view);
-        Button editBtn = (Button)view.findViewById(R.id.btn_edit);
 
-        viewBtn.setOnClickListener(new View.OnClickListener(){
+        final Button popupBtn = (Button)view.findViewById(R.id.btn_popup);
+
+        popupBtn.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                switch(CurrentLayout.getLayout())
-                {
-                    case "CustomerView":
-                        v.getContext().startActivity(new Intent(v.getContext(),CustomerView.class).putExtra("ID", list.get(position)));
-                        break;
-                    case "ProductView":
-                        v.getContext().startActivity(new Intent(v.getContext(),ProductView.class).putExtra("ID", list.get(position)));
+            public void onClick(final View v) {
+                PopupMenu popup = new PopupMenu(v.getContext(), popupBtn);
+                //Inflating the Popup using xml file
+                popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
 
-                        break;
-                }
-
-                if(CurrentLayout.getLayout().equals("CustomerView"))
-                {
-                }
-
-            }
-        });
-
-        editBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //do something
-                notifyDataSetChanged();
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getTitle().toString())
+                        {
+                            case "View" :
+                                switch(CurrentLayout.getLayout())
+                                {
+                                    case "CustomerView":
+                                        v.getContext().startActivity(new Intent(v.getContext(),CustomerView.class).putExtra("ID", list.get(position)));
+                                        break;
+                                    case "ProductView":
+                                        v.getContext().startActivity(new Intent(v.getContext(),ProductView.class).putExtra("ID", list.get(position)));
+                                        break;
+                                }
+                                break;
+                            case "Edit":
+                                break;
+                        }
+                        return true;
+                    }
+                });
+                popup.show();
             }
         });
 

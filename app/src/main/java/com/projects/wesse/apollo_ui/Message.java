@@ -21,6 +21,7 @@ import android.widget.ListView;
 
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.projects.wesse.apollo_ui.utilities.BaseActivity;
 import com.projects.wesse.apollo_ui.utilities.RestClient;
 
 import org.json.JSONArray;
@@ -41,7 +42,7 @@ import cz.msebera.android.httpclient.entity.mime.Header;
  * Created by Xander on 7/17/2017.
  */
 
-public class Message extends AppCompatActivity
+public class Message extends BaseActivity
 {
 
     //LIST OF ARRAY STRINGS WHICH WILL SERVE AS LIST ITEMS

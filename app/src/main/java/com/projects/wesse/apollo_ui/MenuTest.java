@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  * Created by Xander on 7/25/2017.
  */
 
-public class Menu extends Fragment {
+public class MenuTest extends Fragment {
 
 
 
@@ -26,6 +26,6 @@ public class Menu extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Menu 1");
+        getActivity().setTitle("MenuTest 1");
     }
 }

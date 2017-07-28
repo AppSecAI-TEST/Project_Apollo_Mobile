@@ -30,7 +30,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Products"
-            android:label="@string/title_activity_products"
+            android:label="Products"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Suppliers"
@@ -58,11 +58,19 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CustomerView"
-            android:label="CustomerView"
+            android:label="View"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ProductView"
-            android:label="ProductView"
+            android:label="View"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PurchasesView"
+            android:label="View"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SupplierView"
+            android:label="View"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

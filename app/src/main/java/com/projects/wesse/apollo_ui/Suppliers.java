@@ -1,31 +1,35 @@
 package com.projects.wesse.apollo_ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.projects.wesse.apollo_ui.utilities.CurrentLayout;
 import com.projects.wesse.apollo_ui.utilities.CustomAdapter;
 
 import java.util.ArrayList;
 
 public class Suppliers extends AppCompatActivity {
 
-    ArrayList<String> suppliers;
+    ArrayList<String> suppliers, menuItems;
+    ListView list_supplier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suppliers);
+        CurrentLayout.setLayout("SuppliersView");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -33,36 +37,63 @@ public class Suppliers extends AppCompatActivity {
         for(int i = 0; i < 100; i++)
             suppliers.add("Supplier " + (i + 1));
 
-        CustomAdapter adapter = new CustomAdapter(suppliers, this);
-        ListView theListView = (ListView) findViewById(R.id.listView1);
-        theListView.setAdapter(adapter);
+        //CustomAdapter adapter = new CustomAdapter(products, this);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, suppliers);
+        list_supplier = (ListView) findViewById(R.id.listView1);
+        list_supplier.setAdapter(adapter);
 
-        theListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l){
-                String supplierPicked = "You selected " + String.valueOf(adapterView.getItemAtPosition(i));
-                Toast.makeText(Suppliers.this, supplierPicked, Toast.LENGTH_SHORT).show();
+        list_supplier.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = ((TextView)view).getText().toString();
+
+                Intent product_view = new Intent(view.getContext(), SupplierView.class).putExtra("ID", item);
+                startActivity(product_view);
             }
+
+
         });
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
             }
         });
         Intent previousActivity = getIntent();
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_dashboard_drawer, menu);
+
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        if (v.getId()==R.id.listView1) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+            menu.setHeaderTitle("PRODUCT");
+            menuItems.add("Edit");
+            menuItems.add("View");
+            for (int i = 0; i<menuItems.size(); i++) {
+                menu.add(Menu.NONE, i, i, menuItems.get(i));
+            }
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+        int menuItemIndex = item.getItemId();
+        String menuItemName = menuItems.get(menuItemIndex);
+        String listItemName = suppliers.get(info.position);
+
+
         return true;
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-        if (id == R.id.action_settings) return true;
-        return super.onOptionsItemSelected(item);
-    }
+
+
+
+
+
+
 }

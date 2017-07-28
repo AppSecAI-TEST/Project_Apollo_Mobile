@@ -1,5 +1,6 @@
 package com.projects.wesse.apollo_ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class Products extends AppCompatActivity {
 
     ArrayList<String> products, menuItems;
+    ListView list_products;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +37,22 @@ public class Products extends AppCompatActivity {
         for(int i = 0; i < 100; i++)
             products.add("Product " + (i + 1));
 
-        CustomAdapter adapter = new CustomAdapter(products, this);
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, products);
-        ListView theListView = (ListView) findViewById(R.id.listView1);
-        theListView.setAdapter(adapter);
+        //CustomAdapter adapter = new CustomAdapter(products, this);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, products);
+        list_products = (ListView) findViewById(R.id.listView1);
+        list_products.setAdapter(adapter);
+
+        list_products.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = ((TextView)view).getText().toString();
+
+                Intent product_view = new Intent(view.getContext(), ProductView.class).putExtra("ID", item);
+                startActivity(product_view);
+            }
+
+
+        });
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -76,14 +90,10 @@ public class Products extends AppCompatActivity {
         return true;
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_dashboard_drawer, menu);
-        return true;
-    }
 
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-        if (id == R.id.action_settings) return true;
-        return super.onOptionsItemSelected(item);
-    }
+
+
+
+
+
 }

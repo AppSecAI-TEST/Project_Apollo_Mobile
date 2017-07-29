@@ -1,42 +1,19 @@
 package com.projects.wesse.apollo_ui;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.JsonReader;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.projects.wesse.apollo_ui.utilities.BaseActivity;
-import com.projects.wesse.apollo_ui.utilities.RestClient;
+import com.projects.wesse.apollo_ui.utilities.MessageAdapter;
+import com.projects.wesse.apollo_ui.utilities.MessageItem;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
-
-import javax.net.ssl.HttpsURLConnection;
-
-import cz.msebera.android.httpclient.entity.mime.Header;
 
 /**
  * Created by Xander on 7/17/2017.
@@ -46,7 +23,7 @@ public class Message extends BaseActivity
 {
 
     //LIST OF ARRAY STRINGS WHICH WILL SERVE AS LIST ITEMS
-    ArrayList<String> listItems=new ArrayList<String>();
+    ArrayList<MessageItem> listItems = new ArrayList<>();
 
     //DEFINING A STRING ADAPTER WHICH WILL HANDLE THE DATA OF THE LISTVIEW
     ArrayAdapter<String> adapter;
@@ -63,18 +40,20 @@ public class Message extends BaseActivity
 
         //list of messages
         ListView lv = (ListView)findViewById(R.id.msgview);
-        ArrayAdapter<String> myarrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listItems);
+        MessageAdapter myarrayAdapter = new MessageAdapter(this, listItems);
         lv.setAdapter(myarrayAdapter);
         lv.setTextFilterEnabled(true);
 
 
-
-        listItems.add("Peter");
-        listItems.add("Sarah");
-
-
+        listItems.add(new MessageItem("Peter","Peters message"));
+        listItems.add(new MessageItem("Sarah","Sarah's message"));
 
         myarrayAdapter.notifyDataSetChanged();
+
+
+
+
+
 
         //API
 

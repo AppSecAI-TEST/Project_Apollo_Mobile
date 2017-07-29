@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.projects.wesse.apollo_ui.utilities.Test"
+    tools:showIn="@layout/activity_test">
+
+    <TextView
+        android:id="@+id/tvIsConnected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#FF0000"
+        android:textColor="#FFF"
+        android:textSize="18dp"
+        android:layout_marginBottom="5dp"
+        android:text="is connected? " />
+
+    <EditText
+        android:id="@+id/etResponse"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:ems="10"
+        android:layout_marginTop="10dp"
+        android:inputType="textMultiLine" >\
+        <requestFocus />
+    </EditText>
+
+</android.support.constraint.ConstraintLayout>

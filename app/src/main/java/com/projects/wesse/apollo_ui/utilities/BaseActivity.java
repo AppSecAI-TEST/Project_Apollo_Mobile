@@ -111,12 +111,19 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             ordersNavAction();
         }else if (id == R.id.nav_sales) {
             salesNavAction();
-
+        }else if (id == R.id.nav_test)
+        {
+            testNavAction();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void testNavAction() {
+        Intent getTestActivity = new Intent(this, Test.class);
+        startActivity(getTestActivity);
     }
 
     public void productNavAction() {

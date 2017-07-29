@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.projects.wesse.apollo_ui.Customers;
+import com.projects.wesse.apollo_ui.Dashboard;
 import com.projects.wesse.apollo_ui.Message;
 import com.projects.wesse.apollo_ui.Orders;
 import com.projects.wesse.apollo_ui.Products;
@@ -31,6 +32,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
 
     public String currentActivity;
+    NavigationView navigationView;
 
     protected void onCreateDrawer()
     {
@@ -52,7 +54,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -98,7 +100,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_dashboard) {
-
+            dashboardNavAction();
         } else if (id == R.id.nav_product) {
             productNavAction();
         } else if (id == R.id.nav_supplier) {
@@ -124,6 +126,11 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     private void testNavAction() {
         Intent getTestActivity = new Intent(this, Test.class);
         startActivity(getTestActivity);
+    }
+
+    public void dashboardNavAction() {
+        Intent getDashboardActivity = new Intent(this, Dashboard.class);
+        startActivity(getDashboardActivity);
     }
 
     public void productNavAction() {

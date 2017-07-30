@@ -16,19 +16,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.loopj.android.http.*;
-
-
 import com.projects.wesse.apollo_ui.R;
+
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
-import cz.msebera.android.httpclient.HttpResponse;
-import cz.msebera.android.httpclient.client.HttpClient;
-import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+import cz.msebera.android.httpclient.NameValuePair;
+import cz.msebera.android.httpclient.message.BasicNameValuePair;
 
 public class Test extends AppCompatActivity {
 
@@ -53,7 +55,7 @@ public class Test extends AppCompatActivity {
         else{
             tvIsConnected.setText("You are NOT conncted");
         }
-        new HttpAsyncTask().execute(BASE_URL);
+        new HttpAsyncTask().execute(BASE_URL + "product");
 
         Intent previousActivity = getIntent();
 
@@ -76,7 +78,7 @@ public class Test extends AppCompatActivity {
             return false;
     }
 
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
+    public static String convertInputStreamToString(InputStream inputStream) throws IOException {
         BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
         String line = "";
         String result = "";
@@ -88,28 +90,33 @@ public class Test extends AppCompatActivity {
 
     }
 
+    private static JSONObject convertInputStreamToJSONObject(InputStream inputStream) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        return (JSONObject)jsonParser.parse(new InputStreamReader(inputStream, "UTF-8"));
+    }
+
     public static String GET(String url){
+        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        nvps.add(new BasicNameValuePair("email", "johndoe@paradox.com"));
+        nvps.add(new BasicNameValuePair("password", "secret"));
         InputStream inputStream = null;
+        try {
+            inputStream = NewRESTClient.post(nvps, "authenticate").getEntity().getContent();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String result = "";
         try {
 
-            // create HttpClient
-            HttpClient httpclient = new DefaultHttpClient();
-
-            // make GET request to the given URL
-            HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
-
-            // receive response as inputStream
-            inputStream = httpResponse.getEntity().getContent();
-
-            // convert inputstream to string
-            if(inputStream != null)
+            if(inputStream != null) {
                 result = convertInputStreamToString(inputStream);
+            }
             else
                 result = "Did not work!";
 
         } catch (Exception e) {
             Log.d("InputStream", e.getLocalizedMessage());
+            e.printStackTrace();
         }
 
         return result;
@@ -120,6 +127,7 @@ public class Test extends AppCompatActivity {
         protected String doInBackground(String... urls) {
 
             return GET(urls[0]);
+
         }
         // onPostExecute displays the results of the AsyncTask.
         @Override

@@ -18,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,8 +29,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
+import com.projects.wesse.apollo_ui.utilities.Test;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.msebera.android.httpclient.NameValuePair;
+import cz.msebera.android.httpclient.message.BasicNameValuePair;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -92,6 +101,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mProgressView = findViewById(R.id.login_progress);
     }
 
+    public boolean authenticate(String email, String password) {
+        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        nvps.add(new BasicNameValuePair("email", email));
+        nvps.add(new BasicNameValuePair("password", password));
+        InputStream inputStream = null;
+        try {
+            inputStream = NewRESTClient.post(nvps, "authenticate").getEntity().getContent();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String result = "";
+        try {
+
+            if(inputStream != null) {
+                result = Test.convertInputStreamToString(inputStream);
+            }
+            else
+                result = "Did not work!";
+
+        } catch (Exception e) {
+            Log.d("InputStream", e.getLocalizedMessage());
+            e.printStackTrace();
+        }
+        return result.contains("token");
+    }
 
 
 
@@ -281,16 +315,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
+            return authenticate(mEmail, mPassword);
+            /*for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }
             }
-
-            // TODO: register the new account here.
-            return true;
+            return true;*/
         }
 
         @Override

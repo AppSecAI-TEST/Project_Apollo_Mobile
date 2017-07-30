@@ -199,16 +199,24 @@
         />
 
 
-    <com.jjoe64.graphview.GraphView
-        android:layout_width="fill_parent"
-        android:layout_height="300dip"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_x="10dip"
-        android:id="@+id/graph" />
+    <!--<com.jjoe64.graphview.GraphView-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="300dip"-->
+        <!--android:layout_marginBottom="15dp"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_x="10dip"-->
+        <!--android:id="@+id/graph" />-->
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
-
+    <!--<lecho.lib.hellocharts.view.LineChartView-->
+        <!--android:id="@+id/chart"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
 
 
 

@@ -43,7 +43,7 @@ public class Customers extends BaseActivity {
         super.onCreateDrawer();
 
         etResponse = (EditText) findViewById(R.id.etResponse);
-        //etResponse.setText(retrieveCustomers());
+        //etResponse.setText(JSONAuthToken());
 
 
         /*getCustomers();

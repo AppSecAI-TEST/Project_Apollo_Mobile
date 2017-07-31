@@ -87,7 +87,6 @@ public class Test extends AppCompatActivity {
 
         inputStream.close();
         return result;
-
     }
 
     private static JSONObject convertInputStreamToJSONObject(InputStream inputStream) throws IOException, ParseException {
@@ -118,7 +117,6 @@ public class Test extends AppCompatActivity {
             Log.d("InputStream", e.getLocalizedMessage());
             e.printStackTrace();
         }
-
         return result;
     }
 

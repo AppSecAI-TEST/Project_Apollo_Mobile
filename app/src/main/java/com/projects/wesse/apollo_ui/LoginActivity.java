@@ -52,13 +52,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world", "johndoe@paradox.com:secret"
-    };
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -69,6 +63,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private static String tokenToPass; //problem for threading - use client side lite database possibly
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,8 +96,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
-
+//create global user class
     public boolean authenticate(String email, String password) {
+
         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
         nvps.add(new BasicNameValuePair("email", email));
         nvps.add(new BasicNameValuePair("password", password));
@@ -113,21 +110,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
         String result = "";
         try {
-
             if(inputStream != null) {
                 result = Test.convertInputStreamToString(inputStream);
             }
             else
                 result = "Did not work!";
-
         } catch (Exception e) {
             Log.d("InputStream", e.getLocalizedMessage());
             e.printStackTrace();
         }
+        tokenToPass = result;
         return result.contains("token");
     }
 
 
+    public static String getTokenToPass(){
+        return tokenToPass;
+    }
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -272,8 +271,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     public void loginAction() {
         Intent getDashboard = new Intent(this, Dashboard.class);
-        String passToNextView = findViewById(R.id.email).toString();
-        getDashboard.putExtra("fromLogin", passToNextView);
+        //String passToNextView = findViewById(R.id.email).toString();
+        //getDashboard.putExtra("fromLogin", passToNextView);
+        getDashboard.putExtra("fromLogin", tokenToPass);
         startActivity(getDashboard);
     }
 
@@ -306,8 +306,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
             try {
                 // Simulate network access.
                 Thread.sleep(2000);

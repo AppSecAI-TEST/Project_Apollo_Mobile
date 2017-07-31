@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="all">
         <item
             android:id="@+id/nav_dashboard"
             android:icon="@drawable/ic_home"
@@ -26,21 +26,25 @@
 
     </group>
 
+    <!--Transactions-->
     <item android:title="Transactions">
         <menu>
-            <item
-                android:id="@+id/nav_purchases"
-                android:icon="@drawable/ic_pruchase"
-                android:title="Purchases" />
-            <item
-                android:id="@+id/nav_orders"
-                android:icon="@drawable/ic_order"
-                android:title="Orders" />
-            <item
-                android:id="@+id/nav_sales"
-                android:icon="@drawable/ic_sale"
-                android:title="Sales" />
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_purchases"
+                    android:icon="@drawable/ic_pruchase"
+                    android:title="Purchases" />
+                <item
+                    android:id="@+id/nav_orders"
+                    android:icon="@drawable/ic_order"
+                    android:title="Orders" />
+                <item
+                    android:id="@+id/nav_sales"
+                    android:icon="@drawable/ic_sale"
+                    android:title="Sales" />
+            </group>
         </menu>
     </item>
+
 
 </menu>

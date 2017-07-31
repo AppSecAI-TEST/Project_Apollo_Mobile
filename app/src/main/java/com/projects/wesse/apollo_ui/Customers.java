@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.projects.wesse.apollo_ui.utilities.BaseActivity;
 import com.projects.wesse.apollo_ui.utilities.CurrentLayout;
 import com.projects.wesse.apollo_ui.utilities.CustomAdapter;
 import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
@@ -29,7 +30,7 @@ import java.util.StringTokenizer;
 
 import cz.msebera.android.httpclient.entity.mime.Header;
 
-public class Customers extends AppCompatActivity {
+public class Customers extends BaseActivity {
 
     ArrayList<String> customers;
     EditText etResponse;
@@ -39,8 +40,7 @@ public class Customers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         CurrentLayout.setLayout("CustomerView");
         setContentView(R.layout.activity_customers);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        super.onCreateDrawer();
 
         etResponse = (EditText) findViewById(R.id.etResponse);
         //etResponse.setText(retrieveCustomers());
@@ -54,26 +54,7 @@ public class Customers extends AppCompatActivity {
         ListView theListView = (ListView) findViewById(R.id.listView1);
         theListView.setAdapter(adapter);*/
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
         Intent previousActivity = getIntent();
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_dashboard_drawer, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-        if (id == R.id.action_settings) return true;
-        return super.onOptionsItemSelected(item);
     }
 
     public String retrieveCustomers() {

@@ -78,6 +78,11 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 //        return true;
 //    }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_options_top, menu);
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -89,6 +94,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.action_settings) {
             return true;
         }
+        else if (id == R.id.action_logout) {
+            //TODO : CLEAR ALL USER DATA
+            finish();
+            return true;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }

@@ -5,21 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.projects.wesse.apollo_ui.R;
+import com.projects.wesse.apollo_ui.ui_activity_helpers.BaseActivity;
 
 /**
  * Created by Xander on 7/18/2017.
  */
 
-public class Sales extends AppCompatActivity {
+public class Sales extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sales);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
+        super.onCreateDrawer();
 
     }
 }

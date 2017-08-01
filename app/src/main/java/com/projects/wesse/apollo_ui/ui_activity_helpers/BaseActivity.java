@@ -45,37 +45,19 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                messageNavAction();
-            }
-        });
-
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        if(currentActivity.equals("dashboard"))
-//            getMenuInflater().inflate(R.menu.dashboard, menu);
-//        else
-//            getMenuInflater().inflate(R.layout.activity_purchases, menu);
-//        return true;
-//    }
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_options_top, menu);
@@ -95,7 +77,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (id == R.id.action_logout) {
             //TODO : CLEAR ALL USER DATA
-            finish();
+            Intent intent = new Intent(getApplicationContext(), Dashboard.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
             return true;
         }
 
@@ -110,7 +94,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_dashboard) {
-            dashboardNavAction();
+            Intent i=new Intent(this, Dashboard.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         } else if (id == R.id.nav_product) {
             productNavAction();
         } else if (id == R.id.nav_supplier) {
@@ -119,10 +105,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             customerNavAction();
         }else if (id == R.id.nav_purchases) {
             purchaseNavAction();
-        }else if (id == R.id.nav_orders) {
+        }/*else if (id == R.id.nav_orders) {
             ordersNavAction();
-        }else if (id == R.id.nav_sales) {
+        }*/else if (id == R.id.nav_sales) {
             salesNavAction();
+        }else if (id == R.id.nav_messages) {
+            messageNavAction();
         }else if (id == R.id.nav_test)
         {
             testNavAction();
@@ -139,6 +127,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void dashboardNavAction() {
+        finish();
         Intent getDashboardActivity = new Intent(this, Dashboard.class);
         startActivity(getDashboardActivity);
     }

@@ -35,12 +35,13 @@ public class SupplierView extends AppCompatActivity {
 
     public void setProduct(String name)
     {
-        EditText prodName = (EditText) findViewById(R.id.prod_sku);
+        EditText prodName = (EditText) findViewById(R.id.cust_name);
         prodName.setText(name);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_bar_top, menu);
+        getMenuInflater().inflate(R.menu.menu_options_top, menu);
         return true;
     }
 
@@ -51,13 +52,28 @@ public class SupplierView extends AppCompatActivity {
                 break;
             case R.id.action_edit:
                 EditText txt;
-                txt = (EditText) findViewById(R.id.prod_sku);
+                txt = (EditText) findViewById(R.id.cust_name);
                 txt.setEnabled(true);
 
-                txt = (EditText) findViewById(R.id.prod_decs);
+                txt = (EditText) findViewById(R.id.cust_email);
                 txt.setEnabled(true);
 
-                txt = (EditText) findViewById(R.id.prod_price);
+                txt = (EditText) findViewById(R.id.cust_tel);
+                txt.setEnabled(true);
+
+                txt = (EditText) findViewById(R.id.cust_add);
+                txt.setEnabled(true);
+
+                txt = (EditText) findViewById(R.id.cust_sec_address);
+                txt.setEnabled(true);
+
+                txt = (EditText) findViewById(R.id.cust_city);
+                txt.setEnabled(true);
+
+                txt = (EditText) findViewById(R.id.cust_prov);
+                txt.setEnabled(true);
+
+                txt = (EditText) findViewById(R.id.cust_country);
                 txt.setEnabled(true);
 
                 Button btn_save = (Button) findViewById(R.id.btn_save);

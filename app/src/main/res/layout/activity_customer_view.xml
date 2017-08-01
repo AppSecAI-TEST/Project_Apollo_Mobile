@@ -1,41 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.projects.wesse.apollo_ui.ui_activities.CustomerView">
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="15dp">
         <TextView
             android:text="Name:"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
-        <TextView
+        <EditText
             android:id="@+id/cust_name"
+            android:enabled="false"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="15dp"
-            android:background="@android:color/darker_gray"/>
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@null"
+            android:layout_marginBottom="15dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="15dp">
         <TextView
             android:text="Email:"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
-        <TextView
+        <EditText
             android:id="@+id/cust_email"
+            android:enabled="false"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="15dp"
-            android:background="@android:color/darker_gray"/>
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@null"
+            android:layout_marginBottom="15dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,12 +78,14 @@
             android:text="Telephone:"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
-        <TextView
-            android:id="@+id/cust_tell"
+        <EditText
+            android:id="@+id/cust_tel"
+            android:enabled="false"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@null"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="15dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_marginBottom="15dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,12 +96,14 @@
             android:text="Address:"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
-        <TextView
-            android:id="@+id/cust_address"
+        <EditText
+            android:id="@+id/cust_add"
+            android:enabled="false"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@null"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="15dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_marginBottom="15dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -78,12 +114,14 @@
             android:text="Secondary Address:"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
-        <TextView
+        <EditText
             android:id="@+id/cust_sec_address"
+            android:enabled="false"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@null"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="15dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_marginBottom="15dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -94,12 +132,14 @@
             android:text="City:"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
-        <TextView
+        <EditText
             android:id="@+id/cust_city"
+            android:enabled="false"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@null"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="15dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_marginBottom="15dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -110,12 +150,14 @@
             android:text="Province:"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
-        <TextView
-            android:id="@+id/cust_province"
+        <EditText
+            android:id="@+id/cust_prov"
+            android:enabled="false"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@null"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="15dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_marginBottom="15dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -126,12 +168,21 @@
             android:text="Country:"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
-        <TextView
+        <EditText
             android:id="@+id/cust_country"
+            android:enabled="false"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@null"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginBottom="15dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_marginBottom="15dp" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:text="Save changes"/>
 
 </LinearLayout>

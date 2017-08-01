@@ -34,10 +34,10 @@
                     android:id="@+id/nav_purchases"
                     android:icon="@drawable/ic_pruchase"
                     android:title="Purchases" />
-                <item
-                    android:id="@+id/nav_orders"
-                    android:icon="@drawable/ic_order"
-                    android:title="Orders" />
+                <!--<item-->
+                    <!--android:id="@+id/nav_orders"-->
+                    <!--android:icon="@drawable/ic_order"-->
+                    <!--android:title="Orders" />-->
                 <item
                     android:id="@+id/nav_sales"
                     android:icon="@drawable/ic_sale"
@@ -45,6 +45,18 @@
             </group>
         </menu>
     </item>
-
-
+    <item android:title="User">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_messages"
+                    android:icon="@android:drawable/ic_dialog_email"
+                    android:title="Messages" />
+                <item
+                    android:id="@+id/nav_user_info"
+                    android:icon="@android:drawable/ic_menu_manage"
+                    android:title="User Info" />
+            </group>
+        </menu>
+    </item>
 </menu>

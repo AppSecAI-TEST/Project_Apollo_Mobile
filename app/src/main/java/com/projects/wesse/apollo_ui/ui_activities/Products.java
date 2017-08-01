@@ -15,11 +15,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.projects.wesse.apollo_ui.R;
+import com.projects.wesse.apollo_ui.ui_activity_helpers.BaseActivity;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.CurrentLayout;
 
 import java.util.ArrayList;
 
-public class Products extends AppCompatActivity {
+public class Products extends BaseActivity {
 
     ArrayList<String> products, menuItems;
     ListView list_products;
@@ -29,8 +30,7 @@ public class Products extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
         CurrentLayout.setLayout("ProductView");
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        super.onCreateDrawer();
 
         products = new ArrayList<String>();
         for(int i = 0; i < 100; i++)
@@ -58,41 +58,9 @@ public class Products extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //TODO : Add new product
             }
         });
         Intent previousActivity = getIntent();
     }
-
-
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenu.ContextMenuInfo menuInfo) {
-        if (v.getId()==R.id.listView1) {
-            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
-            menu.setHeaderTitle("PRODUCT");
-            menuItems.add("Edit");
-            menuItems.add("View");
-            for (int i = 0; i<menuItems.size(); i++) {
-                menu.add(Menu.NONE, i, i, menuItems.get(i));
-            }
-        }
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-        int menuItemIndex = item.getItemId();
-        String menuItemName = menuItems.get(menuItemIndex);
-        String listItemName = products.get(info.position);
-
-
-        return true;
-    }
-
-
-
-
-
-
-
 }

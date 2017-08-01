@@ -41,6 +41,7 @@ public class ProductView extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_bar_top, menu);
+        getMenuInflater().inflate(R.menu.menu_options_top, menu);
         return true;
     }
 
@@ -51,13 +52,22 @@ public class ProductView extends AppCompatActivity {
                 break;
             case R.id.action_edit:
                 EditText txt;
+                txt = (EditText) findViewById(R.id.prod_supplier);
+                txt.setEnabled(true);
+
                 txt = (EditText) findViewById(R.id.prod_sku);
                 txt.setEnabled(true);
 
                 txt = (EditText) findViewById(R.id.prod_decs);
                 txt.setEnabled(true);
 
-                txt = (EditText) findViewById(R.id.prod_price);
+                txt = (EditText) findViewById(R.id.prod_cost_price);
+                txt.setEnabled(true);
+
+                txt = (EditText) findViewById(R.id.prod_retail_price);
+                txt.setEnabled(true);
+
+                txt = (EditText) findViewById(R.id.prod_sell_price);
                 txt.setEnabled(true);
 
                 Button btn_save = (Button) findViewById(R.id.btn_save);

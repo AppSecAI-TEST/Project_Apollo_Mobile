@@ -27,7 +27,10 @@ public class Customers extends BaseActivity {
         super.onCreateDrawer();
 
         etResponse = (EditText) findViewById(R.id.etResponse);
-        //etResponse.setText(JSONAuthToken());
+        try {
+            etResponse.setText(JSONAuthToken());
+        }
+        catch(Exception e){ etResponse.setText("nope");}
 
 
         /*getCustomers();
@@ -43,9 +46,10 @@ public class Customers extends BaseActivity {
 
     public String retrieveCustomers() {
         InputStream inputStream = null;
+        String result = "";
         try {
             inputStream = NewRESTClient.get("customer", JSONAuthToken()).getEntity().getContent();
-            String result = "";
+
             try {
 
                 if(inputStream != null) {
@@ -58,11 +62,12 @@ public class Customers extends BaseActivity {
                 Log.d("InputStream", e.getLocalizedMessage());
                 e.printStackTrace();
             }
-            return result;
+            //return result;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        //return null;
+        return result;
     }
 
     public String JSONAuthToken(){

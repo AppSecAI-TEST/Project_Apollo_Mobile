@@ -1,12 +1,15 @@
 package com.projects.wesse.apollo_ui.utilities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.json.JSONObject;
 
 /**
  * Created by wesse on 2017/07/31.
  */
 
-public class SessionUser {
+public class SessionUser implements Parcelable {
 
     private String JSONToken;
     private JSONObject jsonObject;
@@ -14,7 +17,9 @@ public class SessionUser {
     private String name;
     private String email;
 
+    public SessionUser() {
 
+    }
 
     public String getJSONToken() {
         return JSONToken;
@@ -46,6 +51,33 @@ public class SessionUser {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(email);
+        out.writeString(name);
+        out.writeString(JSONToken);
+    }
+
+    public static final Parcelable.Creator<SessionUser> CREATOR
+            = new Parcelable.Creator<SessionUser>() {
+        public SessionUser createFromParcel(Parcel in) {
+            return new SessionUser(in);
+        }
+
+        public SessionUser[] newArray(int size) {
+            return new SessionUser[size];
+        }
+    };
+
+    private SessionUser(Parcel in) {
+        in.readString();
+        in.readString();
+        in.readString();
     }
 
 }

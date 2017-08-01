@@ -18,7 +18,9 @@ import android.widget.Toast;
 
 import com.projects.wesse.apollo_ui.R;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -84,7 +86,6 @@ public class Test extends AppCompatActivity {
         String result = "";
         while((line = bufferedReader.readLine()) != null)
             result += line;
-
         inputStream.close();
         return result;
     }
@@ -92,6 +93,17 @@ public class Test extends AppCompatActivity {
     private static JSONObject convertInputStreamToJSONObject(InputStream inputStream) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         return (JSONObject)jsonParser.parse(new InputStreamReader(inputStream, "UTF-8"));
+    }
+
+    private static String parseJSONObject(String in) throws IOException, ParseException {
+        String test = "";
+        try
+        {
+            JSONObject json = (JSONObject) new JSONTokener(in).nextValue();
+            JSONObject json2 = json.getJSONObject("name");
+            test = (String) json2.get("key");
+        }catch(JSONException e) {}
+        return test;
     }
 
     public static String GET(String url){
@@ -131,8 +143,13 @@ public class Test extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
-            etResponse.setText(result);
+            try {
+                etResponse.setText(parseJSONObject(result));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package com.projects.wesse.apollo_ui;
+package com.projects.wesse.apollo_ui.ui_activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.projects.wesse.apollo_ui.R;
 
 /**
  * Created by Xander on 7/20/2017.

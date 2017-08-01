@@ -1,18 +1,10 @@
-package com.projects.wesse.apollo_ui;
+package com.projects.wesse.apollo_ui.ui_activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.projects.wesse.apollo_ui.utilities.CurrentLayout;
-import com.projects.wesse.apollo_ui.utilities.CustomAdapter;
-
-import java.util.ArrayList;
+import com.projects.wesse.apollo_ui.R;
 
 /**
  * Created by Xander on 7/20/2017.

@@ -1,7 +1,6 @@
-package com.projects.wesse.apollo_ui;
+package com.projects.wesse.apollo_ui.ui_activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -12,22 +11,11 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.helper.StaticLabelsFormatter;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
-import com.projects.wesse.apollo_ui.utilities.BaseActivity;
-
-import org.json.JSONException;
+import com.projects.wesse.apollo_ui.R;
+import com.projects.wesse.apollo_ui.ui_activity_helpers.BaseActivity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import lecho.lib.hellocharts.model.Line;
-import lecho.lib.hellocharts.model.LineChartData;
-import lecho.lib.hellocharts.model.PointValue;
-import lecho.lib.hellocharts.view.LineChartView;
 
 public class Dashboard extends BaseActivity {
 

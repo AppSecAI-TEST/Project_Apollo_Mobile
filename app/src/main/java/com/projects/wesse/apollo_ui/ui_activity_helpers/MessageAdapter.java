@@ -1,4 +1,4 @@
-package com.projects.wesse.apollo_ui.utilities;
+package com.projects.wesse.apollo_ui.ui_activity_helpers;
 
 /**
  * Created by Xander on 7/29/2017.
@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.projects.wesse.apollo_ui.R;
+import com.projects.wesse.apollo_ui.utilities.MessageItem;
 
 public class MessageAdapter extends ArrayAdapter<MessageItem> {
 

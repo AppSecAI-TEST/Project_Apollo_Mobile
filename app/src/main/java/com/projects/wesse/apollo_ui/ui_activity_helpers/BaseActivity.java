@@ -1,8 +1,6 @@
-package com.projects.wesse.apollo_ui.utilities;
+package com.projects.wesse.apollo_ui.ui_activity_helpers;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,15 +12,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.projects.wesse.apollo_ui.Customers;
-import com.projects.wesse.apollo_ui.Dashboard;
-import com.projects.wesse.apollo_ui.Message;
-import com.projects.wesse.apollo_ui.Orders;
-import com.projects.wesse.apollo_ui.Products;
-import com.projects.wesse.apollo_ui.Purchases;
+import com.projects.wesse.apollo_ui.ui_activities.Customers;
+import com.projects.wesse.apollo_ui.ui_activities.Dashboard;
+import com.projects.wesse.apollo_ui.ui_activities.Message;
+import com.projects.wesse.apollo_ui.ui_activities.Orders;
+import com.projects.wesse.apollo_ui.ui_activities.Products;
+import com.projects.wesse.apollo_ui.ui_activities.Purchases;
 import com.projects.wesse.apollo_ui.R;
-import com.projects.wesse.apollo_ui.Sales;
-import com.projects.wesse.apollo_ui.Suppliers;
+import com.projects.wesse.apollo_ui.ui_activities.Sales;
+import com.projects.wesse.apollo_ui.ui_activities.Suppliers;
+import com.projects.wesse.apollo_ui.utilities.Test;
 
 /**
  * Created by Xander on 7/19/2017.

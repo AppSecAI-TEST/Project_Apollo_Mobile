@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.projects.wesse.apollo_ui.Products"
+    tools:context="com.projects.wesse.apollo_ui.ui_activities.Products"
     tools:showIn="@layout/activity_products">
     <LinearLayout
         android:layout_width="fill_parent"

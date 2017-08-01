@@ -1,4 +1,4 @@
-package com.projects.wesse.apollo_ui.utilities;
+package com.projects.wesse.apollo_ui.ui_activity_helpers;
 
 /**
  * Created by Xander on 7/20/2017.

@@ -1,4 +1,4 @@
-package com.projects.wesse.apollo_ui;
+package com.projects.wesse.apollo_ui.ui_activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,21 +10,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.projects.wesse.apollo_ui.R;
+
 /**
  * Created by Xander on 7/20/2017.
  */
 
-public class ProductView extends AppCompatActivity {
+public class SupplierView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_view);
+        setContentView(R.layout.activity_supplier_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         Bundle b = getIntent().getExtras();
-        String value = "Random Product";
+        String value = "Random Supplier";
         if(b != null)
             value = b.getString("ID");
         setProduct(value);

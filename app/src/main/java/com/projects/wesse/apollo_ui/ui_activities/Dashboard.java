@@ -108,12 +108,7 @@ public class Dashboard extends BaseActivity {
 //        });
 //        graph.addSeries(series);
 
-
-
-
-
         Intent previousActivity = getIntent();
-        String dataFromPrev = previousActivity.getExtras().getString("fromLogin");
     }
 
 

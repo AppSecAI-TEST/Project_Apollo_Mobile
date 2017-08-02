@@ -13,7 +13,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.projects.wesse.apollo_ui.ui_activities.SupplierView">
+        tools:context="com.projects.wesse.apollo_ui.ui_activities.UserSettings">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"
@@ -59,12 +59,11 @@
                     android:orientation="vertical"
                     android:paddingTop="15dp">
                     <TextView
-                        android:text="Purchase name:"
+                        android:text="Name:"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent" />
                     <EditText
-                        android:id="@+id/prod_sku"
-                        android:enabled="false"
+                        android:id="@+id/set_name"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:textColor="@android:color/black"
@@ -77,12 +76,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:text="Description:"
+                        android:text="Current Password:"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent" />
                     <EditText
-                        android:id="@+id/prod_decs"
-                        android:enabled="false"
+                        android:id="@+id/set_curr_pass"
                         android:textColor="@android:color/black"
                         android:textCursorDrawable="@null"
                         android:layout_width="fill_parent"
@@ -95,12 +93,28 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:text="Price:"
+                        android:text="New Password:"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent" />
                     <EditText
-                        android:id="@+id/prod_price"
-                        android:enabled="false"
+                        android:id="@+id/set_new_passs"
+                        android:textColor="@android:color/black"
+                        android:textCursorDrawable="@null"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginBottom="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:text="Confirm Password:"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" />
+                    <EditText
+                        android:id="@+id/set_confirm_passs"
                         android:textColor="@android:color/black"
                         android:textCursorDrawable="@null"
                         android:layout_width="fill_parent"
@@ -112,7 +126,6 @@
                     android:id="@+id/btn_save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="invisible"
                     android:text="Save changes"/>
                 <!--Attributes-->
 
@@ -121,6 +134,13 @@
         </android.support.v4.widget.NestedScrollView>
 
     </android.support.design.widget.CoordinatorLayout>
-
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_dashboard"
+        app:menu="@menu/navigation_drawer_content" />
 
 </android.support.v4.widget.DrawerLayout>

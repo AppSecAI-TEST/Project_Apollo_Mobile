@@ -73,6 +73,10 @@
             android:label="View"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui_activities.UserSettings"
+            android:label="Edit User Information"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".utilities.Test"
             android:label="@string/title_activity_test"
             android:theme="@style/AppTheme.NoActionBar"></activity>

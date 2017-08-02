@@ -61,7 +61,7 @@ public class SupplierView extends AppCompatActivity {
                 txt = (EditText) findViewById(R.id.cust_tel);
                 txt.setEnabled(true);
 
-                txt = (EditText) findViewById(R.id.cust_add);
+                txt = (EditText) findViewById(R.id.cust_address);
                 txt.setEnabled(true);
 
                 txt = (EditText) findViewById(R.id.cust_sec_address);

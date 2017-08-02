@@ -21,6 +21,7 @@ import com.projects.wesse.apollo_ui.ui_activities.Purchases;
 import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.ui_activities.Sales;
 import com.projects.wesse.apollo_ui.ui_activities.Suppliers;
+import com.projects.wesse.apollo_ui.ui_activities.UserSettings;
 import com.projects.wesse.apollo_ui.utilities.Test;
 
 /**
@@ -73,7 +74,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent i=new Intent(this, UserSettings.class);
+            startActivity(i);
         }
         else if (id == R.id.action_logout) {
             //TODO : CLEAR ALL USER DATA

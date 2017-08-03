@@ -30,8 +30,14 @@ import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
 import com.projects.wesse.apollo_ui.utilities.Test;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,31 +98,40 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
-//create global user class
-    public boolean authenticate(String email, String password) {
 
+//create global user class
+    public boolean authenticate(String email, String password) throws JSONException {
         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
         nvps.add(new BasicNameValuePair("email", email));
         nvps.add(new BasicNameValuePair("password", password));
         InputStream inputStream = null;
+        BufferedReader br = null;
+        StringBuilder sb = null;
+        JSONObject result = null;
         try {
             inputStream = NewRESTClient.post(nvps, "authenticate").getEntity().getContent();
+
+            sb = new StringBuilder();
+
+            String line;
+            br = new BufferedReader(new InputStreamReader(inputStream));
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String result = "";
+        result = new JSONObject();
         try {
             if(inputStream != null) {
-                result = Test.convertInputStreamToString(inputStream);
+                result = new JSONObject(sb.toString());
             }
-            else
-                result = "Did not work!";
         } catch (Exception e) {
             Log.d("InputStream", e.getLocalizedMessage());
             e.printStackTrace();
         }
-        tokenToPass = result;
-        return result.contains("token");
+        //tokenToPass = result;
+        return result.get("data") != null;
     }
 
 
@@ -309,7 +324,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 return false;
             }
 
-            return authenticate(mEmail, mPassword);
+            try {
+                return authenticate(mEmail, mPassword);
+            } catch (JSONException e) {
+                return false;
+            }
             /*for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {

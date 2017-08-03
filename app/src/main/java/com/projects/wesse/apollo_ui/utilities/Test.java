@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.projects.wesse.apollo_ui.R;
 
 import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 import org.json.JSONTokener;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -90,21 +90,20 @@ public class Test extends AppCompatActivity {
         return result;
     }
 
-    private static JSONObject convertInputStreamToJSONObject(InputStream inputStream) throws IOException, ParseException {
+    public static JSONObject convertInputStreamToJSONObject(InputStream inputStream) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         return (JSONObject)jsonParser.parse(new InputStreamReader(inputStream, "UTF-8"));
     }
 
-    private static String parseJSONObject(String in) throws IOException, ParseException {
-        String test = "";
+    public static String parseJSONObject(String in) throws IOException, ParseException {
         try
         {
             JSONObject json = (JSONObject) new JSONTokener(in).nextValue();
-            JSONObject json2 = json.getJSONObject("name");
-            test = (String) json2.get("key");
-        }catch(JSONException e) {}
-        return test;
+            String jsonString = json.toJSONString();
+            return jsonString;
+        }catch(JSONException e) {return  null;}
     }
+
 
     public static String GET(String url){
         List<NameValuePair> nvps = new ArrayList<NameValuePair>();

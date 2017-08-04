@@ -60,7 +60,8 @@ public class Test extends AppCompatActivity {
         }
         new HttpAsyncTask().execute(BASE_URL + "product");
 
-        etResponse.setText(LoginActivity.getUser().getEmail());
+        etResponse.setText(LoginActivity.getUser().getName() + " || " + LoginActivity.getUser().getEmail() + " || "
+                + LoginActivity.getUser().getJSONToken() + " || " +  LoginActivity.getUser().getRole() + " || " + LoginActivity.getUser().getAbility(1));
 
         Intent previousActivity = getIntent();
 

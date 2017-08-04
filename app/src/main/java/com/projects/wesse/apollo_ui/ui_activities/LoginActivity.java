@@ -122,9 +122,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } catch (IOException e) {
             e.printStackTrace();
         }
-        result = new JSONObject();
+        result = new JSONObject(sb.toString());
         this.user = new SessionUser(result);
-        user.setEmail("PoopyHead");
         try {
             if(inputStream != null) {
                 result = new JSONObject(sb.toString());

@@ -17,8 +17,8 @@ public class SessionUser implements Parcelable {
     private String name;
     private String email;
 
-    public SessionUser() {
-
+    public SessionUser(JSONObject json) {
+        this.jsonObject = json;
     }
 
     public String getJSONToken() {

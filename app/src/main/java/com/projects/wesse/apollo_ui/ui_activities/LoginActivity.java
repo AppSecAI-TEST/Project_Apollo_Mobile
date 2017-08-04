@@ -27,8 +27,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.projects.wesse.apollo_ui.R;
+import com.projects.wesse.apollo_ui.ui_activity_helpers.BaseActivity;
 import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
-import com.projects.wesse.apollo_ui.utilities.Test;
+import com.projects.wesse.apollo_ui.utilities.SessionUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,7 +38,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +65,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private static String tokenToPass; //problem for threading - use client side lite database possibly
+
+    private static SessionUser user = null;
 
 
     @Override
@@ -122,6 +123,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             e.printStackTrace();
         }
         result = new JSONObject();
+        this.user = new SessionUser(result);
+        user.setEmail("PoopyHead");
         try {
             if(inputStream != null) {
                 result = new JSONObject(sb.toString());
@@ -134,9 +137,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         return result.get("data") != null;
     }
 
+    public void loginAction() {
+        Intent getDashboard = new Intent(this, Dashboard.class);
+        startActivity(getDashboard);
+    }
 
-    public static String getTokenToPass(){
-        return tokenToPass;
+    public static SessionUser getUser(){
+        return user;
     }
 
     /**
@@ -280,15 +287,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView.setAdapter(adapter);
     }
 
-    public void loginAction() {
-        Intent getDashboard = new Intent(this, Dashboard.class);
-        //String passToNextView = findViewById(R.id.email).toString();
-        //getDashboard.putExtra("fromLogin", passToNextView);
-        getDashboard.putExtra("fromLogin", tokenToPass);
-        startActivity(getDashboard);
-    }
-
-
     private interface ProfileQuery {
         String[] PROJECTION = {
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
@@ -329,14 +327,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             } catch (JSONException e) {
                 return false;
             }
-            /*for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-            return true;*/
         }
 
         @Override

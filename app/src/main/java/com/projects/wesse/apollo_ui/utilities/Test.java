@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projects.wesse.apollo_ui.R;
+import com.projects.wesse.apollo_ui.ui_activities.LoginActivity;
 
 import org.json.JSONException;
 import org.json.simple.JSONObject;
@@ -58,6 +59,8 @@ public class Test extends AppCompatActivity {
             tvIsConnected.setText("You are NOT conncted");
         }
         new HttpAsyncTask().execute(BASE_URL + "product");
+
+        etResponse.setText(LoginActivity.getUser().getEmail());
 
         Intent previousActivity = getIntent();
 
@@ -142,13 +145,7 @@ public class Test extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
-            try {
-                etResponse.setText(parseJSONObject(result));
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            //etResponse.setText(parseJSONObject(result));
         }
     }
 }

@@ -28,7 +28,7 @@ public class Customers extends BaseActivity {
 
         etResponse = (EditText) findViewById(R.id.etResponse);
         try {
-            etResponse.setText(JSONAuthToken());
+            //etResponse.setText(JSONAuthToken());
         }
         catch(Exception e){ etResponse.setText("nope");}
 
@@ -44,7 +44,7 @@ public class Customers extends BaseActivity {
         Intent previousActivity = getIntent();
     }
 
-    public String retrieveCustomers() {
+   /*public String retrieveCustomers() {
         InputStream inputStream = null;
         String result = "";
         try {
@@ -68,15 +68,7 @@ public class Customers extends BaseActivity {
         }
         //return null;
         return result;
-    }
-
-    public String JSONAuthToken(){
-        String JSONFullAuthToken = LoginActivity.getTokenToPass();
-        String tokenManipulation1 = JSONFullAuthToken.replace("{", "");
-        String tokenManipulation2 = tokenManipulation1.replace("}", "");
-        String tokenManipulation3 = tokenManipulation2.replace("\"", "");
-        return tokenManipulation3.split(": ")[1];
-    }
+    }*/
 
     /*public void getCustomers()
     {

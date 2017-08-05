@@ -5,19 +5,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 
+import com.loopj.android.http.RequestParams;
 import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.BaseActivity;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.CurrentLayout;
 import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
+import com.projects.wesse.apollo_ui.utilities.RestClient;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Customers extends BaseActivity {
 
-    ArrayList<String> customers;
-    EditText etResponse;
+    private ArrayList<String> customers;
+    private EditText etResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +31,8 @@ public class Customers extends BaseActivity {
         super.onCreateDrawer();
 
         etResponse = (EditText) findViewById(R.id.etResponse);
-        try {
-            //etResponse.setText(JSONAuthToken());
-        }
-        catch(Exception e){ etResponse.setText("nope");}
+        etResponse.setText(retrieveCustomers());
+
 
 
         /*getCustomers();
@@ -44,31 +46,38 @@ public class Customers extends BaseActivity {
         Intent previousActivity = getIntent();
     }
 
-   /*public String retrieveCustomers() {
+   public String retrieveCustomers() {
         InputStream inputStream = null;
-        String result = "";
-        try {
-            inputStream = NewRESTClient.get("customer", JSONAuthToken()).getEntity().getContent();
+        String result = "init";
+        BufferedReader br;
+        StringBuilder sb;
 
+       RestClient.get("api/customer", new RequestParams("Authorization","Bearer " + LoginActivity.getUser().getJSONToken()));
+       RestClient.getTimeline();
+       /* try {
+            inputStream = NewRESTClient.get("customer", LoginActivity.getUser().getJSONToken()).getEntity().getContent();
             try {
-
                 if(inputStream != null) {
-                    result = NewRESTClient.convertInputStreamToString(inputStream);
+                    sb = new StringBuilder();
+                    String line;
+                    br = new BufferedReader(new InputStreamReader(inputStream));
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line);
+                    }
+                    result = sb.toString();
                 }
                 else
-                    result = "Did not work!";
-
+                    result = "Could not retrieve customers";
             } catch (Exception e) {
                 Log.d("InputStream", e.getLocalizedMessage());
                 e.printStackTrace();
             }
-            //return result;
+
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        //return null;
+        }*/
         return result;
-    }*/
+    }
 
     /*public void getCustomers()
     {
@@ -87,9 +96,8 @@ public class Customers extends BaseActivity {
 
                 // Do something with the response
                 System.out.println(text);
-
             }
-
         });
     }*/
+
 }

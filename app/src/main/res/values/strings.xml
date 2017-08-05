@@ -21,93 +21,297 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_products">Products</string>
     <string name="large_text">
-        "Material is the metaphor.\n\n"
-
-        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
-        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
-        "technologically advanced and open to imagination and magic.\n"
-        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
-        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
-        "flexibility of the material creates new affordances that supercede those in the physical "
-        "world, without breaking the rules of physics.\n"
-        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
-        "interact, and exist in space and in relation to each other. Realistic lighting shows "
-        "seams, divides space, and indicates moving parts.\n\n"
-
-        "Bold, graphic, intentional.\n\n"
-
-        "The foundational elements of print based design typography, grids, space, scale, color, "
-        "and use of imagery guide visual treatments. These elements do far more than please the "
-        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
-        "imagery, large scale typography, and intentional white space create a bold and graphic "
-        "interface that immerse the user in the experience.\n"
-        "An emphasis on user actions makes core functionality immediately apparent and provides "
-        "waypoints for the user.\n\n"
-
-        "Motion provides meaning.\n\n"
-
-        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
-        "inflection points that initiate motion, transforming the whole design.\n"
-        "All action takes place in a single environment. Objects are presented to the user without "
-        "breaking the continuity of experience even as they transform and reorganize.\n"
-        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
-        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
-
-        "3D world.\n\n"
-
-        "The material environment is a 3D space, which means all objects have x, y, and z "
-        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
-        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
-        "position along the z-axis and has a standard 1dp thickness.\n"
-        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
-        "emulated by manipulating the y-axis.\n\n"
-
-        "Light and shadow.\n\n"
-
-        "Within the material environment, virtual lights illuminate the scene. Key lights create "
-        "directional shadows, while ambient light creates soft shadows from all angles.\n"
-        "Shadows in the material environment are cast by these two light sources. In Android "
-        "development, shadows occur when light sources are blocked by sheets of material at "
-        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
-        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
-
-        "Resting elevation.\n\n"
-
-        "All material objects, regardless of size, have a resting elevation, or default elevation "
-        "that does not change. If an object changes elevation, it should return to its resting "
-        "elevation as soon as possible.\n\n"
-
-        "Component elevations.\n\n"
-
-        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
-        "does not vary from 6dp in one app to 16dp in another app).\n"
-        "Components may have different resting elevations across platforms, depending on the depth "
-        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
-
-        "Responsive elevation and dynamic elevation offsets.\n\n"
-
-        "Some component types have responsive elevation, meaning they change elevation in response "
-        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
-        "changes are consistently implemented using dynamic elevation offsets.\n"
-        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
-        "to the component’s resting state. They ensure that elevation changes are consistent "
-        "across actions and component types. For example, all components that lift on press have "
-        "the same elevation change relative to their resting elevation.\n"
-        "Once the input event is completed or cancelled, the component will return to its resting "
-        "elevation.\n\n"
-
-        "Avoiding elevation interference.\n\n"
-
-        "Components with responsive elevations may encounter other components as they move between "
-        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
-        "through other material, components avoid interfering with one another any number of ways, "
-        "whether on a per component basis or using the entire app layout.\n"
-        "On a component level, components can move or be removed before they cause interference. "
-        "For example, a floating action button (FAB) can disappear or move off screen before a "
-        "user picks up a card, or it can move if a snackbar appears.\n"
-        "On the layout level, design your app layout to minimize opportunities for interference. "
-        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
-        "when a user tries to pick up one of cards.\n\n"
+       {
+    "data": [
+        {
+            "id": 25,
+            "name": "Abshire-Langosh",
+            "telephone": "747.336.3388",
+            "email": "maggio.kane@gmail.com",
+            "address": "576 Hilma Spurs Apt. 450",
+            "address_2": "Apt. 455",
+            "city": "West Hilmachester",
+            "province": "Washington",
+            "country": "Christmas Island"
+        },
+        {
+            "id": 149,
+            "name": "Ankunding Inc",
+            "telephone": "+1 (467) 204-4650",
+            "email": "halvorson.lisette@carroll.com",
+            "address": "41768 Abner Mission Apt. 639",
+            "address_2": "Suite 630",
+            "city": "North D'angelo",
+            "province": "Connecticut",
+            "country": "Equatorial Guinea"
+        },
+        {
+            "id": 132,
+            "name": "Barrows-Krajcik",
+            "telephone": "+1.421.884.6537",
+            "email": "bashirian.lafayette@russel.com",
+            "address": "1021 Vella Ridges",
+            "address_2": "Apt. 267",
+            "city": "Schimmelton",
+            "province": "South Carolina",
+            "country": "Central African Republic"
+        },
+        {
+            "id": 182,
+            "name": "Bartell and Sons",
+            "telephone": "+1 (372) 773-9543",
+            "email": "dnicolas@yahoo.com",
+            "address": "5017 Runte Extensions Suite 530",
+            "address_2": "Suite 298",
+            "city": "South Camronhaven",
+            "province": "North Dakota",
+            "country": "Grenada"
+        },
+        {
+            "id": 230,
+            "name": "Bartell-Hansen",
+            "telephone": "472-244-0643",
+            "email": "adavis@hotmail.com",
+            "address": "50386 Golda Bypass",
+            "address_2": "Suite 787",
+            "city": "South Dinoland",
+            "province": "Wisconsin",
+            "country": "Paraguay"
+        },
+        {
+            "id": 130,
+            "name": "Barton, Wilderman and Wiegand",
+            "telephone": "+1-748-601-0518",
+            "email": "dbergstrom@rowe.net",
+            "address": "184 Demetris Junction",
+            "address_2": "Apt. 212",
+            "city": "South Cedrick",
+            "province": "Colorado",
+            "country": "Greece"
+        },
+        {
+            "id": 39,
+            "name": "Batz Group",
+            "telephone": "+1 (760) 907-4009",
+            "email": "alysha10@hotmail.com",
+            "address": "6899 Fredy Stravenue",
+            "address_2": "Apt. 625",
+            "city": "East Bridgette",
+            "province": "Pennsylvania",
+            "country": "Jamaica"
+        },
+        {
+            "id": 79,
+            "name": "Baumbach-Rogahn",
+            "telephone": "1-302-667-4036 x53340",
+            "email": "tessie43@bailey.biz",
+            "address": "94558 Lubowitz Ports",
+            "address_2": "Apt. 316",
+            "city": "Vedafort",
+            "province": "Iowa",
+            "country": "Trinidad and Tobago"
+        },
+        {
+            "id": 119,
+            "name": "Bayer Inc",
+            "telephone": "+18323386999",
+            "email": "cole.nico@lang.com",
+            "address": "397 Hayes Flat",
+            "address_2": "Suite 199",
+            "city": "Allisonview",
+            "province": "Indiana",
+            "country": "Vanuatu"
+        },
+        {
+            "id": 173,
+            "name": "Bednar, Klein and Harber",
+            "telephone": "994-862-7171",
+            "email": "hharber@tremblay.net",
+            "address": "4094 Kory Brooks",
+            "address_2": "Apt. 140",
+            "city": "South Jordon",
+            "province": "Wyoming",
+            "country": "Tajikistan"
+        },
+        {
+            "id": 234,
+            "name": "Beier, Tremblay and Kunde",
+            "telephone": "616-272-8831 x75575",
+            "email": "lsauer@johns.com",
+            "address": "7417 Mallie Brooks Apt. 234",
+            "address_2": "Apt. 664",
+            "city": "Wiegandport",
+            "province": "Alaska",
+            "country": "Saint Vincent and the Grenadines"
+        },
+        {
+            "id": 134,
+            "name": "Bernhard, Hessel and Gleichner",
+            "telephone": "+1-737-603-9740",
+            "email": "fbailey@hotmail.com",
+            "address": "20112 Malachi Route",
+            "address_2": "Apt. 481",
+            "city": "Hassiechester",
+            "province": "Wisconsin",
+            "country": "Turkmenistan"
+        },
+        {
+            "id": 222,
+            "name": "Blanda, Corkery and Frami",
+            "telephone": "(886) 774-9353",
+            "email": "alverta93@gmail.com",
+            "address": "29883 Kerluke Landing",
+            "address_2": "Suite 877",
+            "city": "Wisokybury",
+            "province": "Vermont",
+            "country": "Liberia"
+        },
+        {
+            "id": 98,
+            "name": "Bogan, Turner and O'Hara",
+            "telephone": "798.300.1845 x157",
+            "email": "jerad53@rowe.com",
+            "address": "1265 Runolfsdottir Stream",
+            "address_2": "Suite 872",
+            "city": "East Gerdafort",
+            "province": "Delaware",
+            "country": "Korea"
+        },
+        {
+            "id": 99,
+            "name": "Bosco-Runolfsson",
+            "telephone": "647.768.2578 x669",
+            "email": "oemard@gmail.com",
+            "address": "689 Keagan Spring Apt. 178",
+            "address_2": "Suite 807",
+            "city": "North Jordy",
+            "province": "Maine",
+            "country": "Nicaragua"
+        },
+        {
+            "id": 23,
+            "name": "Boyer, Kertzmann and Hermann",
+            "telephone": "+1 (417) 654-2414",
+            "email": "breanne03@gmail.com",
+            "address": "5951 Ford Terrace",
+            "address_2": "Apt. 355",
+            "city": "Bashirianbury",
+            "province": "Florida",
+            "country": "Argentina"
+        },
+        {
+            "id": 46,
+            "name": "Breitenberg, Klein and O'Reilly",
+            "telephone": "+1.485.788.3023",
+            "email": "ehermann@hotmail.com",
+            "address": "49150 Fannie Hills Apt. 734",
+            "address_2": "Apt. 501",
+            "city": "North Juwanburgh",
+            "province": "North Carolina",
+            "country": "Saint Martin"
+        },
+        {
+            "id": 91,
+            "name": "Brown PLC",
+            "telephone": "791-995-7986",
+            "email": "grodriguez@medhurst.com",
+            "address": "60551 Ava Well",
+            "address_2": "Apt. 612",
+            "city": "North Aylachester",
+            "province": "New York",
+            "country": "Greenland"
+        },
+        {
+            "id": 187,
+            "name": "Carroll-Borer",
+            "telephone": "615.928.2021",
+            "email": "hudson.anastasia@dicki.com",
+            "address": "4091 Alek Estates Apt. 586",
+            "address_2": "Apt. 900",
+            "city": "Koelpinville",
+            "province": "Alaska",
+            "country": "Jordan"
+        },
+        {
+            "id": 129,
+            "name": "Cartwright Group",
+            "telephone": "853-744-3642",
+            "email": "kuphal.marge@gmail.com",
+            "address": "332 Wisozk Way Suite 219",
+            "address_2": "Apt. 640",
+            "city": "East Hayleyport",
+            "province": "Georgia",
+            "country": "New Zealand"
+        },
+        {
+            "id": 231,
+            "name": "Cartwright LLC",
+            "telephone": "570.224.2899",
+            "email": "jerel.hettinger@gmail.com",
+            "address": "5829 Terry Points",
+            "address_2": "Apt. 343",
+            "city": "Monserratmouth",
+            "province": "Maryland",
+            "country": "Botswana"
+        },
+        {
+            "id": 179,
+            "name": "Champlin LLC",
+            "telephone": "742.776.1985 x063",
+            "email": "mcclure.narciso@rippin.com",
+            "address": "62455 Devon Cliff",
+            "address_2": "Suite 520",
+            "city": "Port Grayceshire",
+            "province": "Colorado",
+            "country": "Macao"
+        },
+        {
+            "id": 4,
+            "name": "Cole PLC",
+            "telephone": "892.624.4344",
+            "email": "zroberts@leuschke.com",
+            "address": "6426 Clotilde Stravenue Suite 692",
+            "address_2": "Apt. 380",
+            "city": "Swiftmouth",
+            "province": "Maryland",
+            "country": "Mexico"
+        },
+        {
+            "id": 26,
+            "name": "Collins-Hamill",
+            "telephone": "446-517-8912",
+            "email": "goldner.eleanora@okeefe.org",
+            "address": "2023 Kiana Island Apt. 065",
+            "address_2": "Suite 600",
+            "city": "New Bradford",
+            "province": "Louisiana",
+            "country": "South Africa"
+        },
+        {
+            "id": 56,
+            "name": "Connelly-Wiza",
+            "telephone": "341-580-9924",
+            "email": "wjacobson@gmail.com",
+            "address": "40325 Macejkovic Estates",
+            "address_2": "Suite 554",
+            "city": "South Rickietown",
+            "province": "Louisiana",
+            "country": "United States of America"
+        }
+    ],
+    "meta": {
+        "pagination": {
+            "total": 250,
+            "count": 25,
+            "per_page": 25,
+            "current_page": 1,
+            "total_pages": 10,
+            "links": {
+                "next": "https://apollo.lomejo.co.za/api/customer?page=2"
+            }
+        }
+    }
+}
     </string>
     <string name="title_activity_suppliers">Suppliers</string>
     <string name="title_activity_customers">Customers</string>

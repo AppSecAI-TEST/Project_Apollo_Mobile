@@ -24,6 +24,7 @@ import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.ui_activities.Sales;
 import com.projects.wesse.apollo_ui.ui_activities.Suppliers;
 import com.projects.wesse.apollo_ui.ui_activities.UserSettings;
+import com.projects.wesse.apollo_ui.utilities.SessionUser;
 import com.projects.wesse.apollo_ui.utilities.Test;
 
 /**
@@ -34,9 +35,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
 
     public String currentActivity;
-    NavigationView navigationView;
-    TextView nav_draw_name;
-    TextView nav_draw_email;
+    private NavigationView navigationView;
+    private TextView nav_draw_name;
+    private TextView nav_draw_email;
 
     protected void onCreateDrawer()
     {
@@ -54,9 +55,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         /*nav_draw_name = (TextView) findViewById(R.id.nav_draw_name);
-        nav_draw_email = (TextView) findViewById(R.id.nav_draw_email);
+        nav_draw_email = (TextView) findViewById(R.id.nav_draw_email);*/
 
-        nav_draw_name.setText("Insert name here");
+        /*nav_draw_name.setText("Insert name here");
         nav_draw_email.setText("Insert email here");*/
     }
 

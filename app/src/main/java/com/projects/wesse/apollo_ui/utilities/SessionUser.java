@@ -37,6 +37,14 @@ public class SessionUser{
 
      } catch (JSONException e) { e.printStackTrace();}
     }
+	
+	public void logoutActivity(){
+		jsonToken = null;
+		jsonObject = null;
+		name = null;
+		role = null;
+		abilities  = null;
+	}
 
     public String getJSONToken() {
         return jsonToken;

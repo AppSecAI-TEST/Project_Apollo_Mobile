@@ -25,6 +25,8 @@ public class ProductView extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Bundle b = getIntent().getExtras();
         String value = "Random Product";
         if(b != null)
@@ -47,6 +49,9 @@ public class ProductView extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
             case R.id.action_delete:
                 //DELETE
                 break;

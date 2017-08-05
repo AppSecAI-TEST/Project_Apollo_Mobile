@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.projects.wesse.apollo_ui.R;
@@ -72,6 +73,8 @@ public class Purchases extends BaseActivity {
                 // Starting a new async task
                 loadMoreData(shownPurchases.size());
                 adapter.notifyDataSetChanged();
+//                RelativeLayout.LayoutParams mParam = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
+//                list_purchases.setLayoutParams(mParam);
             }
         });
 

@@ -2,6 +2,7 @@ package com.projects.wesse.apollo_ui.ui_activities;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.BaseActivity;
@@ -18,7 +19,12 @@ public class UserSettings extends BaseActivity{
         setContentView(R.layout.activity_settings);
         super.onCreateDrawer();
 
+        defaultValues();
+    }
 
-
+    public void defaultValues()
+    {
+        TextView textview = (TextView)findViewById(R.id.set_name);
+        textview.setText(LoginActivity.getUser().getName());
     }
 }

@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,7 +36,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
 
     public String currentActivity;
-    private NavigationView navigationView;
+    public static NavigationView navigationView;
     private TextView nav_draw_name;
     private TextView nav_draw_email;
 
@@ -54,11 +55,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        /*nav_draw_name = (TextView) findViewById(R.id.nav_draw_name);
-        nav_draw_email = (TextView) findViewById(R.id.nav_draw_email);*/
-
-        /*nav_draw_name.setText("Insert name here");
-        nav_draw_email.setText("Insert email here");*/
+        View headerView =  LayoutInflater.from(this).inflate(R.layout.nav_header_dashboard, navigationView, false);
+        navigationView.addHeaderView(headerView);
+        TextView Name = (TextView) headerView.findViewById(R.id.nav_draw_name);
+        Name.setText(LoginActivity.getUser().getName());
+        TextView email = (TextView) headerView.findViewById(R.id.nav_draw_email);
+        email.setText(LoginActivity.getUser().getEmail());
     }
 
     @Override
@@ -90,9 +92,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (id == R.id.action_logout) {
             //TODO : CLEAR ALL USER DATA
-            Intent intent = new Intent(getApplicationContext(), Dashboard.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+            dashboardNavAction();
+            finish();
             return true;
         }
 
@@ -107,9 +108,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_dashboard) {
-            Intent i=new Intent(this, Dashboard.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
+            dashboardNavAction();
         } else if (id == R.id.nav_product) {
             productNavAction();
         } else if (id == R.id.nav_supplier) {
@@ -140,9 +139,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void dashboardNavAction() {
-        finish();
-        Intent getDashboardActivity = new Intent(this, Dashboard.class);
-        startActivity(getDashboardActivity);
+        Intent i=new Intent(this, Dashboard.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 
     public void productNavAction() {

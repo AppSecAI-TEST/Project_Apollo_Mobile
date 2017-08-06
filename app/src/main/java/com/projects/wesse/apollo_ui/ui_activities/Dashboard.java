@@ -14,8 +14,11 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.BaseActivity;
+import com.projects.wesse.apollo_ui.ui_activity_helpers.CustomMarkerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +35,7 @@ public class Dashboard extends BaseActivity {
 
 
 
-        LineChart chart = (LineChart) findViewById(R.id.chart);
+        final LineChart chart = (LineChart) findViewById(R.id.chart);
 
 
         List<Entry> entries = new ArrayList<>();
@@ -78,13 +81,33 @@ public class Dashboard extends BaseActivity {
         rightYAxis.setEnabled(false);
 
         LineDataSet dataSet = new LineDataSet(entries, "Stock"); // add entries to dataset
+        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         dataSet.setDrawValues(false);
+
 
         LineData lineData = new LineData(dataSet);
         chart.setDrawGridBackground(false);
         chart.getDescription().setEnabled(false);
+        chart.setTouchEnabled(true);
+        chart.setHighlightPerTapEnabled(true);
+        chart.animateY(2000);
+
+        final CustomMarkerView mv = new CustomMarkerView (getApplicationContext(), R.layout.tv_content);
+        chart.setMarkerView(mv);
 
         chart.setNoDataText("No input found");
+
+//        chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+//            @Override
+//            public void onValueSelected(Entry e, Highlight h) {
+//                mv.refreshContent(e, h);
+//            }
+//
+//            @Override
+//            public void onNothingSelected() {
+//
+//            }
+//        });
 
         chart.setData(lineData);
         chart.invalidate();
@@ -113,6 +136,8 @@ public class Dashboard extends BaseActivity {
 
         Intent previousActivity = getIntent();
     }
+
+
 
 
 

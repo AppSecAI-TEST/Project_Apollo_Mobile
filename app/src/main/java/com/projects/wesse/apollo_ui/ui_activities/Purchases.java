@@ -52,7 +52,7 @@ public class Purchases extends BaseActivity {
         loadMoreData(shownPurchases.size());
 
 
-        //CustomAdapter adapter = new CustomAdapter(products, this);
+        //CustomAdapter adapter = new CustomAdapter(allProducts, this);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, shownPurchases);
         list_purchases = (ListView) findViewById(R.id.lvItems);
 
@@ -73,8 +73,6 @@ public class Purchases extends BaseActivity {
                 // Starting a new async task
                 loadMoreData(shownPurchases.size());
                 adapter.notifyDataSetChanged();
-//                RelativeLayout.LayoutParams mParam = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
-//                list_purchases.setLayoutParams(mParam);
             }
         });
 

@@ -3,14 +3,10 @@ package com.projects.wesse.apollo_ui.ui_activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,7 +18,7 @@ import java.util.ArrayList;
 
 public class Products extends BaseActivity {
 
-    ArrayList<String> products, menuItems;
+    ArrayList<String> allProducts, shownProducts ;
     ListView list_products;
 
     @Override
@@ -32,14 +28,32 @@ public class Products extends BaseActivity {
         CurrentLayout.setLayout("ProductView");
         super.onCreateDrawer();
 
-        products = new ArrayList<String>();
+        allProducts = new ArrayList<String>();
         for(int i = 0; i < 100; i++)
-            products.add("Product " + (i + 1));
+            allProducts.add("Product " + (i + 1));
 
-        //CustomAdapter adapter = new CustomAdapter(products, this);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, products);
+        shownProducts = new ArrayList<String>();
+        loadMoreData(shownProducts.size());
+
+        //CustomAdapter adapter = new CustomAdapter(allProducts, this);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, shownProducts);
         list_products = (ListView) findViewById(R.id.listView1);
+
+        Button btnLoadMore = new Button(this);
+        btnLoadMore.setText("Load More");
+
+        // Adding Load More button to lisview at bottom
+        list_products.addFooterView(btnLoadMore);
         list_products.setAdapter(adapter);
+
+        btnLoadMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                // Starting a new async task
+                loadMoreData(shownProducts.size());
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         list_products.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -62,5 +76,12 @@ public class Products extends BaseActivity {
             }
         });
         Intent previousActivity = getIntent();
+    }
+
+    public void loadMoreData(int length)
+    {
+        for (int i = length ; i < length + 10; i++)
+            if(allProducts.size() > i)
+                shownProducts.add(allProducts.get(i));
     }
 }

@@ -2,15 +2,10 @@ package com.projects.wesse.apollo_ui.ui_activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,7 +17,7 @@ import java.util.ArrayList;
 
 public class Suppliers extends BaseActivity {
 
-    ArrayList<String> suppliers, menuItems;
+    ArrayList<String> allSuppliers, shownSuppliers;
     ListView list_supplier;
 
     @Override
@@ -32,14 +27,33 @@ public class Suppliers extends BaseActivity {
         CurrentLayout.setLayout("SuppliersView");
         super.onCreateDrawer();
 
-        suppliers = new ArrayList<String>();
+        allSuppliers = new ArrayList<String>();
         for(int i = 0; i < 100; i++)
-            suppliers.add("Supplier " + (i + 1));
+            allSuppliers.add("Supplier " + (i + 1));
 
-        //CustomAdapter adapter = new CustomAdapter(products, this);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, suppliers);
+        shownSuppliers = new ArrayList<String>();
+        loadMoreData(shownSuppliers.size());
+
+        //CustomAdapter adapter = new CustomAdapter(allProducts, this);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, shownSuppliers);
         list_supplier = (ListView) findViewById(R.id.listView1);
+
+        Button btnLoadMore = new Button(this);
+        btnLoadMore.setText("Load More");
+
+        // Adding Load More button to lisview at bottom
+        list_supplier.addFooterView(btnLoadMore);
+
         list_supplier.setAdapter(adapter);
+
+        btnLoadMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                // Starting a new async task
+                loadMoreData(shownSuppliers.size());
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         list_supplier.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -54,5 +68,12 @@ public class Suppliers extends BaseActivity {
         });
 
         Intent previousActivity = getIntent();
+    }
+
+    public void loadMoreData(int length)
+    {
+        for (int i = length ; i < length + 10; i++)
+            if(allSuppliers.size() > i)
+                shownSuppliers.add(allSuppliers.get(i));
     }
 }

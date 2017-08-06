@@ -46,6 +46,7 @@ public class Customers extends BaseActivity {
             allCustomers = new ArrayList<Customer>();
             for(int i = 0; i < customerArray.length(); i++){
                 Customer temp = new Customer();
+                temp.setId((Integer) new JSONObject(customerArray.getString(i)).get("id"));
                 temp.setName((String) new JSONObject(customerArray.getString(i)).get("name"));
                 temp.setEmail((String) new JSONObject(customerArray.getString(i)).get("email"));
                 temp.setTel((String) new JSONObject(customerArray.getString(i)).get("telephone"));

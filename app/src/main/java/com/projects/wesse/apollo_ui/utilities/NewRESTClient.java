@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.projects.wesse.apollo_ui.ui_activities.LoginActivity;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,30 +41,21 @@ public class NewRESTClient {
         return httpclient.execute(httpGet);
     }
 
-    public static HttpResponse delete(String url, String JSONAuthToken) throws IOException {
+    public static HttpResponse delete(String url, int resourceID, String JSONAuthToken) throws IOException {
         HttpClient httpclient = HttpClientBuilder.create().build();
-        HttpDelete httpDel = new HttpDelete(BASE_URL + url);
+        HttpDelete httpDel = new HttpDelete(BASE_URL + url + "/" + resourceID);
         httpDel.addHeader("Authorization", "Bearer " + JSONAuthToken);
         return httpclient.execute(httpDel);
     }
 
     public static String retrieveResource(String resourceToGet) {
-        InputStream inputStream = null;
+        InputStream inputStream;
         String result = "init";
-        BufferedReader br;
-        StringBuilder sb;
-
         try {
             inputStream = NewRESTClient.get(resourceToGet, LoginActivity.getUser().getJSONToken()).getEntity().getContent();
             try {
                 if(inputStream != null) {
-                    sb = new StringBuilder();
-                    String line;
-                    br = new BufferedReader(new InputStreamReader(inputStream));
-                    while ((line = br.readLine()) != null) {
-                        sb.append(line);
-                    }
-                    result = sb.toString();
+                    result = convertInputStreamToString(inputStream);
                 }
                 else
                     result = "Could not retrieve " + resourceToGet;
@@ -76,14 +69,41 @@ public class NewRESTClient {
         return result;
     }
 
+    public static JSONObject retrieveIndividualResource(String resourceToGet, int resourceID) {
+        InputStream inputStream;
+        JSONObject jsonRet = null;
+        String jsonString;
+        try {
+            inputStream = NewRESTClient.get(resourceToGet + "/" + resourceID, LoginActivity.getUser().getJSONToken()).getEntity().getContent();
+            try {
+                if(inputStream != null) {
+                    jsonString = convertInputStreamToString(inputStream);
+                    jsonRet = new JSONObject(jsonString);
+                }
+                else {
+                    jsonString = null;
+                    jsonRet = null;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jsonRet;
+    }
+
     public static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null)
-            result += line;
-        inputStream.close();
-        return result;
+        BufferedReader br;
+        StringBuilder sb;
+        sb = new StringBuilder();
+        String line;
+        br = new BufferedReader(new InputStreamReader(inputStream));
+        while ((line = br.readLine()) != null) {
+            sb.append(line);
+        }
+        return sb.toString();
     }
 
 }

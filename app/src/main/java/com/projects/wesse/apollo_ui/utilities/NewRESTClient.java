@@ -1,6 +1,10 @@
 package com.projects.wesse.apollo_ui.utilities;
 
 
+import android.util.Log;
+
+import com.projects.wesse.apollo_ui.ui_activities.LoginActivity;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,6 +44,36 @@ public class NewRESTClient {
         HttpDelete httpDel = new HttpDelete(BASE_URL + url);
         httpDel.addHeader("Authorization", "Bearer " + JSONAuthToken);
         return httpclient.execute(httpDel);
+    }
+
+    public static String retrieveResource(String resourceToGet) {
+        InputStream inputStream = null;
+        String result = "init";
+        BufferedReader br;
+        StringBuilder sb;
+
+        try {
+            inputStream = NewRESTClient.get(resourceToGet, LoginActivity.getUser().getJSONToken()).getEntity().getContent();
+            try {
+                if(inputStream != null) {
+                    sb = new StringBuilder();
+                    String line;
+                    br = new BufferedReader(new InputStreamReader(inputStream));
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line);
+                    }
+                    result = sb.toString();
+                }
+                else
+                    result = "Could not retrieve " + resourceToGet;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     public static String convertInputStreamToString(InputStream inputStream) throws IOException {

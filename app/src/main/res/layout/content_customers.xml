@@ -12,21 +12,21 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <!--<ListView
+        <ListView
             android:id="@+id/listView1"
             android:layout_width="match_parent"
             android:layout_height="10000dp"
-            android:transcriptMode="alwaysScroll"></ListView>-->
+            android:transcriptMode="alwaysScroll"></ListView>
 
-        <EditText
+        <!--<EditText
             android:id="@+id/etResponse"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:ems="10"
             android:layout_marginTop="10dp"
-            android:inputType="textMultiLine" >\
+            android:inputType="textMultiLine" >
             <requestFocus />
-        </EditText>
+        </EditText>-->
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

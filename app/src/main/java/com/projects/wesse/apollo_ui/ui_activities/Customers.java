@@ -3,31 +3,31 @@ package com.projects.wesse.apollo_ui.ui_activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
-import android.widget.EditText;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.loopj.android.http.RequestParams;
+import com.projects.wesse.apollo_ui.Attributes.Customer;
 import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.BaseActivity;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.CurrentLayout;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.CustomAdapter;
 import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
-import com.projects.wesse.apollo_ui.utilities.RestClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Customers extends BaseActivity {
 
-    private ArrayList<String> customerList;
+    private ArrayList<Customer> allCustomers, shownCustomers;
+    private ArrayList<String> cust_names;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +43,69 @@ public class Customers extends BaseActivity {
         try {
             customerJSON = new JSONObject(NewRESTClient.retrieveResource("customer"));
             JSONArray customerArray = customerJSON.getJSONArray("data");
-           customerList = new ArrayList<String>();
+            allCustomers = new ArrayList<Customer>();
             for(int i = 0; i < customerArray.length(); i++){
-                customerList.add((String) new JSONObject(customerArray.getString(i)).get("name"));
+                Customer temp = new Customer();
+                temp.setName((String) new JSONObject(customerArray.getString(i)).get("name"));
+                temp.setEmail((String) new JSONObject(customerArray.getString(i)).get("email"));
+                temp.setTel((String) new JSONObject(customerArray.getString(i)).get("telephone"));
+                temp.setAddress((String) new JSONObject(customerArray.getString(i)).get("address"));
+                temp.setSec_address((String) new JSONObject(customerArray.getString(i)).get("address_2"));
+                temp.setCity((String) new JSONObject(customerArray.getString(i)).get("city"));
+                temp.setProvince((String) new JSONObject(customerArray.getString(i)).get("province"));
+                temp.setCountry((String) new JSONObject(customerArray.getString(i)).get("country"));
+//                cust_names.add(new JSONObject(customerArray.getString(i)).get("name").toString());
+                allCustomers.add(temp);
             }
-
         } catch (JSONException e) {e.printStackTrace();}
 
+        shownCustomers = new ArrayList<Customer>();
+        cust_names = new ArrayList<String>();
+        for(int i = 0; i < allCustomers.size(); i++)
+        {
+            cust_names.add(allCustomers.get(i).getName());
+        }
+        loadMoreData(shownCustomers.size());
 
-        CustomAdapter adapter = new CustomAdapter(customerList, this);
-        ListView theListView = (ListView) findViewById(R.id.listView1);
-        theListView.setAdapter(adapter);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cust_names);
+        ListView list_customers = (ListView) findViewById(R.id.listView1);
+
+        Button btnLoadMore = new Button(this);
+        btnLoadMore.setText("Load More");
+
+        // Adding Load More button to lisview at bottom
+        list_customers.addFooterView(btnLoadMore);
+        list_customers.setAdapter(adapter);
+
+        btnLoadMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                // Starting a new async task
+                loadMoreData(shownCustomers.size());
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        list_customers.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int item = ((TextView)view).getId();
+
+                Intent product_view = new Intent(view.getContext(), CustomerView.class).putExtra("CUST", (Serializable) allCustomers.get((int) id));
+                startActivity(product_view);
+            }
+
+
+        });
 
         Intent previousActivity = getIntent();
+    }
+
+    public void loadMoreData(int length)
+    {
+        for (int i = length ; i < length + 10; i++)
+            if(allCustomers.size() > i)
+                shownCustomers.add(allCustomers.get(i));
     }
 
 }

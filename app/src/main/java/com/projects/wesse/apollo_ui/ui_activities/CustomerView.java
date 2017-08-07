@@ -92,38 +92,51 @@ public class CustomerView extends AppCompatActivity {
                 catch (IOException e) { e.printStackTrace(); }
                 break;
             case R.id.action_edit:
-                EditText txt;
-                txt = (EditText) findViewById(R.id.cust_name);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_email);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_tel);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_address);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_sec_address);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_city);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_prov);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_country);
-                txt.setEnabled(true);
+                enableFields();
 
                 Button btn_save = (Button) findViewById(R.id.btn_save);
                 btn_save.setVisibility(View.VISIBLE);
+
+                btn_save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        //TODO : SAVE DATA VIA API
+                    }
+                });
+
                 break;
             default:
                 break;
         }
 
         return true;
+    }
+
+    public void enableFields()
+    {
+        EditText txt;
+        txt = (EditText) findViewById(R.id.cust_name);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_email);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_tel);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_address);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_sec_address);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_city);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_prov);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_country);
+        txt.setEnabled(true);
     }
 }

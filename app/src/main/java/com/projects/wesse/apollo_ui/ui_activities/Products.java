@@ -101,7 +101,8 @@ public class Products extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO : Add new product
+                Intent prod_add = new Intent(view.getContext(), ProductAdd.class);
+                startActivity(prod_add);
             }
         });
         Intent previousActivity = getIntent();

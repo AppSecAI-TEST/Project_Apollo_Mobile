@@ -85,32 +85,44 @@ public class ProductView extends AppCompatActivity {
                 }
                 break;
             case R.id.action_edit:
-                EditText txt;
-                txt = (EditText) findViewById(R.id.prod_supplier);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.prod_sku);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.prod_decs);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.prod_cost_price);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.prod_retail_price);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.prod_sell_price);
-                txt.setEnabled(true);
+                enableFields();
 
                 Button btn_save = (Button) findViewById(R.id.btn_save);
                 btn_save.setVisibility(View.VISIBLE);
+
+                btn_save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        //TODO : SAVE DATA VIA API
+                    }
+                });
                 break;
             default:
                 break;
         }
 
         return true;
+    }
+
+    public void enableFields()
+    {
+        EditText txt;
+        txt = (EditText) findViewById(R.id.prod_supplier);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.prod_sku);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.prod_decs);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.prod_cost_price);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.prod_retail_price);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.prod_sell_price);
+        txt.setEnabled(true);
     }
 }

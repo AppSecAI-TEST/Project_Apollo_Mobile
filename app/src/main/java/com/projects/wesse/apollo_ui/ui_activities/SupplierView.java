@@ -1,6 +1,7 @@
 package com.projects.wesse.apollo_ui.ui_activities;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.projects.wesse.apollo_ui.Attributes.Customer;
+import com.projects.wesse.apollo_ui.Attributes.Supplier;
 import com.projects.wesse.apollo_ui.R;
 
 /**
@@ -17,6 +20,9 @@ import com.projects.wesse.apollo_ui.R;
  */
 
 public class SupplierView extends AppCompatActivity {
+
+    private TextView txt;
+    private Supplier value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +33,35 @@ public class SupplierView extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Bundle b = getIntent().getExtras();
-        String value = "Random Supplier";
-        if(b != null)
-            value = b.getString("ID");
-        setProduct(value);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
-    }
+        value = (Supplier) getIntent().getSerializableExtra("SUPPLIER");
 
-    public void setProduct(String name)
-    {
-        EditText prodName = (EditText) findViewById(R.id.cust_name);
-        prodName.setText(name);
+
+        txt = (TextView) findViewById(R.id.cust_name);
+        txt.setText(value.getName());
+
+        txt = (TextView) findViewById(R.id.cust_email);
+        txt.setText(value.getEmail());
+
+        txt = (TextView) findViewById(R.id.cust_tel);
+        txt.setText(value.getTel());
+
+        txt = (TextView) findViewById(R.id.cust_address);
+        txt.setText(value.getAddress());
+
+        txt = (TextView) findViewById(R.id.cust_sec_address);
+        txt.setText(value.getSec_address());
+
+        txt = (TextView) findViewById(R.id.cust_city);
+        txt.setText(value.getCity());
+
+        txt = (TextView) findViewById(R.id.cust_country);
+        txt.setText(value.getCountry());
+
+        txt = (TextView) findViewById(R.id.cust_prov);
+        txt.setText(value.getProvince());
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,38 +79,50 @@ public class SupplierView extends AppCompatActivity {
                 //DELETE
                 break;
             case R.id.action_edit:
-                EditText txt;
-                txt = (EditText) findViewById(R.id.cust_name);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_email);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_tel);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_address);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_sec_address);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_city);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_prov);
-                txt.setEnabled(true);
-
-                txt = (EditText) findViewById(R.id.cust_country);
-                txt.setEnabled(true);
+                enableFields();
 
                 Button btn_save = (Button) findViewById(R.id.btn_save);
                 btn_save.setVisibility(View.VISIBLE);
+
+                btn_save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View arg0) {
+                        //TODO : SAVE DATA VIA API
+                    }
+                });
                 break;
             default:
                 break;
         }
 
         return true;
+    }
+
+    public void enableFields()
+    {
+        EditText txt;
+        txt = (EditText) findViewById(R.id.cust_name);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_email);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_tel);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_address);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_sec_address);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_city);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_prov);
+        txt.setEnabled(true);
+
+        txt = (EditText) findViewById(R.id.cust_country);
+        txt.setEnabled(true);
     }
 }

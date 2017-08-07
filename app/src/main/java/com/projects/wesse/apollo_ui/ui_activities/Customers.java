@@ -3,6 +3,7 @@ package com.projects.wesse.apollo_ui.ui_activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -98,6 +99,15 @@ public class Customers extends BaseActivity {
             }
 
 
+        });
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent cut_add = new Intent(view.getContext(), CustomerAdd.class);
+                startActivity(cut_add);
+            }
         });
 
         Intent previousActivity = getIntent();

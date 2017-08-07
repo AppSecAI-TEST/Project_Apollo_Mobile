@@ -62,8 +62,16 @@
             android:label="View"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui_activities.CustomerAdd"
+            android:label="Add Customer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui_activities.ProductView"
             android:label="View"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui_activities.ProductAdd"
+            android:label="Add Product"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui_activities.PurchasesView"
@@ -72,6 +80,10 @@
         <activity
             android:name=".ui_activities.SupplierView"
             android:label="View"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui_activities.SupplierAdd"
+            android:label="Add Supplier"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui_activities.UserSettings"

@@ -2,6 +2,8 @@ package com.projects.wesse.apollo_ui.ui_activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -9,15 +11,24 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.projects.wesse.apollo_ui.Attributes.Customer;
+import com.projects.wesse.apollo_ui.Attributes.Supplier;
 import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.BaseActivity;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.CurrentLayout;
+import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Suppliers extends BaseActivity {
 
-    ArrayList<String> allSuppliers, shownSuppliers;
+    ArrayList<Supplier> allSuppliers, shownSuppliers;
+    private ArrayList<String> supp_names;
     ListView list_supplier;
 
     @Override
@@ -27,15 +38,40 @@ public class Suppliers extends BaseActivity {
         CurrentLayout.setLayout("SuppliersView");
         super.onCreateDrawer();
 
-        allSuppliers = new ArrayList<String>();
-        for(int i = 0; i < 100; i++)
-            allSuppliers.add("Supplier " + (i + 1));
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
-        shownSuppliers = new ArrayList<String>();
+        JSONObject customerJSON;
+        try {
+            customerJSON = new JSONObject(NewRESTClient.retrieveResource("supplier"));
+            JSONArray customerArray = customerJSON.getJSONArray("data");
+            allSuppliers = new ArrayList<Supplier>();
+            for(int i = 0; i < customerArray.length(); i++){
+                Supplier temp = new Supplier(
+                        (Integer) new JSONObject(customerArray.getString(i)).get("id"),
+                        (String) new JSONObject(customerArray.getString(i)).get("name"),
+                        (String) new JSONObject(customerArray.getString(i)).get("email"),
+                        (String) new JSONObject(customerArray.getString(i)).get("telephone"),
+                        (String) new JSONObject(customerArray.getString(i)).get("address"),
+                        (String) new JSONObject(customerArray.getString(i)).get("address_2"),
+                        (String) new JSONObject(customerArray.getString(i)).get("city"),
+                        (String) new JSONObject(customerArray.getString(i)).get("province"),
+                        (String) new JSONObject(customerArray.getString(i)).get("country")
+                );
+                allSuppliers.add(temp);
+            }
+        } catch (JSONException e) {e.printStackTrace();}
+
+        shownSuppliers = new ArrayList<Supplier>();
+        supp_names = new ArrayList<String>();
+        for(int i = 0; i < allSuppliers.size(); i++)
+        {
+            supp_names.add(allSuppliers.get(i).getName());
+        }
         loadMoreData(shownSuppliers.size());
 
         //CustomAdapter adapter = new CustomAdapter(allProducts, this);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, shownSuppliers);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, supp_names);
         list_supplier = (ListView) findViewById(R.id.listView1);
 
         Button btnLoadMore = new Button(this);
@@ -58,13 +94,20 @@ public class Suppliers extends BaseActivity {
         list_supplier.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = ((TextView)view).getText().toString();
-
-                Intent product_view = new Intent(view.getContext(), SupplierView.class).putExtra("ID", item);
-                startActivity(product_view);
+                Intent supplier_view = new Intent(view.getContext(), SupplierView.class).putExtra("SUPPLIER", (Serializable) allSuppliers.get((int) id));
+                startActivity(supplier_view);
             }
 
 
+        });
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent supp_add = new Intent(view.getContext(), SupplierAdd.class);
+                startActivity(supp_add);
+            }
         });
 
         Intent previousActivity = getIntent();

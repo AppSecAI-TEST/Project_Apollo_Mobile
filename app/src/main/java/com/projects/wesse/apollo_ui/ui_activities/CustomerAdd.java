@@ -41,6 +41,9 @@ public class CustomerAdd extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         Button btn = (Button) findViewById(R.id.btn_save);
         btn.setText("Add");
 

@@ -18,6 +18,11 @@ import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import cz.msebera.android.httpclient.NameValuePair;
+import cz.msebera.android.httpclient.message.BasicNameValuePair;
 
 /**
  * Created by Xander on 7/20/2017.
@@ -101,7 +106,19 @@ public class CustomerView extends AppCompatActivity {
                 btn_save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View arg0) {
-                        //TODO : SAVE DATA VIA API
+                        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+                        nvps.add(new BasicNameValuePair("name", findViewById(R.id.cust_name).toString()));
+                        nvps.add(new BasicNameValuePair("telephone", findViewById(R.id.cust_tel).toString()));
+                        nvps.add(new BasicNameValuePair("email", findViewById(R.id.email).toString()));
+                        nvps.add(new BasicNameValuePair("address", findViewById(R.id.cust_address).toString()));
+                        nvps.add(new BasicNameValuePair("address_2", findViewById(R.id.cust_sec_address).toString()));
+                        nvps.add(new BasicNameValuePair("city", findViewById(R.id.cust_city).toString()));
+                        nvps.add(new BasicNameValuePair("province", findViewById(R.id.cust_prov).toString()));
+                        nvps.add(new BasicNameValuePair("country", findViewById(R.id.cust_country).toString()));
+
+                        try {
+                            NewRESTClient.patch(nvps, "customer", Integer.parseInt(findViewById(R.id.cust_name).toString()),LoginActivity.getUser().getJSONToken());
+                        } catch (IOException e) {e.printStackTrace();}
                     }
                 });
 

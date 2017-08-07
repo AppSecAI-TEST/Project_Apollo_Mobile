@@ -45,17 +45,18 @@ public class Customers extends BaseActivity {
             JSONArray customerArray = customerJSON.getJSONArray("data");
             allCustomers = new ArrayList<Customer>();
             for(int i = 0; i < customerArray.length(); i++){
-                Customer temp = new Customer();
-                temp.setId((Integer) new JSONObject(customerArray.getString(i)).get("id"));
-                temp.setName((String) new JSONObject(customerArray.getString(i)).get("name"));
-                temp.setEmail((String) new JSONObject(customerArray.getString(i)).get("email"));
-                temp.setTel((String) new JSONObject(customerArray.getString(i)).get("telephone"));
-                temp.setAddress((String) new JSONObject(customerArray.getString(i)).get("address"));
-                temp.setSec_address((String) new JSONObject(customerArray.getString(i)).get("address_2"));
-                temp.setCity((String) new JSONObject(customerArray.getString(i)).get("city"));
-                temp.setProvince((String) new JSONObject(customerArray.getString(i)).get("province"));
-                temp.setCountry((String) new JSONObject(customerArray.getString(i)).get("country"));
-//                cust_names.add(new JSONObject(customerArray.getString(i)).get("name").toString());
+                Customer temp = new Customer(
+                        (Integer) new JSONObject(customerArray.getString(i)).get("id"),
+                        (String) new JSONObject(customerArray.getString(i)).get("name"),
+                        (String) new JSONObject(customerArray.getString(i)).get("email"),
+                        (String) new JSONObject(customerArray.getString(i)).get("telephone"),
+                        (String) new JSONObject(customerArray.getString(i)).get("address"),
+                        (String) new JSONObject(customerArray.getString(i)).get("address_2"),
+                        (String) new JSONObject(customerArray.getString(i)).get("city"),
+                        (String) new JSONObject(customerArray.getString(i)).get("province"),
+                        (String) new JSONObject(customerArray.getString(i)).get("country")
+                );
+
                 allCustomers.add(temp);
             }
         } catch (JSONException e) {e.printStackTrace();}

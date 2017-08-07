@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.projects.wesse.apollo_ui.Attributes.Customer;
 import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.ui_activities.LoginActivity;
 
@@ -60,7 +62,13 @@ public class Test extends AppCompatActivity {
         }
         new HttpAsyncTask().execute(BASE_URL + "product");
 
-        etResponse.setText(LoginActivity.getUser().toString());
+        Customer customer = new Customer(666, "test_name", "test_email", "test_tel", "test_address",
+                "test_address2", "test_city", "test_province", "test_country");
+
+        /*Gson gson = new Gson();
+        String json = gson.toJson(customer);*/
+
+        etResponse.setText(LoginActivity.getUser().toString() + " :::: " + customer.convertToJSONString());
 
         Intent previousActivity = getIntent();
 

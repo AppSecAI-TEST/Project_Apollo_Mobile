@@ -28,11 +28,13 @@ public class NewRESTClient {
     private static final String BASE_URL = "https://apollo.lomejo.co.za/api/";
     private static final HttpClient httpclient = HttpClientBuilder.create().build();
 
-    public static HttpResponse post(List<NameValuePair> nvps, String url) throws IOException {
+    public static HttpResponse post(List<NameValuePair> nvps, String url, String JSONAuthToken) throws IOException {
         HttpPost httpPost = new HttpPost(BASE_URL + url);
+        if(JSONAuthToken != null) httpPost.addHeader("Authorization", "Bearer " + JSONAuthToken);
         httpPost.setEntity(new UrlEncodedFormEntity(nvps));
         return httpclient.execute(httpPost);
     }
+
     public static HttpResponse get(String url, String JSONAuthToken) throws IOException {
         HttpGet httpGet = new HttpGet(BASE_URL + url);
         httpGet.addHeader("Authorization", "Bearer " + JSONAuthToken);
@@ -46,9 +48,10 @@ public class NewRESTClient {
         return httpclient.execute(httpDel);
     }
 
-    public static HttpResponse patch(String url, int resourceID, String JSONAuthToken) throws IOException {
+    public static HttpResponse patch(List<NameValuePair> nvps, String url, int resourceID, String JSONAuthToken) throws IOException {
         HttpClient httpclient = HttpClientBuilder.create().build();
         HttpPatch httpPatch = new HttpPatch(BASE_URL + url + "/" + resourceID);
+        httpPatch.setEntity(new UrlEncodedFormEntity(nvps));
         httpPatch.addHeader("Authorization", "Bearer " + JSONAuthToken);
         return httpclient.execute(httpPatch);
     }

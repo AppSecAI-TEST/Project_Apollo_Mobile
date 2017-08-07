@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         StringBuilder sb = null;
         JSONObject result = null;
         try {
-            inputStream = NewRESTClient.post(nvps, "authenticate").getEntity().getContent();
+            inputStream = NewRESTClient.post(nvps, "authenticate", null).getEntity().getContent();
 
             sb = new StringBuilder();
 

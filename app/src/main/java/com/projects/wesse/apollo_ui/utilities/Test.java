@@ -122,7 +122,7 @@ public class Test extends AppCompatActivity {
         nvps.add(new BasicNameValuePair("password", "secret"));
         InputStream inputStream = null;
         try {
-            inputStream = NewRESTClient.post(nvps, "authenticate").getEntity().getContent();
+            inputStream = NewRESTClient.post(nvps, "authenticate", null).getEntity().getContent();
         } catch (IOException e) {
             e.printStackTrace();
         }

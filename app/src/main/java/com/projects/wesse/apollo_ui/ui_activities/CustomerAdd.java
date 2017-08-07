@@ -59,7 +59,7 @@ public class CustomerAdd extends AppCompatActivity {
                 nvps.add(new BasicNameValuePair("country", findViewById(R.id.cust_country).toString()));
 
                 try {
-                    NewRESTClient.post(nvps, "customer");
+                    NewRESTClient.post(nvps, "customer", LoginActivity.getUser().getJSONToken());
                 } catch (IOException e) {e.printStackTrace();}
 
                 Toast.makeText(getBaseContext(), "Customer added!", Toast.LENGTH_SHORT).show();

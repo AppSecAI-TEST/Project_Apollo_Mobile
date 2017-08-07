@@ -1,8 +1,5 @@
 package com.projects.wesse.apollo_ui.utilities;
 
-
-import android.util.Log;
-
 import com.projects.wesse.apollo_ui.ui_activities.LoginActivity;
 
 import org.json.JSONObject;
@@ -20,6 +17,7 @@ import cz.msebera.android.httpclient.client.entity.UrlEncodedFormEntity;
 import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
 import cz.msebera.android.httpclient.client.methods.HttpDelete;
+import cz.msebera.android.httpclient.client.methods.HttpPatch;
 import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
 
 /**
@@ -48,6 +46,13 @@ public class NewRESTClient {
         return httpclient.execute(httpDel);
     }
 
+    public static HttpResponse patch(String url, int resourceID, String JSONAuthToken) throws IOException {
+        HttpClient httpclient = HttpClientBuilder.create().build();
+        HttpPatch httpPatch = new HttpPatch(BASE_URL + url + "/" + resourceID);
+        httpPatch.addHeader("Authorization", "Bearer " + JSONAuthToken);
+        return httpclient.execute(httpPatch);
+    }
+
     public static String retrieveResource(String resourceToGet) {
         InputStream inputStream;
         String result = "init";
@@ -62,7 +67,6 @@ public class NewRESTClient {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -87,7 +91,6 @@ public class NewRESTClient {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

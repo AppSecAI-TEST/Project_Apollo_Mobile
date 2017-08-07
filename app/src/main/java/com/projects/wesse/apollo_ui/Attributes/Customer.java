@@ -34,7 +34,6 @@ public class Customer implements Serializable {
     public String convertToJSONString() {
         Gson gson = new Gson();
         return gson.toJson(this);
-
     }
     //GETTERS & SETTERS
 

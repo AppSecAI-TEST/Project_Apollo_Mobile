@@ -1,6 +1,8 @@
 package com.projects.wesse.apollo_ui.ui_activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -10,13 +12,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.projects.wesse.apollo_ui.Attributes.Customer;
+import com.projects.wesse.apollo_ui.Attributes.Product;
 import com.projects.wesse.apollo_ui.R;
+import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
+
+import java.io.IOException;
 
 /**
  * Created by Xander on 7/20/2017.
  */
 
 public class ProductView extends AppCompatActivity {
+
+    private TextView txt;
+    private Product value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +37,30 @@ public class ProductView extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Bundle b = getIntent().getExtras();
-        String value = "Random Product";
-        if(b != null)
-            value = b.getString("ID");
-        setProduct(value);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
-    }
+        value = (Product) getIntent().getSerializableExtra("PRODUCT");
 
-    public void setProduct(String name)
-    {
-        EditText prodName = (EditText) findViewById(R.id.prod_sku);
-        prodName.setText(name);
+        //SETTING ATTRIBUTES
+        txt = (TextView) findViewById(R.id.prod_supplier);
+        txt.setText(value.getSupplier());
+
+        txt = (TextView) findViewById(R.id.prod_sku);
+        txt.setText(value.getSku());
+
+        txt = (TextView) findViewById(R.id.prod_decs);
+        txt.setText(value.getDescription());
+
+        txt = (TextView) findViewById(R.id.prod_cost_price);
+        txt.setText(value.getCost_price());
+
+        txt = (TextView) findViewById(R.id.prod_retail_price);
+        txt.setText(value.getRetail_price());
+
+        txt = (TextView) findViewById(R.id.prod_sell_price);
+        txt.setText(value.getRecommend_price());
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,7 +75,14 @@ public class ProductView extends AppCompatActivity {
                 onBackPressed();
                 return true;
             case R.id.action_delete:
-                //DELETE
+                try {
+                    NewRESTClient.delete("product", value.getId(), LoginActivity.getUser().getJSONToken());
+                    value = null;
+                    Intent getProducts = new Intent(this, Products.class);
+                    startActivity(getProducts);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.action_edit:
                 EditText txt;

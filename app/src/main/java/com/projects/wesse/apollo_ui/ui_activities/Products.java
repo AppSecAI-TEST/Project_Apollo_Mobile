@@ -48,8 +48,8 @@ public class Products extends BaseActivity {
                 Product temp = new Product();
                 temp.setId((Integer) new JSONObject(productArray.getString(i)).get("id"));
                 temp.setSku((String) new JSONObject(productArray.getString(i)).get("sku"));
-                temp.setDescription((String) new JSONObject(productArray.getString(i)).get("description"));
-////                temp.setSupplier((String) new JSONObject(productArray.getString(i)).get("supplier"));
+//                temp.setSupplier((String) new JSONObject(productArray.getString(i)).get("supplier_id"));
+//                temp.setDescription((String) new JSONObject(productArray.getString(i)).get("description"));
 //                temp.setCost_price((String) new JSONObject(productArray.getString(i)).get("cost_price"));
 //                temp.setRetail_price((String) new JSONObject(productArray.getString(i)).get("retail_price"));
 //                temp.setRecommend_price((String) new JSONObject(productArray.getString(i)).get("recommended_selling_price"));

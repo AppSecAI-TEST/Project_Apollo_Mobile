@@ -39,10 +39,11 @@ public class CustomerView extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        Bundle b = getIntent().getExtras()
-//        if(b != null) {
-            value = (Customer) getIntent().getSerializableExtra("CUST");
-//        }
+
+        value = (Customer) getIntent().getSerializableExtra("CUST");
+
+        getSupportActionBar().setTitle(value.getName());
+
 
         //SETTING ATTRIBUTES
         txt = (TextView) findViewById(R.id.cust_name);

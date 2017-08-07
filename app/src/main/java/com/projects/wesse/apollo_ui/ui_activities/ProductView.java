@@ -37,10 +37,13 @@ public class ProductView extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         value = (Product) getIntent().getSerializableExtra("PRODUCT");
+
+        getSupportActionBar().setTitle(value.getSku());
 
         //SETTING ATTRIBUTES
         txt = (TextView) findViewById(R.id.prod_supplier);

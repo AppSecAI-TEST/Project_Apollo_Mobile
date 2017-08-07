@@ -38,6 +38,7 @@ public class SupplierView extends AppCompatActivity {
 
         value = (Supplier) getIntent().getSerializableExtra("SUPPLIER");
 
+        getSupportActionBar().setTitle(value.getName());
 
         txt = (TextView) findViewById(R.id.cust_name);
         txt.setText(value.getName());

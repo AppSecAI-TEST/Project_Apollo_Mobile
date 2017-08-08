@@ -31,6 +31,7 @@ import cz.msebera.android.httpclient.message.BasicNameValuePair;
 public class CustomerAdd extends AppCompatActivity {
 
    private TextView txt;
+    private List<NameValuePair> nvps;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,31 +45,30 @@ public class CustomerAdd extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        nvps = new ArrayList<NameValuePair>();
+
         Button btn = (Button) findViewById(R.id.btn_save);
         btn.setText("Add");
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View arg0) {
-                List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-                nvps.add(new BasicNameValuePair("id", findViewById(R.id.cust_name).toString()));
+            public void onClick(View v) {
                 nvps.add(new BasicNameValuePair("name", findViewById(R.id.cust_name).toString()));
                 nvps.add(new BasicNameValuePair("telephone", findViewById(R.id.cust_tel).toString()));
-                nvps.add(new BasicNameValuePair("email", findViewById(R.id.email).toString()));
+                nvps.add(new BasicNameValuePair("email", findViewById(R.id.cust_email).toString()));
                 nvps.add(new BasicNameValuePair("address", findViewById(R.id.cust_address).toString()));
                 nvps.add(new BasicNameValuePair("address_2", findViewById(R.id.cust_sec_address).toString()));
                 nvps.add(new BasicNameValuePair("city", findViewById(R.id.cust_city).toString()));
                 nvps.add(new BasicNameValuePair("province", findViewById(R.id.cust_prov).toString()));
                 nvps.add(new BasicNameValuePair("country", findViewById(R.id.cust_country).toString()));
 
-                try {
+               try {
                     NewRESTClient.post(nvps, "customer", LoginActivity.getUser().getJSONToken());
                 } catch (IOException e) {e.printStackTrace();}
-
+                clearFields();
                 Toast.makeText(getBaseContext(), "Customer added!", Toast.LENGTH_SHORT).show();
             }
         });
-
 
     }
 

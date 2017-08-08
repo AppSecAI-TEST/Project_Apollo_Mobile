@@ -109,7 +109,7 @@ public class CustomerView extends AppCompatActivity {
                         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
                         nvps.add(new BasicNameValuePair("name", findViewById(R.id.cust_name).toString()));
                         nvps.add(new BasicNameValuePair("telephone", findViewById(R.id.cust_tel).toString()));
-                        nvps.add(new BasicNameValuePair("email", findViewById(R.id.email).toString()));
+                        nvps.add(new BasicNameValuePair("email", findViewById(R.id.cust_email).toString()));
                         nvps.add(new BasicNameValuePair("address", findViewById(R.id.cust_address).toString()));
                         nvps.add(new BasicNameValuePair("address_2", findViewById(R.id.cust_sec_address).toString()));
                         nvps.add(new BasicNameValuePair("city", findViewById(R.id.cust_city).toString()));

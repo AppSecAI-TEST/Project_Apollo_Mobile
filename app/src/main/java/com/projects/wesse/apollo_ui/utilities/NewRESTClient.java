@@ -51,6 +51,7 @@ public class NewRESTClient {
     public static HttpResponse patch(List<NameValuePair> nvps, String url, int resourceID, String JSONAuthToken) throws IOException {
         HttpClient httpclient = HttpClientBuilder.create().build();
         HttpPatch httpPatch = new HttpPatch(BASE_URL + url + "/" + resourceID);
+        httpPatch.addHeader("Content-Type", "application/x-www-form-urlencoded");
         httpPatch.addHeader("Authorization", "Bearer " + JSONAuthToken);
         httpPatch.setEntity(new UrlEncodedFormEntity(nvps));
         return httpclient.execute(httpPatch);

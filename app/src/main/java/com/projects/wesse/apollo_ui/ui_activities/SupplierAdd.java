@@ -67,6 +67,11 @@ public class SupplierAdd extends AppCompatActivity {
                 } catch (IOException e) {e.printStackTrace();}
                 clearFields();
                 Toast.makeText(getBaseContext(), "Supplier added!", Toast.LENGTH_SHORT).show();
+
+
+                Intent supplier = new Intent(v.getContext(), Suppliers.class);
+                finish();
+                startActivity(supplier);
             }
         });
 

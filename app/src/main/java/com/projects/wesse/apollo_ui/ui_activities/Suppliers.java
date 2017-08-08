@@ -105,6 +105,7 @@ public class Suppliers extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 Intent supp_add = new Intent(view.getContext(), SupplierAdd.class);
                 startActivity(supp_add);
             }

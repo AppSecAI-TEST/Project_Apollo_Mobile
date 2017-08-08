@@ -88,7 +88,6 @@ public class Products extends BaseActivity {
         list_products.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = ((TextView)view).getText().toString();
                 Intent product_view = new Intent(view.getContext(), ProductView.class).putExtra("PRODUCT", allProducts.get((int) id));
                 startActivity(product_view);
             }
@@ -101,6 +100,7 @@ public class Products extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 Intent prod_add = new Intent(view.getContext(), ProductAdd.class);
                 startActivity(prod_add);
             }

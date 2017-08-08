@@ -82,6 +82,7 @@ public class ProductView extends AppCompatActivity {
                 try {
                     NewRESTClient.delete("product", value.getId(), LoginActivity.getUser().getJSONToken());
                     value = null;
+                    finish();
                     Toast.makeText(getBaseContext(), "Product deleted!", Toast.LENGTH_SHORT).show();
                     Intent getProducts = new Intent(this, Products.class);
                     startActivity(getProducts);

@@ -107,15 +107,14 @@ public class CustomerView extends AppCompatActivity {
                     @Override
                     public void onClick(View arg0) {
                         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-                        nvps.add(new BasicNameValuePair("name", findViewById(R.id.cust_name).toString()));
-                        nvps.add(new BasicNameValuePair("telephone", findViewById(R.id.cust_tel).toString()));
-                        nvps.add(new BasicNameValuePair("email", findViewById(R.id.cust_email).toString()));
-                        nvps.add(new BasicNameValuePair("address", findViewById(R.id.cust_address).toString()));
-                        nvps.add(new BasicNameValuePair("address_2", findViewById(R.id.cust_sec_address).toString()));
-                        nvps.add(new BasicNameValuePair("city", findViewById(R.id.cust_city).toString()));
-                        nvps.add(new BasicNameValuePair("province", findViewById(R.id.cust_prov).toString()));
-                        nvps.add(new BasicNameValuePair("country", findViewById(R.id.cust_country).toString()));
-
+                        nvps.add(new BasicNameValuePair("name", ((TextView) findViewById(R.id.cust_name)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("telephone", ((TextView) findViewById(R.id.cust_tel)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("email", ((TextView) findViewById(R.id.cust_email)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("address", ((TextView) findViewById(R.id.cust_address)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("address_2", ((TextView) findViewById(R.id.cust_sec_address)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("city", ((TextView) findViewById(R.id.cust_city)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("province", ((TextView) findViewById(R.id.cust_prov)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("country", ((TextView) findViewById(R.id.cust_country)).getText().toString()));
                         try {
                             NewRESTClient.patch(nvps, "customer", Integer.parseInt(findViewById(R.id.cust_name).toString()),LoginActivity.getUser().getJSONToken());
                         } catch (IOException e) {e.printStackTrace();}

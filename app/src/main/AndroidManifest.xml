@@ -18,8 +18,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui_activities.LoginActivity"
-            android:label="@string/app_name"
-            android:windowSoftInputMode="stateVisible|adjustResize">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,10 +60,12 @@
         <activity
             android:name=".ui_activities.CustomerView"
             android:label="View"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui_activities.CustomerAdd"
             android:label="Add Customer"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui_activities.ProductView"
@@ -73,6 +74,7 @@
         <activity
             android:name=".ui_activities.ProductAdd"
             android:label="Add Product"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui_activities.PurchasesView"
@@ -85,6 +87,7 @@
         <activity
             android:name=".ui_activities.SupplierAdd"
             android:label="Add Supplier"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui_activities.UserSettings"

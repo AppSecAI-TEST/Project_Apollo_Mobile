@@ -105,6 +105,7 @@ public class Customers extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 Intent cut_add = new Intent(view.getContext(), CustomerAdd.class);
                 startActivity(cut_add);
             }

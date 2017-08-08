@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projects.wesse.apollo_ui.Attributes.Customer;
 import com.projects.wesse.apollo_ui.Attributes.Product;
@@ -81,6 +82,7 @@ public class ProductView extends AppCompatActivity {
                 try {
                     NewRESTClient.delete("product", value.getId(), LoginActivity.getUser().getJSONToken());
                     value = null;
+                    Toast.makeText(getBaseContext(), "Product deleted!", Toast.LENGTH_SHORT).show();
                     Intent getProducts = new Intent(this, Products.class);
                     startActivity(getProducts);
                 } catch (IOException e) {

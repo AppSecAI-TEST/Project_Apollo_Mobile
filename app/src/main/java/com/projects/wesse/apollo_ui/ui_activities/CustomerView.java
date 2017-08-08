@@ -92,6 +92,7 @@ public class CustomerView extends AppCompatActivity {
                 try {
                     NewRESTClient.delete("customer", value.getId(), LoginActivity.getUser().getJSONToken());
                     value = null;
+                    Toast.makeText(getBaseContext(), "Customer deleted!", Toast.LENGTH_SHORT).show();
                     Intent getCustomer = new Intent(this, Customers.class);
                     startActivity(getCustomer);
                 }

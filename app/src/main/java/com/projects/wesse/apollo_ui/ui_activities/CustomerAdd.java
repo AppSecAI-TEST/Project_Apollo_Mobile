@@ -68,6 +68,9 @@ public class CustomerAdd extends AppCompatActivity {
                 } catch (IOException e) {e.printStackTrace();}
                 clearFields();
                 Toast.makeText(getBaseContext(), "Customer added!", Toast.LENGTH_SHORT).show();
+                finish();
+                Intent getCustomer = new Intent(v.getContext(), Customers.class);
+                startActivity(getCustomer);
             }
         });
 

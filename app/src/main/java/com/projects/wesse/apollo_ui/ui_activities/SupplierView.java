@@ -1,5 +1,6 @@
 package com.projects.wesse.apollo_ui.ui_activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +11,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projects.wesse.apollo_ui.Attributes.Customer;
 import com.projects.wesse.apollo_ui.Attributes.Supplier;
 import com.projects.wesse.apollo_ui.R;
+import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
+
+import java.io.IOException;
 
 /**
  * Created by Xander on 7/20/2017.
@@ -77,7 +82,14 @@ public class SupplierView extends AppCompatActivity {
                 onBackPressed();
                 return true;
             case R.id.action_delete:
-                //DELETE
+                try {
+                    NewRESTClient.delete("supplier", value.getId(), LoginActivity.getUser().getJSONToken());
+                    value = null;
+                    Toast.makeText(getBaseContext(), "Supllier deleted!", Toast.LENGTH_SHORT).show();
+                    Intent getCustomer = new Intent(this, Customers.class);
+                    startActivity(getCustomer);
+                }
+                catch (IOException e) { e.printStackTrace(); }
                 break;
             case R.id.action_edit:
                 enableFields();

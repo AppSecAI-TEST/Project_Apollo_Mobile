@@ -2,17 +2,24 @@ package com.projects.wesse.apollo_ui.ui_activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.projects.wesse.apollo_ui.Attributes.Purchase;
+import com.projects.wesse.apollo_ui.Attributes.Supplier;
 import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.BaseActivity;
+import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -22,8 +29,9 @@ import java.util.ArrayList;
 
 public class Purchases extends BaseActivity {
 
-    ArrayList<String> allPurchases, shownPurchases;
+    ArrayList<Purchase> allPurchases, shownPurchases;
     ListView list_purchases;
+    private ArrayList<String> purchase_names;
     ProgressBar spinner;
 
     // Index from which pagination should start (0 is 1st page in our case)
@@ -43,19 +51,52 @@ public class Purchases extends BaseActivity {
         setContentView(R.layout.activity_purchases);
         super.onCreateDrawer();
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
-        allPurchases = new ArrayList<String>();
-        for (int i = 0; i < 27; i++)
-            allPurchases.add("Purchase " + (i + 1));
+        JSONObject purchaseJSON;
+        try {
+            purchaseJSON = new JSONObject(NewRESTClient.retrieveResource("purchase"));
+            JSONArray purchaseArray = purchaseJSON.getJSONArray("data");
+            allPurchases = new ArrayList<Purchase>();
+            for(int i = 0; i < purchaseArray.length(); i++){
+                Supplier tempSup = new Supplier(
+                        (Integer) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("id"),
+                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("name"),
+                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("email"),
+                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("telephone"),
+                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("address"),
+                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("address_2"),
+                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("city"),
+                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("province"),
+                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("country")
+                );
+                Purchase temp = new Purchase(
+                        (Integer) new JSONObject(purchaseArray.getString(i)).get("id"),
+                        (String) new JSONObject(purchaseArray.getString(i)).get("placed_at"),
+                        (String) new JSONObject(purchaseArray.getString(i)).get("processed_at"),
+                        (Double) new JSONObject(purchaseArray.getString(i)).get("total"),
+                        tempSup);
 
-        shownPurchases = new ArrayList<String>();
+                allPurchases.add(temp);
+            }
+        } catch (JSONException e) {e.printStackTrace();}
+    String str = allPurchases.get(3).getId() + " || " + allPurchases.get(3).getSupplier().getName();
+        shownPurchases = new ArrayList<Purchase>();
+        purchase_names = new ArrayList<String>();
+        for(int i = 0; i < allPurchases.size(); i++)
+        {
+            purchase_names.add(allPurchases.get(i).getId() + " || " + allPurchases.get(i).getSupplier().getName());
+        }
+        loadMoreData(shownPurchases.size());
+
+        shownPurchases = new ArrayList<Purchase>();
         loadMoreData(shownPurchases.size());
 
 
         //CustomAdapter adapter = new CustomAdapter(allProducts, this);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, shownPurchases);
-        list_purchases = (ListView) findViewById(R.id.lvItems);
-
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, purchase_names);
+        ListView list_purchases = (ListView) findViewById(R.id.listView1);
 
         // LoadMore button
         Button btnLoadMore = new Button(this);

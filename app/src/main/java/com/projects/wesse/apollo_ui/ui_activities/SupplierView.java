@@ -85,7 +85,8 @@ public class SupplierView extends AppCompatActivity {
                 try {
                     NewRESTClient.delete("supplier", value.getId(), LoginActivity.getUser().getJSONToken());
                     value = null;
-                    Toast.makeText(getBaseContext(), "Supllier deleted!", Toast.LENGTH_SHORT).show();
+                    finish();
+                    Toast.makeText(getBaseContext(), "Supplier deleted!", Toast.LENGTH_SHORT).show();
                     Intent getCustomer = new Intent(this, Customers.class);
                     startActivity(getCustomer);
                 }

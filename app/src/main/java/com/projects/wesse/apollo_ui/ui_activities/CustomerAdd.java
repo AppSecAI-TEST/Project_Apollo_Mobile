@@ -67,8 +67,8 @@ public class CustomerAdd extends AppCompatActivity {
                     NewRESTClient.post(nvps, "customer", LoginActivity.getUser().getJSONToken());
                 } catch (IOException e) {e.printStackTrace();}
                 clearFields();
-                Toast.makeText(getBaseContext(), "Customer added!", Toast.LENGTH_SHORT).show();
                 finish();
+                Toast.makeText(getBaseContext(), "Customer added!", Toast.LENGTH_SHORT).show();
                 Intent getCustomer = new Intent(v.getContext(), Customers.class);
                 startActivity(getCustomer);
             }

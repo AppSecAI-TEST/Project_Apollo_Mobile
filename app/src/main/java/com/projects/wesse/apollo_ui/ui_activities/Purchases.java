@@ -99,7 +99,7 @@ public class Purchases extends BaseActivity {
         ListView list_purchases = (ListView) findViewById(R.id.listView1);
 
         // LoadMore button
-        Button btnLoadMore = new Button(this);
+       Button btnLoadMore = new Button(this);
         btnLoadMore.setText("Load More");
 
         // Adding Load More button to lisview at bottom

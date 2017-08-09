@@ -9,23 +9,22 @@
     tools:showIn="@layout/activity_purchases">
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
+
         <ListView
-            android:id="@+id/lvItems"
+            android:id="@+id/listView1"
             android:layout_width="match_parent"
             android:layout_height="10000dp"
-            android:transcriptMode="disabled">
-        </ListView>
+            android:transcriptMode="alwaysScroll"></ListView>
 
-        <!--<ProgressBar-->
-            <!--android:id="@+id/progressBar1"-->
-            <!--style="?android:attr/progressBarStyleLarge"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerHorizontal="true" />-->
-
-
-
+        <!--<EditText
+            android:id="@+id/etResponse"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:ems="10"
+            android:layout_marginTop="10dp"
+            android:inputType="textMultiLine" >
+            <requestFocus />
+        </EditText>-->
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

@@ -92,8 +92,8 @@ public class Customers extends BaseActivity {
         list_customers.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent product_view = new Intent(view.getContext(), CustomerView.class).putExtra("CUST", (Serializable) allCustomers.get((int) id));
-                startActivity(product_view);
+                Intent cust_view = new Intent(view.getContext(), CustomerView.class).putExtra("CUST", (Serializable) allCustomers.get((int) id));
+                startActivity(cust_view);
             }
 
 

@@ -1,10 +1,12 @@
 package com.projects.wesse.apollo_ui.Attributes;
 
+import java.io.Serializable;
+
 /**
  * Created by wesse on 2017/08/08.
  */
 
-public class Purchase {
+public class Purchase implements Serializable {
     private int id;
     private String placed_at;
     private String processed_at;

@@ -21,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -30,7 +31,6 @@ import java.util.ArrayList;
 public class Purchases extends BaseActivity {
 
     ArrayList<Purchase> allPurchases, shownPurchases;
-    ListView list_purchases;
     private ArrayList<String> purchase_names;
     ProgressBar spinner;
 
@@ -120,10 +120,8 @@ public class Purchases extends BaseActivity {
         list_purchases.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = ((TextView)view).getText().toString();
-
-                Intent product_view = new Intent(view.getContext(), PurchasesView.class).putExtra("ID", item);
-                startActivity(product_view);
+                Intent cust_view = new Intent(view.getContext(), PurchasesView.class).putExtra("PURCHASE", (Serializable) allPurchases.get((int) id));
+                startActivity(cust_view);
             }
         });
 

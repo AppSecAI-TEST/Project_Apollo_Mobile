@@ -59,11 +59,11 @@
                     android:orientation="vertical"
                     android:paddingTop="15dp">
                     <TextView
-                        android:text="Purchase name:"
+                        android:text="Supplier name:"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent" />
                     <EditText
-                        android:id="@+id/prod_sku"
+                        android:id="@+id/pur_supp"
                         android:enabled="false"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
@@ -77,11 +77,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:text="Description:"
+                        android:text="Purchase ID:"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent" />
                     <EditText
-                        android:id="@+id/prod_decs"
+                        android:id="@+id/pur_id"
                         android:enabled="false"
                         android:textColor="@android:color/black"
                         android:textCursorDrawable="@null"
@@ -95,11 +95,47 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:text="Price:"
+                        android:text="Placed At:"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent" />
                     <EditText
-                        android:id="@+id/prod_price"
+                        android:id="@+id/pur_placed_at"
+                        android:enabled="false"
+                        android:textColor="@android:color/black"
+                        android:textCursorDrawable="@null"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginBottom="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:text="Processed at:"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" />
+                    <EditText
+                        android:id="@+id/pur_proc_at"
+                        android:enabled="false"
+                        android:textColor="@android:color/black"
+                        android:textCursorDrawable="@null"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginBottom="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:text="Total:"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" />
+                    <EditText
+                        android:id="@+id/pur_total"
                         android:enabled="false"
                         android:textColor="@android:color/black"
                         android:textCursorDrawable="@null"

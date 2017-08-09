@@ -70,10 +70,6 @@ public class ProductAdd extends AppCompatActivity {
         txt.setEnabled(true);
         txt.setText("");
 
-        txt = (TextView) findViewById(R.id.prod_supplier);
-        txt.setEnabled(true);
-        txt.setText("");
-
         txt = (TextView) findViewById(R.id.prod_decs);
         txt.setEnabled(true);
         txt.setText("");

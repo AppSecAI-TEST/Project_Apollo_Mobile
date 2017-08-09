@@ -8,23 +8,33 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
     private int id;
-    private String supplier;
+    private Supplier supplier;
     private String sku;
     private String description;
     private String cost_price;
     private String retail_price;
     private String recommend_price;
 
+    public Product(int id, String sku, String description, String cost_price, String retail_price, String recommend_price) {
+        this.id = id;
+        this.sku = sku;
+        this.description = description;
+        this.cost_price = cost_price;
+        this.retail_price = retail_price;
+        this.recommend_price = recommend_price;
+    }
+
+
     //GETTER AND SETTERS
     public int getId() {return id;}
 
     public void setId(int id) {this.id = id;}
 
-    public String getSupplier() {
+    public Supplier getSupplier() {
         return supplier;
     }
 
-    public void setSupplier(String supplier) {
+    public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
     }
 

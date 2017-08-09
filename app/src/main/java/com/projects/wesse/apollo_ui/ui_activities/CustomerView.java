@@ -92,10 +92,7 @@ public class CustomerView extends AppCompatActivity {
                 try {
                     NewRESTClient.delete("customer", value.getId(), LoginActivity.getUser().getJSONToken());
                     value = null;
-                    finish();
-                    Toast.makeText(getBaseContext(), "Customer deleted!", Toast.LENGTH_SHORT).show();
-                    Intent getCustomer = new Intent(this, Customers.class);
-                    startActivity(getCustomer);
+                    redirectCustomers("Customer deleted!");
                 }
                 catch (IOException e) { e.printStackTrace(); }
                 break;
@@ -122,6 +119,7 @@ public class CustomerView extends AppCompatActivity {
                             NewRESTClient.patch(nvps, "customer", value.getId(),LoginActivity.getUser().getJSONToken());
                         //NewRESTClient.post(nvps, "customer/" + value.getId(), LoginActivity.getUser().getJSONToken());
                         } catch (IOException e) {e.printStackTrace();}
+                        redirectCustomers("Updated!");
                     }
                 });
 
@@ -131,6 +129,14 @@ public class CustomerView extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    public void redirectCustomers(String message)
+    {
+        finish();
+        Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
+        Intent getCustomer = new Intent(this, Customers.class);
+        startActivity(getCustomer);
     }
 
     public void enableFields()

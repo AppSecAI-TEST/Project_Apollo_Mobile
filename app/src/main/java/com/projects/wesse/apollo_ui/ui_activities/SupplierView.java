@@ -13,12 +13,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.projects.wesse.apollo_ui.Attributes.Customer;
 import com.projects.wesse.apollo_ui.Attributes.Supplier;
 import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import cz.msebera.android.httpclient.NameValuePair;
+import cz.msebera.android.httpclient.message.BasicNameValuePair;
 
 /**
  * Created by Xander on 7/20/2017.
@@ -85,10 +89,7 @@ public class SupplierView extends AppCompatActivity {
                 try {
                     NewRESTClient.delete("supplier", value.getId(), LoginActivity.getUser().getJSONToken());
                     value = null;
-                    finish();
-                    Toast.makeText(getBaseContext(), "Supplier deleted!", Toast.LENGTH_SHORT).show();
-                    Intent getCustomer = new Intent(this, Customers.class);
-                    startActivity(getCustomer);
+                    redirectSupplier("Supplier deleted!");
                 }
                 catch (IOException e) { e.printStackTrace(); }
                 break;
@@ -101,7 +102,21 @@ public class SupplierView extends AppCompatActivity {
                 btn_save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View arg0) {
-                        //TODO : SAVE DATA VIA API
+                        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+                        nvps.add(new BasicNameValuePair("name", ((TextView) findViewById(R.id.cust_name)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("telephone", ((TextView) findViewById(R.id.cust_tel)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("email", ((TextView) findViewById(R.id.cust_email)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("address", ((TextView) findViewById(R.id.cust_address)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("address_2", ((TextView) findViewById(R.id.cust_sec_address)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("city", ((TextView) findViewById(R.id.cust_city)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("province", ((TextView) findViewById(R.id.cust_prov)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("country", ((TextView) findViewById(R.id.cust_country)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("_method", "PATCH"));
+                        try {
+                            NewRESTClient.patch(nvps, "supplier", value.getId(),LoginActivity.getUser().getJSONToken());
+                            //NewRESTClient.post(nvps, "customer/" + value.getId(), LoginActivity.getUser().getJSONToken());
+                        } catch (IOException e) {e.printStackTrace();}
+                        redirectSupplier("Updated!");
                     }
                 });
                 break;
@@ -110,6 +125,14 @@ public class SupplierView extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    public void redirectSupplier(String message)
+    {
+        finish();
+        Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
+        Intent supp = new Intent(this, Suppliers.class);
+        startActivity(supp);
     }
 
     public void enableFields()

@@ -43,15 +43,12 @@ public class PurchasesView extends AppCompatActivity {
 
         value = (Purchase) getIntent().getSerializableExtra("PURCHASE");
 
-        getSupportActionBar().setTitle(value.getId());
+        getSupportActionBar().setTitle(value.getSupplier().getName());
 
 
         //SETTING ATTRIBUTES
         txt = (TextView) findViewById(R.id.pur_supp);
         txt.setText(value.getSupplier().getName());
-
-        txt = (TextView) findViewById(R.id.pur_id);
-        txt.setText(value.getId());
 
         txt = (TextView) findViewById(R.id.pur_placed_at);
         txt.setText(value.getPlaced_at());
@@ -108,9 +105,6 @@ public class PurchasesView extends AppCompatActivity {
         txt.setEnabled(true);
 
         txt = (EditText) findViewById(R.id.pur_placed_at);
-        txt.setEnabled(true);
-
-        txt = (EditText) findViewById(R.id.pur_id);
         txt.setEnabled(true);
 
         txt = (EditText) findViewById(R.id.pur_supp);

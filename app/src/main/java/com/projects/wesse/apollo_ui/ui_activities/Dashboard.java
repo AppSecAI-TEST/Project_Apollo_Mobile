@@ -2,9 +2,11 @@ package com.projects.wesse.apollo_ui.ui_activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -16,16 +18,23 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.projects.wesse.apollo_ui.Attributes.Customer;
 import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.BaseActivity;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.CustomMarkerView;
+import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Dashboard extends BaseActivity {
 
-
+    List<Entry> entries;
+    int stockUnits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +43,25 @@ public class Dashboard extends BaseActivity {
         super.onCreateDrawer();
 
 
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//        StrictMode.setThreadPolicy(policy);
+//
+//        JSONObject customerJSON;
+//        try {
+//            customerJSON = new JSONObject(NewRESTClient.retrieveResource("dashboard"));
+//            JSONObject customerArray = customerJSON.getJSONObject("data");
+
+//            stockUnits = (int) customerArray.get("stockUnits");
+//            Toast.makeText(getBaseContext(), stockUnits, Toast.LENGTH_SHORT).show();
+//
+//
+//        } catch (JSONException e) {e.printStackTrace();}
+
 
         final LineChart chart = (LineChart) findViewById(R.id.chart);
 
-
-        List<Entry> entries = new ArrayList<>();
+        entries = new ArrayList<>();
+        entries = new ArrayList<>();
         entries.add(new Entry(1, 6500));
         entries.add(new Entry(2, 7800));
         entries.add(new Entry(3, 3200));

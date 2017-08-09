@@ -58,6 +58,11 @@
             android:label="Sales"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui_activities.SalesView"
+            android:label="View"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui_activities.CustomerView"
             android:label="View"
             android:windowSoftInputMode="adjustResize"

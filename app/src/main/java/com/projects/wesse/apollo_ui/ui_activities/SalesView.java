@@ -23,7 +23,7 @@ import java.io.IOException;
  * Created by wesse on 2017/08/09.
  */
 
-class SalesView  extends AppCompatActivity {
+public class SalesView  extends AppCompatActivity {
     private TextView txt;
     private Sale value;
 

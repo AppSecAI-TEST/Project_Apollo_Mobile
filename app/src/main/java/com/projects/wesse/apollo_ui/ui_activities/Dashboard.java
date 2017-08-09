@@ -19,6 +19,7 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.projects.wesse.apollo_ui.Attributes.Customer;
+import com.projects.wesse.apollo_ui.Attributes.DashboardData;
 import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.BaseActivity;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.CustomMarkerView;
@@ -33,8 +34,9 @@ import java.util.List;
 
 public class Dashboard extends BaseActivity {
 
-    List<Entry> entries;
-    int stockUnits;
+    private List<Entry> entries;
+    private int stockUnits;
+    private DashboardData dashD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,10 @@ public class Dashboard extends BaseActivity {
         super.onCreateDrawer();
 
 
-//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//        StrictMode.setThreadPolicy(policy);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        dashD = new DashboardData();
 //
 //        JSONObject customerJSON;
 //        try {

@@ -1,5 +1,6 @@
 package com.projects.wesse.apollo_ui.ui_activities;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -9,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.projects.wesse.apollo_ui.Attributes.Product;
 import com.projects.wesse.apollo_ui.R;
@@ -21,19 +21,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Products extends BaseActivity {
 
-    ArrayList<Product> allProducts, shownProducts;
-    ArrayList<String> prod_names;
-    ListView list_products;
+    private ArrayList<Product> allProducts, shownProducts;
+    private ArrayList<String> prod_names;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products);
         CurrentLayout.setLayout("ProductView");
+        setContentView(R.layout.activity_products);
         super.onCreateDrawer();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -46,27 +46,28 @@ public class Products extends BaseActivity {
             allProducts = new ArrayList<Product>();
             for(int i = 0; i < productArray.length(); i++){
                 Product temp = new Product(
-                (Integer) new JSONObject(productArray.getString(i)).get("id"),
-                (String) new JSONObject(productArray.getString(i)).get("sku"),
-                (String) new JSONObject(productArray.getString(i)).get("description"),
-                (String) new JSONObject(productArray.getString(i)).get("cost_price"),
-                (String) new JSONObject(productArray.getString(i)).get("retail_price"),
-                (String) new JSONObject(productArray.getString(i)).get("recommended_selling_price"));
+                        (Integer) new JSONObject(productArray.getString(i)).get("id"),
+                        (String) new JSONObject(productArray.getString(i)).get("sku"),
+                        (String) new JSONObject(productArray.getString(i)).get("description"),
+                        (Double) new JSONObject(productArray.getString(i)).get("cost_price"),
+                        (Double) new JSONObject(productArray.getString(i)).get("retail_price"),
+                        (Double) new JSONObject(productArray.getString(i)).get("recommended_selling_price")
+                );
+
                 allProducts.add(temp);
             }
         } catch (JSONException e) {e.printStackTrace();}
-
+        String str = allProducts.get(4).getSku();
         shownProducts = new ArrayList<Product>();
         prod_names = new ArrayList<String>();
         for(int i = 0; i < allProducts.size(); i++)
         {
-            prod_names.add(allProducts.get(i).getSku());
+            prod_names.add(allProducts.get(i).getSku() + " || " + allProducts.get(i).getDescription());
         }
         loadMoreData(shownProducts.size());
 
-        //CustomAdapter adapter = new CustomAdapter(allProducts, this);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, prod_names);
-        list_products = (ListView) findViewById(R.id.listView1);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, prod_names);
+        ListView list_products = (ListView) findViewById(R.id.listView1);
 
         Button btnLoadMore = new Button(this);
         btnLoadMore.setText("Load More");
@@ -87,31 +88,31 @@ public class Products extends BaseActivity {
         list_products.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent product_view = new Intent(view.getContext(), ProductView.class).putExtra("PRODUCT", allProducts.get((int) id));
-                startActivity(product_view);
+                Intent prod_view = new Intent(view.getContext(), ProductView.class).putExtra("PROD", (Serializable) allProducts.get((int) id));
+                startActivity(prod_view);
             }
 
 
         });
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
-                Intent prod_add = new Intent(view.getContext(), ProductAdd.class);
-                startActivity(prod_add);
+                Intent cut_add = new Intent(view.getContext(), ProductAdd.class);
+                startActivity(cut_add);
             }
         });
+
         Intent previousActivity = getIntent();
     }
 
     public void loadMoreData(int length)
     {
         for (int i = length ; i < length + 10; i++)
-            if(allProducts.size() > i) {
+            if(allProducts.size() > i)
                 shownProducts.add(allProducts.get(i));
-            }
     }
+
 }

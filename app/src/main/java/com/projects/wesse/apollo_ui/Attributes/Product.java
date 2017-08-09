@@ -8,14 +8,13 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
     private int id;
-    private Supplier supplier;
     private String sku;
     private String description;
-    private String cost_price;
-    private String retail_price;
-    private String recommend_price;
+    private Double cost_price;
+    private Double retail_price;
+    private Double recommend_price;
 
-    public Product(int id, String sku, String description, String cost_price, String retail_price, String recommend_price) {
+    public Product(int id, String sku, String description, Double cost_price, Double retail_price, Double recommend_price) {
         this.id = id;
         this.sku = sku;
         this.description = description;
@@ -29,14 +28,6 @@ public class Product implements Serializable {
     public int getId() {return id;}
 
     public void setId(int id) {this.id = id;}
-
-    public Supplier getSupplier() {
-        return supplier;
-    }
-
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
-    }
 
     public String getSku() {
         return sku;
@@ -54,27 +45,27 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public String getCost_price() {
+    public Double getCost_price() {
         return cost_price;
     }
 
-    public void setCost_price(String cost_price) {
+    public void setCost_price(Double cost_price) {
         this.cost_price = cost_price;
     }
 
-    public String getRetail_price() {
+    public Double getRetail_price() {
         return retail_price;
     }
 
-    public void setRetail_price(String retail_price) {
+    public void setRetail_price(Double retail_price) {
         this.retail_price = retail_price;
     }
 
-    public String getRecommend_price() {
+    public Double getRecommend_price() {
         return recommend_price;
     }
 
-    public void setRecommend_price(String recommend_price) {
+    public void setRecommend_price(Double recommend_price) {
         this.recommend_price = recommend_price;
     }
 }

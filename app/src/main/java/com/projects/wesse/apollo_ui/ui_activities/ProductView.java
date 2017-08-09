@@ -54,13 +54,13 @@ public class ProductView extends AppCompatActivity {
         txt.setText(value.getDescription());
 
         txt = (TextView) findViewById(R.id.prod_cost_price);
-        txt.setText(value.getCost_price());
+        txt.setText(value.getCost_price().toString());
 
         txt = (TextView) findViewById(R.id.prod_retail_price);
-        txt.setText(value.getRetail_price());
+        txt.setText(value.getRetail_price().toString());
 
         txt = (TextView) findViewById(R.id.prod_sell_price);
-        txt.setText(value.getRecommend_price());
+        txt.setText(value.getRecommend_price().toString());
 
     }
 

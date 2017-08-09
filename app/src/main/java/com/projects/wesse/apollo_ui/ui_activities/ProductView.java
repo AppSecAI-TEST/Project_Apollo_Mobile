@@ -47,9 +47,6 @@ public class ProductView extends AppCompatActivity {
         getSupportActionBar().setTitle(value.getSku());
 
         //SETTING ATTRIBUTES
-        txt = (TextView) findViewById(R.id.prod_supplier);
-        txt.setText(value.getSupplier());
-
         txt = (TextView) findViewById(R.id.prod_sku);
         txt.setText(value.getSku());
 
@@ -113,8 +110,6 @@ public class ProductView extends AppCompatActivity {
     public void enableFields()
     {
         EditText txt;
-        txt = (EditText) findViewById(R.id.prod_supplier);
-        txt.setEnabled(true);
 
         txt = (EditText) findViewById(R.id.prod_sku);
         txt.setEnabled(true);

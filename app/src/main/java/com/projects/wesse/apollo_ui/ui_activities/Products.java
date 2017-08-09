@@ -45,14 +45,13 @@ public class Products extends BaseActivity {
             JSONArray productArray = productJSON.getJSONArray("data");
             allProducts = new ArrayList<Product>();
             for(int i = 0; i < productArray.length(); i++){
-                Product temp = new Product();
-                temp.setId((Integer) new JSONObject(productArray.getString(i)).get("id"));
-                temp.setSku((String) new JSONObject(productArray.getString(i)).get("sku"));
-                temp.setSupplier((String) new JSONObject(productArray.getString(i)).get("supplier_id"));
-                temp.setDescription((String) new JSONObject(productArray.getString(i)).get("description"));
-                temp.setCost_price((String) new JSONObject(productArray.getString(i)).get("cost_price"));
-                temp.setRetail_price((String) new JSONObject(productArray.getString(i)).get("retail_price"));
-                temp.setRecommend_price((String) new JSONObject(productArray.getString(i)).get("recommended_selling_price"));
+                Product temp = new Product(
+                (Integer) new JSONObject(productArray.getString(i)).get("id"),
+                (String) new JSONObject(productArray.getString(i)).get("sku"),
+                (String) new JSONObject(productArray.getString(i)).get("description"),
+                (String) new JSONObject(productArray.getString(i)).get("cost_price"),
+                (String) new JSONObject(productArray.getString(i)).get("retail_price"),
+                (String) new JSONObject(productArray.getString(i)).get("recommended_selling_price"));
                 allProducts.add(temp);
             }
         } catch (JSONException e) {e.printStackTrace();}

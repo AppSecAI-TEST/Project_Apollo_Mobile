@@ -119,7 +119,8 @@ public class CustomerView extends AppCompatActivity {
                         nvps.add(new BasicNameValuePair("country", ((TextView) findViewById(R.id.cust_country)).getText().toString()));
                         nvps.add(new BasicNameValuePair("_method", "PATCH"));
                         try {
-                            NewRESTClient.patch(nvps, "customer", Integer.parseInt(findViewById(R.id.cust_name).toString()),LoginActivity.getUser().getJSONToken());
+                            NewRESTClient.patch(nvps, "customer", value.getId(),LoginActivity.getUser().getJSONToken());
+                        //NewRESTClient.post(nvps, "customer/" + value.getId(), LoginActivity.getUser().getJSONToken());
                         } catch (IOException e) {e.printStackTrace();}
                     }
                 });

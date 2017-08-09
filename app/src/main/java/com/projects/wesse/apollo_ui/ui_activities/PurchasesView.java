@@ -47,21 +47,21 @@ public class PurchasesView extends AppCompatActivity {
 
 
         //SETTING ATTRIBUTES
-        txt = (TextView) findViewById(R.id.pur_supp);
-        txt.setText(value.getSupplier().getName());
 
         txt = (TextView) findViewById(R.id.pur_placed_at);
         txt.setText(value.getPlaced_at());
 
         txt = (TextView) findViewById(R.id.pur_proc_at);
-        txt.setText(value.getProcessed_at());
+        if(value.getProcessed_at().equals(""))
+            txt.setText("Not Yet Processed");
+        else txt.setText(value.getProcessed_at());
 
         txt = (TextView) findViewById(R.id.pur_total);
         txt.setText(value.getTotal().toString());
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_bar_top, menu);
+//        getMenuInflater().inflate(R.menu.menu_bar_top, menu);
         getMenuInflater().inflate(R.menu.menu_options_top, menu);
         return true;
     }
@@ -105,9 +105,6 @@ public class PurchasesView extends AppCompatActivity {
         txt.setEnabled(true);
 
         txt = (EditText) findViewById(R.id.pur_placed_at);
-        txt.setEnabled(true);
-
-        txt = (EditText) findViewById(R.id.pur_supp);
         txt.setEnabled(true);
     }
 }

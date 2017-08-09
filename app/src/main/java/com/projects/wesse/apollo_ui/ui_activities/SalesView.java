@@ -56,7 +56,7 @@ public class SalesView  extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_bar_top, menu);
+//        getMenuInflater().inflate(R.menu.menu_bar_top, menu);
         getMenuInflater().inflate(R.menu.menu_options_top, menu);
         return true;
     }

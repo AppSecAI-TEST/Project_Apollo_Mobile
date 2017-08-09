@@ -3,6 +3,7 @@ package com.projects.wesse.apollo_ui.ui_activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -125,45 +126,13 @@ public class Purchases extends BaseActivity {
             }
         });
 
-//        ListView lvItems = (ListView) findViewById(R.id.lvItems);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allPurchases);
-//        lvItems.setAdapter(adapter);
-//
-//        spinner = (ProgressBar)findViewById(R.id.progressBar1);
-//
-//        lvItems.setOnScrollListener(new EndlessScrollListener() {
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public boolean onLoadMore(int page, int totalItemsCount) {
-//                // Triggered only when new data needs to be appended to the list
-//                // Add whatever code is needed to append new items to your AdapterView
-//                Context context = getApplicationContext();
-//                CharSequence text = "Before " + allPurchases.size();
-//                int duration = Toast.LENGTH_SHORT;
-//
-//                Toast toast = Toast.makeText(context, text, duration);
-//                toast.show();
-//
-//                loadMoreData(page);
-//
-//                Toast toast2 = Toast.makeText(context, "After " + allPurchases.size(), duration);
-//                toast2.show();
-//
-//
-//                // or loadNextDataFromApi(totalItemsCount);
-//                return false; // ONLY if more data is actually being loaded; false otherwise.
-//            }
-//        });
-//
-//
-//
-//
-//        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String item = ((TextView)view).getText().toString();
-//
-//                Intent product_view = new Intent(view.getContext(), PurchasesView.class).putExtra("ID", item);
-//                startActivity(product_view);
+//            public void onClick(View view) {
+//                finish();
+//                Intent pur_add = new Intent(view.getContext(), PurchasesAdd.class);
+//                startActivity(pur_add);
 //            }
 //        });
     }

@@ -53,24 +53,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <!--Attributes-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="15dp">
-                    <TextView
-                        android:text="Supplier name:"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent" />
-                    <EditText
-                        android:id="@+id/pur_supp"
-                        android:enabled="false"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:textColor="@android:color/black"
-                        android:textCursorDrawable="@null"
-                        android:layout_marginBottom="15dp" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

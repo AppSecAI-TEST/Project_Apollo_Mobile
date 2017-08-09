@@ -50,6 +50,11 @@
             android:label="Purchases"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui_activities.PurchasesAdd"
+            android:label="Purchases"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui_activities.Orders"
             android:label="Orders"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -75,6 +80,7 @@
         <activity
             android:name=".ui_activities.ProductView"
             android:label="View"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui_activities.ProductAdd"
@@ -84,10 +90,12 @@
         <activity
             android:name=".ui_activities.PurchasesView"
             android:label="View"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui_activities.SupplierView"
             android:label="View"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui_activities.SupplierAdd"
@@ -97,6 +105,7 @@
         <activity
             android:name=".ui_activities.UserSettings"
             android:label="Edit User Information"
+            android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".utilities.Test"

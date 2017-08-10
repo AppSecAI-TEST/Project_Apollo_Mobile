@@ -48,32 +48,16 @@ public class DashboardData {
         return stockUnits;
     }
 
-    public void setStockUnits(int stockUnits) {
-        this.stockUnits = stockUnits;
-    }
-
     public Double getStockValue() {
         return stockValue;
-    }
-
-    public void setStockValue(Double stockValue) {
-        this.stockValue = stockValue;
     }
 
     public Double getEstimateMargin() {
         return estimateMargin;
     }
 
-    public void setEstimateMargin(Double estimateMargin) {
-        this.estimateMargin = estimateMargin;
-    }
-
     public String getStartDate() {
         return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
     }
 
     public String getEndDate() {
@@ -84,19 +68,16 @@ public class DashboardData {
         this.endDate = endDate;
     }
 
-    public String[] getXAxisLabels() {
-        return XAxisLabels;
+    public String getXAxisLabels(int index) {
+        return XAxisLabels[index];
     }
 
     public void setXAxisLabels(String[] XAxisLabels) {
         this.XAxisLabels = XAxisLabels;
     }
 
-    public Double[] getYAxiData() {
-        return YAxisData;
+    public Double getYAxiData(int index) {
+        return YAxisData[index];
     }
 
-    public void setYAxiData(Double[] YAxiData) {
-        this.YAxisData = YAxiData;
-    }
 }

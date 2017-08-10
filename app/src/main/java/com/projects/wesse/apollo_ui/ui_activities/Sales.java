@@ -196,23 +196,24 @@ public class Sales extends BaseActivity {
             saleJSON = new JSONObject(NewRESTClient.retrieveResource(path));
             JSONArray saleArray = saleJSON.getJSONArray("data");
             for(int i = 0; i < saleArray.length(); i++){
+                final JSONObject customer = saleArray.getJSONObject(i).getJSONObject("customer").getJSONObject("data");
                 Customer tempCus = new Customer(
-                        (Integer) new JSONObject(saleArray.getString(i)).getJSONObject("customer").getJSONObject("data").get("id"),
-                        (String) new JSONObject(saleArray.getString(i)).getJSONObject("customer").getJSONObject("data").get("name"),
-                        (String) new JSONObject(saleArray.getString(i)).getJSONObject("customer").getJSONObject("data").get("email"),
-                        (String) new JSONObject(saleArray.getString(i)).getJSONObject("customer").getJSONObject("data").get("telephone"),
-                        (String) new JSONObject(saleArray.getString(i)).getJSONObject("customer").getJSONObject("data").get("address"),
-                        (String) new JSONObject(saleArray.getString(i)).getJSONObject("customer").getJSONObject("data").get("address_2"),
-                        (String) new JSONObject(saleArray.getString(i)).getJSONObject("customer").getJSONObject("data").get("city"),
-                        (String) new JSONObject(saleArray.getString(i)).getJSONObject("customer").getJSONObject("data").get("province"),
-                        (String) new JSONObject(saleArray.getString(i)).getJSONObject("customer").getJSONObject("data").get("country")
+                        customer.getInt("id"),
+                        customer.getString("name"),
+                        customer.getString("email"),
+                        customer.getString("telephone"),
+                        customer.getString("address"),
+                        customer.getString("address_2"),
+                        customer.getString("city"),
+                        customer.getString("province"),
+                        customer.getString("country")
                 );
+                final JSONObject sale = saleArray.getJSONObject(i);
                 Sale temp = new Sale(
-                        (Integer) new JSONObject(saleArray.getString(i)).get("id"),
-                        (String) new JSONObject(saleArray.getString(i)).get("placed_at"),
-                        (Double) new JSONObject(saleArray.getString(i)).get("total"),
+                        sale.getInt("id"),
+                        sale.getString("placed_at"),
+                        sale.getDouble("total"),
                         tempCus);
-
                 allSales.add(temp);
             }
         } catch (JSONException e) {e.printStackTrace();}

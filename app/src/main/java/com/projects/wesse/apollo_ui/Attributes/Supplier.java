@@ -19,8 +19,9 @@ public class Supplier implements Serializable {
     private String city;
     private String province;
     private String country;
+    private int lead;
 
-    public Supplier(int id, String name, String email, String tel, String address, String sec_address, String city, String province, String country) {
+    public Supplier(int id, String name, String email, String tel, String address, String sec_address, String city, String province, String country, int lead) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -30,6 +31,7 @@ public class Supplier implements Serializable {
         this.city = city;
         this.province = province;
         this.country = country;
+        this.lead = lead;
     }
 
     public String convertToJSONString() {

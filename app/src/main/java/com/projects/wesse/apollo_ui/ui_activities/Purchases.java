@@ -70,7 +70,8 @@ public class Purchases extends BaseActivity {
                         (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("address_2"),
                         (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("city"),
                         (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("province"),
-                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("country")
+                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("country"),
+                        (Integer) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("lead_time")
                 );
                 Purchase temp = new Purchase(
                         (Integer) new JSONObject(purchaseArray.getString(i)).get("id"),

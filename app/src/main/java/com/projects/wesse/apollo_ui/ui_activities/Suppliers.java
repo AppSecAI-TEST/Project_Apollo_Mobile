@@ -56,7 +56,8 @@ public class Suppliers extends BaseActivity {
                         (String) new JSONObject(customerArray.getString(i)).get("address_2"),
                         (String) new JSONObject(customerArray.getString(i)).get("city"),
                         (String) new JSONObject(customerArray.getString(i)).get("province"),
-                        (String) new JSONObject(customerArray.getString(i)).get("country")
+                        (String) new JSONObject(customerArray.getString(i)).get("country"),
+                        (Integer) new JSONObject(customerArray.getString(i)).get("lead_time")
                 );
                 allSuppliers.add(temp);
             }

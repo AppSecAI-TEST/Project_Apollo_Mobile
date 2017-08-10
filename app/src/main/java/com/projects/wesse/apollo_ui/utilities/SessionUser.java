@@ -11,7 +11,6 @@ import org.json.JSONObject;
 public class SessionUser{
 
     private String jsonToken;
-    private JSONObject jsonObject;
 
     private String name;
     private String email;
@@ -19,7 +18,6 @@ public class SessionUser{
     private String[] abilities;
 
     public SessionUser(JSONObject json) {
-        jsonObject = json;
      try
      {
          name = (String) json.getJSONObject("data").getJSONObject("user").get("name");
@@ -41,9 +39,8 @@ public class SessionUser{
         return ret;
     }
 
-    public void logoutActivity(){
+    public void logoutAction(){
 		jsonToken = null;
-		jsonObject = null;
 		name = null;
 		role = null;
 		abilities  = null;

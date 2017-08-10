@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.projects.wesse.apollo_ui.Attributes.Customer;
 import com.projects.wesse.apollo_ui.R;
 import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
+import com.projects.wesse.apollo_ui.utilities.SessionUser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -128,7 +129,22 @@ public class CustomerView extends AppCompatActivity {
                 break;
         }
 
-        return true;
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent i=new Intent(this, UserSettings.class);
+            startActivity(i);
+        }
+        else if (id == R.id.action_logout) {
+            SessionUser.logoutAction();
+            Intent i=new Intent(this, LoginActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+//        return true;
     }
 
     public void redirectCustomers(String message)

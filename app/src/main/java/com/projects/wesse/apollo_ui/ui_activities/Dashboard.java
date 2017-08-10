@@ -1,6 +1,7 @@
 package com.projects.wesse.apollo_ui.ui_activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.NavigationView;
@@ -91,6 +92,8 @@ public class Dashboard extends BaseActivity {
 
         LineDataSet dataSet = new LineDataSet(entries, "Stock"); // add entries to dataset
         dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        dataSet.setLineWidth(2);
+        dataSet.setColor(Color.BLUE);
         dataSet.setDrawValues(false);
 
 

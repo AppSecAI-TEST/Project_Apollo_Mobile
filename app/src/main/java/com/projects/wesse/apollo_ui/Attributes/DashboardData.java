@@ -7,11 +7,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by wesse on 2017/08/09.
  */
 
-public class DashboardData {
+public class DashboardData implements Serializable{
     private int stockUnits;
     private Double stockValue;
     private Double estimateMargin;

@@ -61,23 +61,25 @@ public class Purchases extends BaseActivity {
             JSONArray purchaseArray = purchaseJSON.getJSONArray("data");
             allPurchases = new ArrayList<Purchase>();
             for(int i = 0; i < purchaseArray.length(); i++){
+                final JSONObject supplier = purchaseArray.getJSONObject(i).getJSONObject("supplier").getJSONObject("data");
                 Supplier tempSup = new Supplier(
-                        (Integer) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("id"),
-                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("name"),
-                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("email"),
-                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("telephone"),
-                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("address"),
-                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("address_2"),
-                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("city"),
-                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("province"),
-                        (String) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("country"),
-                        (Integer) new JSONObject(purchaseArray.getString(i)).getJSONObject("supplier").getJSONObject("data").get("lead_time")
+                        supplier.getInt("id"),
+                        supplier.getString("name"),
+                        supplier.getString("email"),
+                        supplier.getString("telephone"),
+                        supplier.getString("address"),
+                        supplier.getString("address_2"),
+                        supplier.getString("city"),
+                        supplier.getString("province"),
+                        supplier.getString("country"),
+                supplier.getInt("lead_time")
                 );
+                final JSONObject purchase = purchaseArray.getJSONObject(i);
                 Purchase temp = new Purchase(
-                        (Integer) new JSONObject(purchaseArray.getString(i)).get("id"),
-                        (String) new JSONObject(purchaseArray.getString(i)).get("placed_at"),
-                        (String) new JSONObject(purchaseArray.getString(i)).get("processed_at"),
-                        (Double) new JSONObject(purchaseArray.getString(i)).get("total"),
+                        purchase.getInt("id"),
+                        purchase.getString("placed_at"),
+                        purchase.getString("processed_at"),
+                        purchase.getDouble("total"),
                         tempSup);
 
                 allPurchases.add(temp);

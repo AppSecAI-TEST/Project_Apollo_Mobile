@@ -48,15 +48,15 @@ public class Suppliers extends BaseActivity {
             allSuppliers = new ArrayList<Supplier>();
             for(int i = 0; i < customerArray.length(); i++){
                 Supplier temp = new Supplier(
-                        (Integer) new JSONObject(customerArray.getString(i)).get("id"),
-                        (String) new JSONObject(customerArray.getString(i)).get("name"),
-                        (String) new JSONObject(customerArray.getString(i)).get("email"),
-                        (String) new JSONObject(customerArray.getString(i)).get("telephone"),
-                        (String) new JSONObject(customerArray.getString(i)).get("address"),
-                        (String) new JSONObject(customerArray.getString(i)).get("address_2"),
-                        (String) new JSONObject(customerArray.getString(i)).get("city"),
-                        (String) new JSONObject(customerArray.getString(i)).get("province"),
-                        (String) new JSONObject(customerArray.getString(i)).get("country")
+                        customerArray.getJSONObject(i).getInt("id"),
+                        customerArray.getJSONObject(i).getString("name"),
+                        customerArray.getJSONObject(i).getString("email"),
+                        customerArray.getJSONObject(i).getString("telephone"),
+                        customerArray.getJSONObject(i).getString("address"),
+                        customerArray.getJSONObject(i).getString("address_2"),
+                        customerArray.getJSONObject(i).getString("city"),
+                        customerArray.getJSONObject(i).getString("province"),
+                        customerArray.getJSONObject(i).getString("country")
                 );
                 allSuppliers.add(temp);
             }

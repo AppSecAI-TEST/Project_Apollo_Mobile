@@ -44,24 +44,25 @@ public class Products extends BaseActivity {
             productJSON = new JSONObject(NewRESTClient.retrieveResource("product"));
             JSONArray productArray = productJSON.getJSONArray("data");
             allProducts = new ArrayList<Product>();
-            for(int i = 0; i < productArray.length(); i++){
+            for (int i = 0; i < productArray.length(); i++) {
                 Product temp = new Product(
-                        (Integer) new JSONObject(productArray.getString(i)).get("id"),
-                        (String) new JSONObject(productArray.getString(i)).get("sku"),
-                        (String) new JSONObject(productArray.getString(i)).get("description"),
-                        (Double) new JSONObject(productArray.getString(i)).get("cost_price"),
-                        (Double) new JSONObject(productArray.getString(i)).get("retail_price"),
-                        (Double) new JSONObject(productArray.getString(i)).get("recommended_selling_price")
+                        productArray.getJSONObject(i).getInt("id"),
+                        productArray.getJSONObject(i).getString("sku"),
+                        productArray.getJSONObject(i).getString("description"),
+                        productArray.getJSONObject(i).getDouble("cost_price"),
+                        productArray.getJSONObject(i).getDouble("retail_price"),
+                        productArray.getJSONObject(i).getDouble("recommended_selling_price")
                 );
 
                 allProducts.add(temp);
             }
-        } catch (JSONException e) {e.printStackTrace();}
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         String str = allProducts.get(4).getSku();
         shownProducts = new ArrayList<Product>();
         prod_names = new ArrayList<String>();
-        for(int i = 0; i < allProducts.size(); i++)
-        {
+        for (int i = 0; i < allProducts.size(); i++) {
             prod_names.add(allProducts.get(i).getSku() + " || " + allProducts.get(i).getDescription());
         }
         loadMoreData(shownProducts.size());
@@ -85,7 +86,7 @@ public class Products extends BaseActivity {
             }
         });
 
-        list_products.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        list_products.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent prod_view = new Intent(view.getContext(), ProductView.class).putExtra("PROD", (Serializable) allProducts.get((int) id));
@@ -108,10 +109,9 @@ public class Products extends BaseActivity {
         Intent previousActivity = getIntent();
     }
 
-    public void loadMoreData(int length)
-    {
-        for (int i = length ; i < length + 10; i++)
-            if(allProducts.size() > i)
+    public void loadMoreData(int length) {
+        for (int i = length; i < length + 10; i++)
+            if (allProducts.size() > i)
                 shownProducts.add(allProducts.get(i));
     }
 

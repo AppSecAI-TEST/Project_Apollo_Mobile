@@ -20,22 +20,22 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:layout_height="90dp"
-            android:background="@drawable/layout_backround"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
             android:gravity="center"
-
+            android:layout_height="90dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/layout_backround"
+            android:layout_marginTop="10dp"
             >
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Overall Stock"
-                android:textStyle="bold"
                 android:textSize="12sp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
+                android:textStyle="bold"
                 android:layout_marginTop="15dp"
+
                 />
 
             <LinearLayout
@@ -46,10 +46,12 @@
                 >
 
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="78%"
+                    android:id="@+id/dash_overall_stock_levels"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="1500000000000000005555555555555555500"
                     android:textStyle="bold"
                     android:textColor="#707070"
                     />
@@ -91,7 +93,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/dash_stock"
                     android:text="150000"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:textStyle="bold"
                     android:textColor="#707070"
                     />
@@ -131,7 +136,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/dash_est_margin"
                     android:text="584000"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:textStyle="bold"
                     android:textColor="#707070"
                     />

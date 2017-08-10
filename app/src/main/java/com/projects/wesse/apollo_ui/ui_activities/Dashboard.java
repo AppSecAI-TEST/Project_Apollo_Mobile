@@ -35,8 +35,8 @@ import java.util.List;
 public class Dashboard extends BaseActivity {
 
     private List<Entry> entries;
-    private int stockUnits;
     private DashboardData dashD;
+    TextView txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,52 +47,34 @@ public class Dashboard extends BaseActivity {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
         dashD = new DashboardData();
-//
-//        JSONObject customerJSON;
-//        try {
-//            customerJSON = new JSONObject(NewRESTClient.retrieveResource("dashboard"));
-//            JSONObject customerArray = customerJSON.getJSONObject("data");
 
-//            stockUnits = (int) customerArray.get("stockUnits");
-//            Toast.makeText(getBaseContext(), stockUnits, Toast.LENGTH_SHORT).show();
-//
-//
-//        } catch (JSONException e) {e.printStackTrace();}
 
+        txt = (TextView) findViewById(R.id.dash_overall_stock_levels);
+        txt.setText(String.valueOf(dashD.getStockUnits()));
+        txt = (TextView) findViewById(R.id.dash_stock);
+        txt.setText("R " + Double.toString(dashD.getStockValue()));
+        txt = (TextView) findViewById(R.id.dash_est_margin);
+        txt.setText("R " + Double.toString(dashD.getEstimateMargin()));
+
+//        Double[] data = dashD.getYAxiData();
 
         final LineChart chart = (LineChart) findViewById(R.id.chart);
+        entries = new ArrayList<>();
+        for(int i = 1; i < 13 ; i++)
+        {
+            entries.add(new Entry(i, dashD.getYAxiData(i - 1).floatValue()));
+        }
 
-        entries = new ArrayList<>();
-        entries = new ArrayList<>();
-        entries.add(new Entry(1, 6500));
-        entries.add(new Entry(2, 7800));
-        entries.add(new Entry(3, 3200));
-        entries.add(new Entry(4, 4500));
-        entries.add(new Entry(5, 1300));
-        entries.add(new Entry(6, 6500));
-        entries.add(new Entry(7, 7800));
-        entries.add(new Entry(8, 3200));
-        entries.add(new Entry(9, 4500));
-        entries.add(new Entry(10, 1300));
-        entries.add(new Entry(11, 4500));
-        entries.add(new Entry(12, 1300));
+//        String[] labels = dashD.getXAxisLabels();
 
         final ArrayList<String> xLabel = new ArrayList<String>();
         xLabel.add("");
-        xLabel.add("January");
-        xLabel.add("February");
-        xLabel.add("March");
-        xLabel.add("April");
-        xLabel.add("May");
-        xLabel.add("June");
-        xLabel.add("July");
-        xLabel.add("August");
-        xLabel.add("September");
-        xLabel.add("October");
-        xLabel.add("November");
-        xLabel.add("December");
+        for(int i = 0; i < 12 ; i++)
+        {
+            xLabel.add(dashD.getXAxisLabels(i));
+        }
+
 
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -124,42 +106,8 @@ public class Dashboard extends BaseActivity {
 
         chart.setNoDataText("No input found");
 
-//        chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-//            @Override
-//            public void onValueSelected(Entry e, Highlight h) {
-//                mv.refreshContent(e, h);
-//            }
-//
-//            @Override
-//            public void onNothingSelected() {
-//
-//            }
-//        });
-
         chart.setData(lineData);
         chart.invalidate();
-
-//        GraphView graph = (GraphView) findViewById(R.id.graph);
-//        graph.getViewport().setScrollable(true);
-//        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-//        staticLabelsFormatter.setHorizontalLabels(new String[] {"Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec", "Jan"});
-//        graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-//
-//        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-//                new DataPoint(1, 6500),
-//                new DataPoint(2, 5900),
-//                new DataPoint(3, 8000),
-//                new DataPoint(4, 8100),
-//                new DataPoint(5, 5600),
-//                new DataPoint(6, 5500),
-//                new DataPoint(7, 4000),
-//                new DataPoint(8, 6500),
-//                new DataPoint(9, 5900),
-//                new DataPoint(10, 8000),
-//                new DataPoint(11, 8100),
-//                new DataPoint(12, 5600),
-//        });
-//        graph.addSeries(series);
 
         Intent previousActivity = getIntent();
     }

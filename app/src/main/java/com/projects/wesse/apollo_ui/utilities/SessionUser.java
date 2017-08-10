@@ -10,12 +10,12 @@ import org.json.JSONObject;
 
 public class SessionUser{
 
-    private String jsonToken;
+    private static String jsonToken;
 
-    private String name;
+    private static String name;
     private String email;
-    private String role;
-    private String[] abilities;
+    private static String role;
+    private static String[] abilities;
 
     public SessionUser(JSONObject json) {
      try
@@ -39,7 +39,7 @@ public class SessionUser{
         return ret;
     }
 
-    public void logoutAction(){
+    public static void logoutAction(){
 		jsonToken = null;
 		name = null;
 		role = null;

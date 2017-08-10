@@ -91,9 +91,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i);
         }
         else if (id == R.id.action_logout) {
-            //TODO : CLEAR ALL USER DATA
-            dashboardNavAction();
-            finish();
+            SessionUser.logoutAction();
+            Intent i=new Intent(this, LoginActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
             return true;
         }
 

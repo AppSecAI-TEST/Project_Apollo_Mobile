@@ -37,10 +37,13 @@ public class Customers extends BaseActivity {
     ArrayAdapter<String> adapter;
 
     public int TOTAL_LIST_ITEMS;
-    public int NUM_ITEMS_PAGE = 10;
+    public int NUM_ITEMS_PAGE;
+    private int TOTAL_PAGES;
     int currentPage = 0;
     private int noOfBtns;
     private Button[] btns;
+
+    private JSONObject page_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,29 +55,20 @@ public class Customers extends BaseActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        JSONObject customerJSON;
         try {
-            customerJSON = new JSONObject(NewRESTClient.retrieveResource("customer"));
-            JSONArray customerArray = customerJSON.getJSONArray("data");
-            allCustomers = new ArrayList<Customer>();
-            for(int i = 0; i < customerArray.length(); i++){
-                Customer temp = new Customer(
-                        (Integer) new JSONObject(customerArray.getString(i)).get("id"),
-                        (String) new JSONObject(customerArray.getString(i)).get("name"),
-                        (String) new JSONObject(customerArray.getString(i)).get("email"),
-                        (String) new JSONObject(customerArray.getString(i)).get("telephone"),
-                        (String) new JSONObject(customerArray.getString(i)).get("address"),
-                        (String) new JSONObject(customerArray.getString(i)).get("address_2"),
-                        (String) new JSONObject(customerArray.getString(i)).get("city"),
-                        (String) new JSONObject(customerArray.getString(i)).get("province"),
-                        (String) new JSONObject(customerArray.getString(i)).get("country")
-                );
-
-                allCustomers.add(temp);
-            }
+            page_button = new JSONObject(NewRESTClient.retrieveResource("customer"));
+            NUM_ITEMS_PAGE = (Integer) page_button.getJSONObject("meta").getJSONObject("pagination").get("per_page");
+            TOTAL_LIST_ITEMS = (Integer) page_button.getJSONObject("meta").getJSONObject("pagination").get("total");
+            TOTAL_PAGES = (Integer) page_button.getJSONObject("meta").getJSONObject("pagination").get("total_pages");
         } catch (JSONException e) {e.printStackTrace();}
 
-        TOTAL_LIST_ITEMS = allCustomers.size();
+        allCustomers = new ArrayList<Customer>();
+
+//            loadFromApi("customer?page=" + Integer.toString(2));
+        for(int i = 1;i < TOTAL_PAGES + 1; i++)
+            loadFromApi("customer?page=" + Integer.toString(i));
+
+
 
         shownCustomers = new ArrayList<Customer>();
         cust_names = new ArrayList<String>();
@@ -100,7 +94,7 @@ public class Customers extends BaseActivity {
 
         // Adding Load More button to lisview at bottom
 //        list_customers.addFooterView(btnLoadMore);
-        list_customers.setAdapter(adapter);
+//        list_customers.setAdapter(adapter);
 
 //        btnLoadMore.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -166,6 +160,7 @@ public class Customers extends BaseActivity {
                 public void onClick(View v)
                 {
                     currentPage = j;
+//                    loadFromApi("customer?page=" + j + 1);
                     loadList(j);
                     CheckBtnBackGroud(j);
                 }
@@ -212,6 +207,30 @@ public class Customers extends BaseActivity {
                 android.R.layout.simple_list_item_1,
                 sort);
         list_customers.setAdapter(adapter);
+    }
+
+    private void loadFromApi(String path)
+    {
+        JSONObject customerJSON;
+        try {
+            customerJSON = new JSONObject(NewRESTClient.retrieveResource(path));
+            JSONArray customerArray = customerJSON.getJSONArray("data");
+            for(int i = 0; i < customerArray.length(); i++){
+                Customer temp = new Customer(
+                        (Integer) new JSONObject(customerArray.getString(i)).get("id"),
+                        (String) new JSONObject(customerArray.getString(i)).get("name"),
+                        (String) new JSONObject(customerArray.getString(i)).get("email"),
+                        (String) new JSONObject(customerArray.getString(i)).get("telephone"),
+                        (String) new JSONObject(customerArray.getString(i)).get("address"),
+                        (String) new JSONObject(customerArray.getString(i)).get("address_2"),
+                        (String) new JSONObject(customerArray.getString(i)).get("city"),
+                        (String) new JSONObject(customerArray.getString(i)).get("province"),
+                        (String) new JSONObject(customerArray.getString(i)).get("country")
+                );
+
+                allCustomers.add(temp);
+            }
+        } catch (JSONException e) {e.printStackTrace();}
     }
 
 }

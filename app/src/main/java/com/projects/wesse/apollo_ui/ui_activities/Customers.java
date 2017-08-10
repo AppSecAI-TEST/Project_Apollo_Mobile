@@ -1,6 +1,7 @@
 package com.projects.wesse.apollo_ui.ui_activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
@@ -108,7 +109,7 @@ public class Customers extends BaseActivity {
         list_customers.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent product_view = new Intent(view.getContext(), CustomerView.class).putExtra("CUST", (Serializable) allCustomers.get((int)id + (10*currentPage)));
+                Intent product_view = new Intent(view.getContext(), CustomerView.class).putExtra("CUST", (Serializable) allCustomers.get((int)id + (NUM_ITEMS_PAGE*currentPage)));
                 startActivity(product_view);
             }
 
@@ -176,7 +177,8 @@ public class Customers extends BaseActivity {
         {
             if(i==index)
             {
-                btns[index].setBackgroundDrawable(getResources().getDrawable(R.drawable.common_google_signin_btn_icon_dark_normal));
+                btns[index].setBackgroundColor(Color.BLACK);
+//                btns[index].setBackgroundDrawable(getResources().getDrawable(R.drawable.common_google_signin_btn_icon_dark_normal));
                 btns[i].setTextColor(getResources().getColor(android.R.color.white));
             }
             else

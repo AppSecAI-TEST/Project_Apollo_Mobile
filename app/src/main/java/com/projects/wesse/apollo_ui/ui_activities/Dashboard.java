@@ -35,7 +35,7 @@ import java.util.List;
 public class Dashboard extends BaseActivity {
 
     private List<Entry> entries;
-    private DashboardData dashD;
+    private static DashboardData dashD;
     TextView txt;
 
     @Override

@@ -36,7 +36,7 @@ import java.util.List;
 public class Dashboard extends BaseActivity {
 
     private List<Entry> entries;
-    private static DashboardData dashD;
+    private DashboardData dashD;
     TextView txt;
 
     @Override
@@ -44,7 +44,6 @@ public class Dashboard extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         super.onCreateDrawer();
-
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -92,7 +91,7 @@ public class Dashboard extends BaseActivity {
 
         LineDataSet dataSet = new LineDataSet(entries, "Stock"); // add entries to dataset
         dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-        dataSet.setLineWidth(2);
+        dataSet.setLineWidth(4);
         dataSet.setColor(Color.BLUE);
         dataSet.setDrawValues(false);
 

@@ -20,6 +20,11 @@ import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
 import com.projects.wesse.apollo_ui.utilities.SessionUser;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import cz.msebera.android.httpclient.NameValuePair;
+import cz.msebera.android.httpclient.message.BasicNameValuePair;
 
 /**
  * Created by Xander on 7/20/2017.
@@ -43,7 +48,7 @@ public class ProductView extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        value = (Product) getIntent().getSerializableExtra("PRODUCT");
+        value = (Product) getIntent().getSerializableExtra("PROD");
 
         getSupportActionBar().setTitle(value.getSku());
 
@@ -96,8 +101,20 @@ public class ProductView extends AppCompatActivity {
 
                 btn_save.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View arg0) {
-                        //TODO : SAVE DATA VIA API
+                    public void onClick(View v) {
+                        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+                        nvps.add(new BasicNameValuePair("sku", ((TextView) findViewById(R.id.prod_sku)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("description", ((TextView) findViewById(R.id.prod_decs)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("cost_price", ((TextView) findViewById(R.id.prod_cost_price)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("retail_price", ((TextView) findViewById(R.id.prod_retail_price)).getText().toString()));
+                        nvps.add(new BasicNameValuePair("recommended_selling_price", ((TextView) findViewById(R.id.prod_sell_price)).getText().toString()));
+
+                        nvps.add(new BasicNameValuePair("_method", "PATCH"));
+                        try {
+                            NewRESTClient.patch(nvps, "product", value.getId(),LoginActivity.getUser().getJSONToken());
+                            //NewRESTClient.post(nvps, "customer/" + value.getId(), LoginActivity.getUser().getJSONToken());
+                        } catch (IOException e) {e.printStackTrace();}
+                        redirectCustomers("Updated!");
                     }
                 });
                 break;
@@ -110,6 +127,8 @@ public class ProductView extends AppCompatActivity {
             Intent i=new Intent(this, UserSettings.class);
             startActivity(i);
         }
+
+
         else if (id == R.id.action_logout) {
             SessionUser.logoutAction();
             Intent i=new Intent(this, LoginActivity.class);
@@ -120,6 +139,14 @@ public class ProductView extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void redirectCustomers(String message)
+    {
+        finish();
+        Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
+        Intent getCustomer = new Intent(this, Products.class);
+        startActivity(getCustomer);
     }
 
     public void enableFields()

@@ -100,7 +100,7 @@ public class Sales extends BaseActivity {
         list_sales.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent cust_view = new Intent(view.getContext(), SalesView.class).putExtra("PURCHASE", (Serializable) allSales.get((int)id + (NUM_ITEMS_PAGE*currentPage)));
+                Intent cust_view = new Intent(view.getContext(), SalesView.class).putExtra("SALES", (Serializable) allSales.get((int)id + (NUM_ITEMS_PAGE*currentPage)));
                 startActivity(cust_view);
             }
         });

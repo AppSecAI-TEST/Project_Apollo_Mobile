@@ -40,7 +40,7 @@ public class SalesView  extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        value = (Sale) getIntent().getSerializableExtra("PURCHASE");
+        value = (Sale) getIntent().getSerializableExtra("SALES");
 
         getSupportActionBar().setTitle(value.getCustomer().getName());
 

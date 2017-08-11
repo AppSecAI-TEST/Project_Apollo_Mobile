@@ -67,7 +67,7 @@ public class SessionUser{
         return email;
     }
 
-    public String getRole() {
+    public static String getRole() {
         return role;
     }
 

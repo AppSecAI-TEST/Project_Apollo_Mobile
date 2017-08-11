@@ -51,6 +51,7 @@ public class SupplierAdd extends AppCompatActivity {
         nvps = new ArrayList<NameValuePair>();
 
         btn.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View v) {
                 nvps.add(new BasicNameValuePair("name", ((TextView) findViewById(R.id.cust_name)).getText().toString()));
@@ -66,12 +67,10 @@ public class SupplierAdd extends AppCompatActivity {
                     NewRESTClient.post(nvps, "supplier", LoginActivity.getUser().getJSONToken());
                 } catch (IOException e) {e.printStackTrace();}
                 clearFields();
-                Toast.makeText(getBaseContext(), "Supplier added!", Toast.LENGTH_SHORT).show();
-
-
-                Intent supplier = new Intent(v.getContext(), Suppliers.class);
                 finish();
-                startActivity(supplier);
+                Toast.makeText(getBaseContext(), "Supplier added!", Toast.LENGTH_SHORT).show();
+                Intent getCustomer = new Intent(v.getContext(), Customers.class);
+                startActivity(getCustomer);
             }
         });
 

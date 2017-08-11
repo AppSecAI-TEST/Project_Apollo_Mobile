@@ -22,6 +22,7 @@ import com.projects.wesse.apollo_ui.ui_activity_helpers.BaseActivity;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.CurrentLayout;
 import com.projects.wesse.apollo_ui.ui_activity_helpers.CustomAdapter;
 import com.projects.wesse.apollo_ui.utilities.NewRESTClient;
+import com.projects.wesse.apollo_ui.utilities.SessionUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -117,6 +118,8 @@ public class Customers extends BaseActivity {
         });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if(SessionUser.getRole().equals("sales"))
+            fab.setVisibility(View.INVISIBLE);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
